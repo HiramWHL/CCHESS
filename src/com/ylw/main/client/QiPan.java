@@ -32,7 +32,7 @@ public class QiPan extends JPanel implements MouseListener {
         guiZe = new GuiZe(qiZi);
 
         this.addMouseListener(this);
-        this.setBounds(0, 0, 700, 700);//ÉèÖÃÆåÅÌµÄ´óĞ¡
+        this.setBounds(0, 0, 700, 700);//Ã‰Ã¨Ã–ÃƒÃ†Ã¥Ã…ÃŒÂµÃ„Â´Ã³ÃÂ¡
         this.setLayout(null);
     }
 
@@ -43,23 +43,25 @@ public class QiPan extends JPanel implements MouseListener {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         Color c = g.getColor();
-        g.setColor(XiangQi.bgColor);
-        g.fill3DRect(60, 30, 580, 630, false);
-        g.setColor(Color.black);
+        Image imageQiPan=Toolkit.getDefaultToolkit().getImage("./img/pu.jpg");
+        //g.setColor(XiangQi.bgColor);
+        g.drawImage(imageQiPan, 0,0 , 1000,1000, this);
+        //g.fill3DRect(60, 30, 580, 630, false);
+        //g.setColor(Color.black);
 
-        for (int i = 80; i <= 620; i = i + 60) {//»æÖÆÆåÅÌÖĞµÄºáÏß
+        for (int i = 80; i <= 620; i = i + 60) {//Â»Ã¦Ã–Ã†Ã†Ã¥Ã…ÃŒÃ–ÃÂµÃ„ÂºÃ¡ÃÃŸ
             g.drawLine(110, i, 590, i);
         }
 
-        g.drawLine(110, 80, 110, 620);//»æÖÆ×ó±ßÏß
-        g.drawLine(590, 80, 590, 620);//»æÖÆÓÒ±ßÏß
+        g.drawLine(110, 80, 110, 620);//Â»Ã¦Ã–Ã†Ã—Ã³Â±ÃŸÃÃŸ
+        g.drawLine(590, 80, 590, 620);//Â»Ã¦Ã–Ã†Ã“Ã’Â±ÃŸÃÃŸ
 
-        for (int i = 170; i <= 530; i = i + 60) {//»æÖÆÖĞ¼äµÄÊúÏß
+        for (int i = 170; i <= 530; i = i + 60) {//Â»Ã¦Ã–Ã†Ã–ÃÂ¼Ã¤ÂµÃ„ÃŠÃºÃÃŸ
             g.drawLine(i, 80, i, 320);
             g.drawLine(i, 380, i, 620);
         }
 
-        g.drawLine(290, 80, 410, 200);//»æÖÆÁ½±ßµÄĞ±Ïß
+        g.drawLine(290, 80, 410, 200);//Â»Ã¦Ã–Ã†ÃÂ½Â±ÃŸÂµÃ„ÃÂ±ÃÃŸ
         g.drawLine(290, 200, 410, 80);
         g.drawLine(290, 500, 410, 620);
         g.drawLine(290, 620, 410, 500);
@@ -81,32 +83,35 @@ public class QiPan extends JPanel implements MouseListener {
 
         g.setColor(Color.black);
 
-        Font font1 = new Font("ËÎÌå", Font.BOLD, 50);//ÉèÖÃ×ÖÌå
+        Font font1 = new Font("éš¶ä¹¦", Font.BOLD, 50);//Ã‰Ã¨Ã–ÃƒÃ—Ã–ÃŒÃ¥
         g.setFont(font1);
 
-        g.drawString("³ş ºÓ", 170, 365);
-        g.drawString("ºº ½ç", 400, 365);
+        g.drawString("æ¥š æ²³", 170, 365);
+        g.drawString("æ±‰ ç•Œ", 400, 365);
 
-        Font font = new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 30);
-        g.setFont(font);
+        //Font font = new Font("ÃÂ¢ÃˆÃ­Ã‘Ã…ÂºÃš", Font.BOLD, 30);
+        //g.setFont(font);
 
         for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 10; j++) {//»æÖÆÆå×Ó
+            for (int j = 0; j < 10; j++) {//Â»Ã¦Ã–Ã†Ã†Ã¥Ã—Ã“
                 if (qiZi[i][j] != null) {
 
-                    if (this.qiZi[i][j].getFocus() != false) {//ÊÇ·ñ±»Ñ¡ÖĞ
-                        g.setColor(XiangQi.focusbg);//Ñ¡ÖĞºóµÄ±³¾°É«
-                        g.fillOval(110 + i * 60 - 25, 80 + j * 60 - 25, 50, 50);
-                        g.setColor(XiangQi.focuschar);
+                    if (this.qiZi[i][j].getFocus() != false) {//ÃŠÃ‡Â·Ã±Â±Â»Ã‘Â¡Ã–Ã
+                        //g.setColor(XiangQi.focusbg);//Ã‘Â¡Ã–ÃÂºÃ³ÂµÃ„Â±Â³Â¾Â°Ã‰Â«
+                        //g.fillOval(110 + i * 60 - 25, 80 + j * 60 - 25, 50, 50);
+                        //g.setColor(XiangQi.focuschar);
+                    	Image imageQiZi=Toolkit.getDefaultToolkit().getImage("./img/"+qiZi[i][j].getName()+".png");
+                        g.drawImage(imageQiZi, 110 + i * 60 - 25,80 + j * 60 - 25 , 80,80, this);
 
                     } else {
 
-                        g.fillOval(110 + i * 60 - 25, 80 + j * 60 - 25, 50, 50);
-                        g.setColor(qiZi[i][j].getColor());
+                        //g.fillOval(110 + i * 60 - 25, 80 + j * 60 - 25, 50, 50);
+                        //g.setColor(qiZi[i][j].getColor());
                     }
-
-                    g.drawString(qiZi[i][j].getName(), 110 + i * 60 - 15, 80 + j * 60 + 10);
-                    g.setColor(Color.black);
+                    Image imageQiZi=Toolkit.getDefaultToolkit().getImage("./img/"+qiZi[i][j].getName()+".png");
+                    g.drawImage(imageQiZi, 110 + i * 60 - 25,80 + j * 60 - 25 , 60,60, this);
+                    //g.drawString(qiZi[i][j].getName(), 110 + i * 60 - 15, 80 + j * 60 + 10);
+                    //g.setColor(Color.black);
                 }
             }
         }
@@ -129,17 +134,17 @@ public class QiPan extends JPanel implements MouseListener {
                     this.noFocus(i, j);
                 } else {
 
-                    if (qiZi[i][j] != null) {//Èç¹û¸Ã´¦ÓĞÆå×Ó
-                        if (qiZi[i][j].getColor() == qiZi[startI][startJ].getColor()) {//Èç¹ûÊÇ×Ô¼ºµÄÆå×Ó
+                    if (qiZi[i][j] != null) {//ÃˆÃ§Â¹Ã»Â¸ÃƒÂ´Â¦Ã“ÃÃ†Ã¥Ã—Ã“
+                        if (qiZi[i][j].getColor() == qiZi[startI][startJ].getColor()) {//ÃˆÃ§Â¹Ã»ÃŠÃ‡Ã—Ã”Â¼ÂºÂµÃ„Ã†Ã¥Ã—Ã“
                             qiZi[startI][startJ].setFocus(false);
-                            qiZi[i][j].setFocus(true);//¸ü¸ÄÑ¡ÖĞ¶ÔÏó
+                            qiZi[i][j].setFocus(true);//Â¸Ã¼Â¸Ã„Ã‘Â¡Ã–ÃÂ¶Ã”ÃÃ³
                             startI = i;
                             startJ = j;
-                        } else {//Èç¹ûÊÇ¶Ô·½Æå×Ó
-                            endI = i;//±£´æ¸Ãµã
+                        } else {//ÃˆÃ§Â¹Ã»ÃŠÃ‡Â¶Ã”Â·Â½Ã†Ã¥Ã—Ã“
+                            endI = i;//Â±Â£Â´Ã¦Â¸ÃƒÂµÃ£
                             endJ = j;
-                            String name = qiZi[startI][startJ].getName();//»ñµÃ¸ÃÆå×ÓµÄÃû×Ö
-                            //¿´ÊÇ·ñ¿ÉÒÔÒÆ¶¯
+                            String name = qiZi[startI][startJ].getName();//Â»Ã±ÂµÃƒÂ¸ÃƒÃ†Ã¥Ã—Ã“ÂµÃ„ÃƒÃ»Ã—Ã–
+                            //Â¿Â´ÃŠÃ‡Â·Ã±Â¿Ã‰Ã’Ã”Ã’Ã†Â¶Â¯
                             boolean canMove = guiZe.canMove(startI, startJ, endI, endJ, name);
                             if (canMove)
                             {
@@ -147,8 +152,8 @@ public class QiPan extends JPanel implements MouseListener {
                                     this.xq.cat.dout.writeUTF("<#MOVE#>" +
                                             this.xq.cat.tiaoZhanZhe + startI + startJ + endI + endJ);
                                     this.xq.caiPan = false;
-                                    if (qiZi[endI][endJ].getName().equals("›") ||
-                                            qiZi[endI][endJ].getName().equals("Œ¢")) {
+                                    if (qiZi[endI][endJ].getName().equals("Å½â€º") ||
+                                            qiZi[endI][endJ].getName().equals("Å’Â¢")) {
                                         this.success();
                                     } else {
                                         this.noJiang();
@@ -162,14 +167,14 @@ public class QiPan extends JPanel implements MouseListener {
                         endI = i;
                         endJ = j;
                         String name = qiZi[startI][startJ].getName();
-                        boolean canMove = guiZe.canMove(startI, startJ, endI, endJ, name);//ÅĞ¶ÏÊÇ·ñ¿É×ß
+                        boolean canMove = guiZe.canMove(startI, startJ, endI, endJ, name);//Ã…ÃÂ¶ÃÃŠÃ‡Â·Ã±Â¿Ã‰Ã—ÃŸ
                         if (canMove) {
                             this.noQiZi();
                         }
                     }
                 }
             }
-            this.xq.repaint();//ÖØ»æ
+            this.xq.repaint();//Ã–Ã˜Â»Ã¦
         }
     }
 
@@ -185,12 +190,12 @@ public class QiPan extends JPanel implements MouseListener {
         double x = p.getX();
         double y = p.getY();
 
-        if (Math.abs((x - 110) / 1 % 60) <= 25) {//»ñµÃ¶ÔÓ¦ÓÚÊı×éxÏÂ±êµÄÎ»ÖÃ
+        if (Math.abs((x - 110) / 1 % 60) <= 25) {//Â»Ã±ÂµÃƒÂ¶Ã”Ã“Â¦Ã“ÃšÃŠÃ½Ã—Ã©xÃÃ‚Â±ÃªÂµÃ„ÃÂ»Ã–Ãƒ
             pos[0] = Math.round((float) (x - 110)) / 60;
         } else if (Math.abs((x - 110) / 1 % 60) >= 35) {
             pos[0] = Math.round((float) (x - 110)) / 60 + 1;
         }
-        if (Math.abs((y - 80) / 1 % 60) <= 25) {//»ñµÃ¶ÔÓ¦ÓÚÊı×éyÏÂ±êµÄÎ»ÖÃ
+        if (Math.abs((y - 80) / 1 % 60) <= 25) {//Â»Ã±ÂµÃƒÂ¶Ã”Ã“Â¦Ã“ÃšÃŠÃ½Ã—Ã©yÃÃ‚Â±ÃªÂµÃ„ÃÂ»Ã–Ãƒ
             pos[1] = Math.round((float) (y - 80)) / 60;
         } else if (Math.abs((y - 80) / 1 % 60) >= 35) {
             pos[1] = Math.round((float) (y - 80)) / 60 + 1;
@@ -200,24 +205,24 @@ public class QiPan extends JPanel implements MouseListener {
 
     public void noFocus(int i, int j) {
 
-        if (this.qiZi[i][j] != null)//Èç¹û¸ÃÎ»ÖÃÓĞÆå×Ó
+        if (this.qiZi[i][j] != null)//ÃˆÃ§Â¹Ã»Â¸ÃƒÃÂ»Ã–ÃƒÃ“ÃÃ†Ã¥Ã—Ã“
         {
-            if (this.xq.color == 0)//Èç¹ûÊÇºì·½
+            if (this.xq.color == 0)//ÃˆÃ§Â¹Ã»ÃŠÃ‡ÂºÃ¬Â·Â½
             {
-                if (this.qiZi[i][j].getColor().equals(XiangQi.color1))//Èç¹ûÆå×ÓÊÇºìÉ«
+                if (this.qiZi[i][j].getColor().equals(XiangQi.color1))//ÃˆÃ§Â¹Ã»Ã†Ã¥Ã—Ã“ÃŠÃ‡ÂºÃ¬Ã‰Â«
                 {
-                    this.qiZi[i][j].setFocus(true);//½«¸ÃÆå×ÓÉèÎªÑ¡ÖĞ×´Ì¬
-                    focus = true;//½«focusÉèÎªtrue
-                    startI = i;//±£´æ¸Ã×ø±êµã
+                    this.qiZi[i][j].setFocus(true);//Â½Â«Â¸ÃƒÃ†Ã¥Ã—Ã“Ã‰Ã¨ÃÂªÃ‘Â¡Ã–ÃÃ—Â´ÃŒÂ¬
+                    focus = true;//Â½Â«focusÃ‰Ã¨ÃÂªtrue
+                    startI = i;//Â±Â£Â´Ã¦Â¸ÃƒÃ—Ã¸Â±ÃªÂµÃ£
                     startJ = j;
                 }
-            } else//Èç¹ûÊÇ°×·½
+            } else//ÃˆÃ§Â¹Ã»ÃŠÃ‡Â°Ã—Â·Â½
             {
-                if (this.qiZi[i][j].getColor().equals(XiangQi.color2))//Èç¹û¸ÃÆå×ÓÊÇ°×É«
+                if (this.qiZi[i][j].getColor().equals(XiangQi.color2))//ÃˆÃ§Â¹Ã»Â¸ÃƒÃ†Ã¥Ã—Ã“ÃŠÃ‡Â°Ã—Ã‰Â«
                 {
-                    this.qiZi[i][j].setFocus(true);//½«¸ÃÆå×ÓÉèÎªÑ¡ÖĞ×´Ì¬
-                    focus = true;//½«focusÉèÎªtrue
-                    startI = i;//±£´æ¸Ã×ø±êµã
+                    this.qiZi[i][j].setFocus(true);//Â½Â«Â¸ÃƒÃ†Ã¥Ã—Ã“Ã‰Ã¨ÃÂªÃ‘Â¡Ã–ÃÃ—Â´ÃŒÂ¬
+                    focus = true;//Â½Â«focusÃ‰Ã¨ÃÂªtrue
+                    startI = i;//Â±Â£Â´Ã¦Â¸ÃƒÃ—Ã¸Â±ÃªÂµÃ£
                     startJ = j;
                 }
             }
@@ -226,12 +231,12 @@ public class QiPan extends JPanel implements MouseListener {
 
     public void success() {
 
-        qiZi[endI][endJ] = qiZi[startI][startJ];//³Ôµô¸ÃÆå×Ó
-        qiZi[startI][startJ] = null;//½«Ô­À´µÄÎ»ÖÃÉèÎª¿Õ
+        qiZi[endI][endJ] = qiZi[startI][startJ];//Â³Ã”ÂµÃ´Â¸ÃƒÃ†Ã¥Ã—Ã“
+        qiZi[startI][startJ] = null;//Â½Â«Ã”Â­Ã€Â´ÂµÃ„ÃÂ»Ã–ÃƒÃ‰Ã¨ÃÂªÂ¿Ã•
 
-        this.xq.repaint();//ÖØ»æ
+        this.xq.repaint();//Ã–Ã˜Â»Ã¦
 
-        JOptionPane.showMessageDialog(this.xq, "¹§Ï²Äú£¬Äú»ñÊ¤ÁË", "ÌáÊ¾",
+        JOptionPane.showMessageDialog(this.xq, "Â¹Â§ÃÂ²Ã„ÃºÂ£Â¬Ã„ÃºÂ»Ã±ÃŠÂ¤ÃÃ‹", "ÃŒÃ¡ÃŠÂ¾",
                 JOptionPane.INFORMATION_MESSAGE);
 
         this.xq.cat.tiaoZhanZhe = null;
@@ -266,27 +271,27 @@ public class QiPan extends JPanel implements MouseListener {
         qiZi[startI][startJ] = null;
         qiZi[endI][endJ].setFocus(false);
 
-        this.xq.repaint();//ÖØ»æ
+        this.xq.repaint();//Ã–Ã˜Â»Ã¦
 
-        if (qiZi[endI][endJ].getName().equals("›")) {
-            jiang1_i = endI;//¸üĞÂ"›"µÄÎ»ÖÃ×ø±ê
+        if (qiZi[endI][endJ].getName().equals("Å½â€º")) {
+            jiang1_i = endI;//Â¸Ã¼ÃÃ‚"Å½â€º"ÂµÃ„ÃÂ»Ã–ÃƒÃ—Ã¸Â±Ãª
             jiang1_j = endJ;
-        } else if (qiZi[endI][endJ].getName().equals("Œ¢")) {//Èç¹ûÒÆ¶¯µÄÊÇ"Œ¢"
-            jiang2_i = endI;//¸üĞÂ"Œ¢"µÄÎ»ÖÃ×ø±ê
+        } else if (qiZi[endI][endJ].getName().equals("Å’Â¢")) {//ÃˆÃ§Â¹Ã»Ã’Ã†Â¶Â¯ÂµÃ„ÃŠÃ‡"Å’Â¢"
+            jiang2_i = endI;//Â¸Ã¼ÃÃ‚"Å’Â¢"ÂµÃ„ÃÂ»Ã–ÃƒÃ—Ã¸Â±Ãª
             jiang2_j = endJ;
         }
-        if (jiang1_i == jiang2_i) {//Èç¹û"Œ¢"ºÍ"›"ÔÚÒ»ÌõÊúÏßÉÏ
+        if (jiang1_i == jiang2_i) {//ÃˆÃ§Â¹Ã»"Å’Â¢"ÂºÃ"Å½â€º"Ã”ÃšÃ’Â»ÃŒÃµÃŠÃºÃÃŸÃ‰Ã
             int count = 0;
-            for (int jiang_j = jiang1_j + 1; jiang_j < jiang2_j; jiang_j++) {//±éÀúÕâÌõÊúÏß
+            for (int jiang_j = jiang1_j + 1; jiang_j < jiang2_j; jiang_j++) {//Â±Ã©Ã€ÃºÃ•Ã¢ÃŒÃµÃŠÃºÃÃŸ
                 if (qiZi[jiang1_i][jiang_j] != null) {
                     count++;
                     break;
                 }
             }
 
-            if (count == 0) {//Èç¹ûµÈÓÚÁãÔòÕÕ½«
-                JOptionPane.showMessageDialog(this.xq, "ÕÕ½«£¡£¡£¡ÄãÊ§°ÜÁË£¡£¡£¡", "ÌáÊ¾",
-                        JOptionPane.INFORMATION_MESSAGE);//¸ø³öÊ§°ÜĞÅÏ¢
+            if (count == 0) {//ÃˆÃ§Â¹Ã»ÂµÃˆÃ“ÃšÃÃ£Ã”Ã²Ã•Ã•Â½Â«
+                JOptionPane.showMessageDialog(this.xq, "Ã•Ã•Â½Â«Â£Â¡Â£Â¡Â£Â¡Ã„Ã£ÃŠÂ§Â°ÃœÃÃ‹Â£Â¡Â£Â¡Â£Â¡", "ÃŒÃ¡ÃŠÂ¾",
+                        JOptionPane.INFORMATION_MESSAGE);//Â¸Ã¸Â³Ã¶ÃŠÂ§Â°ÃœÃÃ…ÃÂ¢
 
                 this.xq.cat.tiaoZhanZhe = null;
                 this.xq.color = 0;
@@ -323,14 +328,14 @@ public class QiPan extends JPanel implements MouseListener {
             this.xq.cat.dout.writeUTF("<#MOVE#>" + this.xq.cat.tiaoZhanZhe + startI + startJ + endI + endJ);
             this.xq.caiPan = false;
             qiZi[endI][endJ] = qiZi[startI][startJ];
-            qiZi[startI][startJ] = null;//×ßÆå
-            qiZi[endI][endJ].setFocus(false);//½«¸ÃÆåÉèÎª·ÇÑ¡ÖĞ×´Ì¬
+            qiZi[startI][startJ] = null;//Ã—ÃŸÃ†Ã¥
+            qiZi[endI][endJ].setFocus(false);//Â½Â«Â¸ÃƒÃ†Ã¥Ã‰Ã¨ÃÂªÂ·Ã‡Ã‘Â¡Ã–ÃÃ—Â´ÃŒÂ¬
 
-            this.xq.repaint();//ÖØ»æ
-            if (qiZi[endI][endJ].getName().equals("›")) {
+            this.xq.repaint();//Ã–Ã˜Â»Ã¦
+            if (qiZi[endI][endJ].getName().equals("Å½â€º")) {
                 jiang1_i = endI;
                 jiang1_j = endJ;
-            } else if (qiZi[endI][endJ].getName().equals("Œ¢")) {
+            } else if (qiZi[endI][endJ].getName().equals("Å’Â¢")) {
                 jiang2_i = endI;
                 jiang2_j = endJ;
             }
@@ -344,7 +349,7 @@ public class QiPan extends JPanel implements MouseListener {
                     }
                 }
                 if (count == 0) {
-                    JOptionPane.showMessageDialog(this.xq, "ÕÕ½«£¡£¡£¡ÄãÊ§°ÜÁË£¡£¡£¡", "ÌáÊ¾",
+                    JOptionPane.showMessageDialog(this.xq, "Ã•Ã•Â½Â«Â£Â¡Â£Â¡Â£Â¡Ã„Ã£ÃŠÂ§Â°ÃœÃÃ‹Â£Â¡Â£Â¡Â£Â¡", "ÃŒÃ¡ÃŠÂ¾",
                             JOptionPane.INFORMATION_MESSAGE);
 
                     this.xq.cat.tiaoZhanZhe = null;
@@ -362,10 +367,10 @@ public class QiPan extends JPanel implements MouseListener {
                     this.xq.jbNChallenge.setEnabled(false);
                     this.xq.jbFail.setEnabled(false);
 
-                    jiang1_i = 4;//"›"µÄi×ø±ê
-                    jiang1_j = 0;//"›"µÄj×ø±ê
-                    jiang2_i = 4;//"Œ¢"µÄi×ø±ê
-                    jiang2_j = 9;//"Œ¢"µÄj×ø±ê
+                    jiang1_i = 4;//"Å½â€º"ÂµÃ„iÃ—Ã¸Â±Ãª
+                    jiang1_j = 0;//"Å½â€º"ÂµÃ„jÃ—Ã¸Â±Ãª
+                    jiang2_i = 4;//"Å’Â¢"ÂµÃ„iÃ—Ã¸Â±Ãª
+                    jiang2_j = 9;//"Å’Â¢"ÂµÃ„jÃ—Ã¸Â±Ãª
 
                 }
             }
@@ -382,13 +387,13 @@ public class QiPan extends JPanel implements MouseListener {
 
     public void move(int startI, int startJ, int endI, int endJ) {
 
-        if (qiZi[endI][endJ] != null && (qiZi[endI][endJ].getName().equals("›") ||
-                qiZi[endI][endJ].getName().equals("Œ¢"))) {//Èç¹û"½«"±»³ÔÁË
+        if (qiZi[endI][endJ] != null && (qiZi[endI][endJ].getName().equals("Å½â€º") ||
+                qiZi[endI][endJ].getName().equals("Å’Â¢"))) {//ÃˆÃ§Â¹Ã»"Â½Â«"Â±Â»Â³Ã”ÃÃ‹
             qiZi[endI][endJ] = qiZi[startI][startJ];
-            qiZi[startI][startJ] = null;//×ßÆå
+            qiZi[startI][startJ] = null;//Ã—ÃŸÃ†Ã¥
             this.xq.repaint();
 
-            JOptionPane.showMessageDialog(this.xq, "ºÜÒÅº¶£¬ÄúÊ§°ÜÁË£¡£¡£¡", "ÌáÊ¾",
+            JOptionPane.showMessageDialog(this.xq, "ÂºÃœÃ’Ã…ÂºÂ¶Â£Â¬Ã„ÃºÃŠÂ§Â°ÃœÃÃ‹Â£Â¡Â£Â¡Â£Â¡", "ÃŒÃ¡ÃŠÂ¾",
                     JOptionPane.INFORMATION_MESSAGE);
 
             this.xq.cat.tiaoZhanZhe = null;
@@ -414,27 +419,27 @@ public class QiPan extends JPanel implements MouseListener {
         } else {
 
             qiZi[endI][endJ] = qiZi[startI][startJ];
-            qiZi[startI][startJ] = null;//×ßÆå
+            qiZi[startI][startJ] = null;//Ã—ÃŸÃ†Ã¥
             this.xq.repaint();
 
-            if (qiZi[endI][endJ].getName().equals("›")) {
+            if (qiZi[endI][endJ].getName().equals("Å½â€º")) {
                 jiang1_i = endI;
                 jiang1_j = endJ;
-            } else if (qiZi[endI][endJ].getName().equals("Œ¢")) {
+            } else if (qiZi[endI][endJ].getName().equals("Å’Â¢")) {
                 jiang2_i = endI;
                 jiang2_j = endJ;
             }
             if (jiang1_i == jiang2_i) {
                 int count = 0;
                 for (int jiang_j = jiang1_j + 1; jiang_j < jiang2_j; jiang_j++) {
-                    if (qiZi[jiang1_i][jiang_j] != null) {//ÓĞÆå×Ó
+                    if (qiZi[jiang1_i][jiang_j] != null) {//Ã“ÃÃ†Ã¥Ã—Ã“
                         count++;
                         break;
                     }
                 }
                 if (count == 0) {
-                    JOptionPane.showMessageDialog(this.xq, "¶Ô·½ÕÕ½«£¡£¡£¡ÄãÊ¤ÀûÁË£¡£¡£¡",
-                            "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(this.xq, "Â¶Ã”Â·Â½Ã•Ã•Â½Â«Â£Â¡Â£Â¡Â£Â¡Ã„Ã£ÃŠÂ¤Ã€Ã»ÃÃ‹Â£Â¡Â£Â¡Â£Â¡",
+                            "ÃŒÃ¡ÃŠÂ¾", JOptionPane.INFORMATION_MESSAGE);
                     this.xq.cat.tiaoZhanZhe = null;
 
                     this.xq.color = 0;
@@ -442,7 +447,7 @@ public class QiPan extends JPanel implements MouseListener {
                     this.xq.next();
 
                     this.xq.jtfHost.setEnabled(false);
-                    this.xq.jtfPort.setEnabled(false);//ÉèÖÃ¸÷¿Õ¼äÎ»ÖÃ
+                    this.xq.jtfPort.setEnabled(false);//Ã‰Ã¨Ã–ÃƒÂ¸Ã·Â¿Ã•Â¼Ã¤ÃÂ»Ã–Ãƒ
                     this.xq.jtfNickName.setEnabled(false);
                     this.xq.jbConnect.setEnabled(false);
                     this.xq.jbDisconnect.setEnabled(true);
@@ -478,19 +483,19 @@ public class QiPan extends JPanel implements MouseListener {
         int x = 110 + 60 * i;
         int y = 80 + 60 * j;
 
-        if (i > 0) {//»æÖÆ×óÉÏ·½µÄ±êÖ¾
+        if (i > 0) {//Â»Ã¦Ã–Ã†Ã—Ã³Ã‰ÃÂ·Â½ÂµÃ„Â±ÃªÃ–Â¾
             g.drawLine(x - 3, y - 3, x - 20, y - 3);
             g.drawLine(x - 3, y - 3, x - 3, y - 20);
         }
-        if (i < 8) {//»æÖÆÓÒÉÏ·½µÄ±êÖ¾
+        if (i < 8) {//Â»Ã¦Ã–Ã†Ã“Ã’Ã‰ÃÂ·Â½ÂµÃ„Â±ÃªÃ–Â¾
             g.drawLine(x + 3, y - 3, x + 20, y - 3);
             g.drawLine(x + 3, y - 3, x + 3, y - 20);
         }
-        if (i > 0) {//»æÖÆ×óÏÂ·½µÄ±êÖ¾
+        if (i > 0) {//Â»Ã¦Ã–Ã†Ã—Ã³ÃÃ‚Â·Â½ÂµÃ„Â±ÃªÃ–Â¾
             g.drawLine(x - 3, y + 3, x - 20, y + 3);
             g.drawLine(x - 3, y + 3, x - 3, y + 20);
         }
-        if (i < 8) {//»æÖÆÓÒÏÂ·½µÄ±êÖ¾
+        if (i < 8) {//Â»Ã¦Ã–Ã†Ã“Ã’ÃÃ‚Â·Â½ÂµÃ„Â±ÃªÃ–Â¾
             g.drawLine(x + 3, y + 3, x + 20, y + 3);
             g.drawLine(x + 3, y + 3, x + 3, y + 20);
         }

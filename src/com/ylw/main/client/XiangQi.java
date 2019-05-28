@@ -1,4 +1,4 @@
-package com.ylw.main.client;
+ï»¿package com.ylw.main.client;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,22 +16,22 @@ public class XiangQi extends JFrame implements ActionListener {
     public static final Color color1 = new Color(249, 50, 183);
     public static final Color color2 = Color.white;
 
-    JLabel jlHost = new JLabel("Ö÷»úÃû");
-    JLabel jlPort = new JLabel("¶Ë¿ÚºÅ");
-    JLabel jlNickName = new JLabel("êÇ    ³Æ");
+    JLabel jlHost = new JLabel("ä¸»æœºå");
+    JLabel jlPort = new JLabel("ç«¯å£å·");
+    JLabel jlNickName = new JLabel("æ˜µ    ç§°");
 
     JTextField jtfHost = new JTextField("127.0.0.1");
     JTextField jtfPort = new JTextField("9999");
     JTextField jtfNickName = new JTextField("Play1");
 
-    JButton jbConnect = new JButton("Á¬  ½Ó");
-    JButton jbDisconnect = new JButton("¶Ï  ¿ª");
-    JButton jbFail = new JButton("ÈÏ  Êä");
-    JButton jbChallenge = new JButton("Ìô  Õ½");
+    JButton jbConnect = new JButton("è¿  æ¥");
+    JButton jbDisconnect = new JButton("æ–­  å¼€");
+    JButton jbFail = new JButton("è®¤  è¾“");
+    JButton jbChallenge = new JButton("æŒ‘  æˆ˜");
 
     JComboBox jcbNickList = new JComboBox();
-    JButton jbYChallenge = new JButton("½ÓÊÜÌôÕ½");
-    JButton jbNChallenge = new JButton("¾Ü¾øÌôÕ½");
+    JButton jbYChallenge = new JButton("æ¥å—æŒ‘æˆ˜");
+    JButton jbNChallenge = new JButton("æ‹’ç»æŒ‘æˆ˜");
 
     int width = 60;
 
@@ -41,8 +41,8 @@ public class XiangQi extends JFrame implements ActionListener {
     JPanel jpy = new JPanel();
     JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, jpz, jpy);
 
-    boolean caiPan = false;//¿É·ñ×ßÆåµÄ±êÖ¾Î»
-    int color = 0;//0 ´ú±íºìÆå£¬1´ú±í°×Æå
+    boolean caiPan = false;//å¯å¦èµ°æ£‹çš„æ ‡å¿—ä½
+    int color = 0;//0 ä»£è¡¨çº¢æ£‹ï¼Œ1ä»£è¡¨ç™½æ£‹
 
     Socket sc;
 
@@ -130,45 +130,45 @@ public class XiangQi extends JFrame implements ActionListener {
 
     public void initialQiZi() {
 
-        qiZi[0][0] = new QiZi(color1, "Ü‡", 0, 0);
-        qiZi[1][0] = new QiZi(color1, "ñR", 1, 0);
-        qiZi[2][0] = new QiZi(color1, "Ïà", 2, 0);
-        qiZi[3][0] = new QiZi(color1, "ÊË", 3, 0);
-        qiZi[4][0] = new QiZi(color1, "›", 4, 0);
-        qiZi[5][0] = new QiZi(color1, "ÊË", 5, 0);
-        qiZi[6][0] = new QiZi(color1, "Ïà", 6, 0);
-        qiZi[7][0] = new QiZi(color1, "ñR", 7, 0);
-        qiZi[8][0] = new QiZi(color1, "Ü‡", 8, 0);
-        qiZi[1][2] = new QiZi(color1, "³h", 1, 2);
-        qiZi[7][2] = new QiZi(color1, "³h", 7, 2);
-        qiZi[0][3] = new QiZi(color1, "±ø", 0, 3);
-        qiZi[2][3] = new QiZi(color1, "±ø", 2, 3);
-        qiZi[4][3] = new QiZi(color1, "±ø", 4, 3);
-        qiZi[6][3] = new QiZi(color1, "±ø", 6, 3);
-        qiZi[8][3] = new QiZi(color1, "±ø", 8, 3);
+        qiZi[0][0] = new QiZi(color1, "rc", 0, 0);
+        qiZi[1][0] = new QiZi(color1, "rm", 1, 0);
+        qiZi[2][0] = new QiZi(color1, "rx", 2, 0);
+        qiZi[3][0] = new QiZi(color1, "rs", 3, 0);
+        qiZi[4][0] = new QiZi(color1, "rb", 4, 0);
+        qiZi[5][0] = new QiZi(color1, "rs", 5, 0);
+        qiZi[6][0] = new QiZi(color1, "rx", 6, 0);
+        qiZi[7][0] = new QiZi(color1, "rm", 7, 0);
+        qiZi[8][0] = new QiZi(color1, "rc", 8, 0);
+        qiZi[1][2] = new QiZi(color1, "rp", 1, 2);
+        qiZi[7][2] = new QiZi(color1, "rp", 7, 2);
+        qiZi[0][3] = new QiZi(color1, "rz", 0, 3);
+        qiZi[2][3] = new QiZi(color1, "rz", 2, 3);
+        qiZi[4][3] = new QiZi(color1, "rz", 4, 3);
+        qiZi[6][3] = new QiZi(color1, "rz", 6, 3);
+        qiZi[8][3] = new QiZi(color1, "rz", 8, 3);
 
-        qiZi[0][9] = new QiZi(color2, "Ü‡", 0, 9);
-        qiZi[1][9] = new QiZi(color2, "ñR", 1, 9);
-        qiZi[2][9] = new QiZi(color2, "Ïó", 2, 9);
-        qiZi[3][9] = new QiZi(color2, "Ê¿", 3, 9);
-        qiZi[4][9] = new QiZi(color2, "Œ¢", 4, 9);
-        qiZi[5][9] = new QiZi(color2, "Ê¿", 5, 9);
-        qiZi[6][9] = new QiZi(color2, "Ïó", 6, 9);
-        qiZi[7][9] = new QiZi(color2, "ñR", 7, 9);
-        qiZi[8][9] = new QiZi(color2, "Ü‡", 8, 9);
-        qiZi[1][7] = new QiZi(color2, "ÅÚ", 1, 7);
-        qiZi[7][7] = new QiZi(color2, "ÅÚ", 7, 7);
-        qiZi[0][6] = new QiZi(color2, "×ä", 0, 6);
-        qiZi[2][6] = new QiZi(color2, "×ä", 2, 6);
-        qiZi[4][6] = new QiZi(color2, "×ä", 4, 6);
-        qiZi[6][6] = new QiZi(color2, "×ä", 6, 6);
-        qiZi[8][6] = new QiZi(color2, "×ä", 8, 6);
+        qiZi[0][9] = new QiZi(color2, "bc", 0, 9);
+        qiZi[1][9] = new QiZi(color2, "bm", 1, 9);
+        qiZi[2][9] = new QiZi(color2, "bx", 2, 9);
+        qiZi[3][9] = new QiZi(color2, "bs", 3, 9);
+        qiZi[4][9] = new QiZi(color2, "bb", 4, 9);
+        qiZi[5][9] = new QiZi(color2, "bs", 5, 9);
+        qiZi[6][9] = new QiZi(color2, "bx", 6, 9);
+        qiZi[7][9] = new QiZi(color2, "bm", 7, 9);
+        qiZi[8][9] = new QiZi(color2, "bc", 8, 9);
+        qiZi[1][7] = new QiZi(color2, "bp", 1, 7);
+        qiZi[7][7] = new QiZi(color2, "bp", 7, 7);
+        qiZi[0][6] = new QiZi(color2, "bz", 0, 6);
+        qiZi[2][6] = new QiZi(color2, "bz", 2, 6);
+        qiZi[4][6] = new QiZi(color2, "bz", 4, 6);
+        qiZi[6][6] = new QiZi(color2, "bz", 6, 6);
+        qiZi[8][6] = new QiZi(color2, "bz", 8, 6);
 
     }
 
     public void initialFrame() {
 
-        this.setTitle("ÖĞ¹úÏóÆå--¿Í»§¶Ë");
+        this.setTitle("ä¸­å›½è±¡æ£‹--å®¢æˆ·ç«¯");
         Image image = new ImageIcon("ico.gif").getImage();
         this.setIconImage(image);
         this.add(this.jsp);
@@ -181,7 +181,7 @@ public class XiangQi extends JFrame implements ActionListener {
         this.addWindowListener(
                 new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
-                        if (cat == null)//¿Í»§¶Ë´úÀíÏß³ÌÎª¿Õ£¬Ö±½ÓÍË³ö
+                        if (cat == null)//å®¢æˆ·ç«¯ä»£ç†çº¿ç¨‹ä¸ºç©ºï¼Œç›´æ¥é€€å‡º
                         {
                             System.exit(0);
                             return;
@@ -197,7 +197,7 @@ public class XiangQi extends JFrame implements ActionListener {
                                 }
                             }
                             cat.dout.writeUTF("<#CLIENT_LEAVE#>");
-                            cat.flag = false;//ÖÕÖ¹¿Í»§¶Ë´úÀíÏß³Ì
+                            cat.flag = false;//ç»ˆæ­¢å®¢æˆ·ç«¯ä»£ç†çº¿ç¨‹
                             cat = null;
 
                         } catch (Exception ee) {
@@ -233,13 +233,13 @@ public class XiangQi extends JFrame implements ActionListener {
         try {
             port = Integer.parseInt(this.jtfPort.getText().trim());
         } catch (Exception ee) {
-            JOptionPane.showMessageDialog(this, "¶Ë¿ÚºÅÖ»ÄÜÊÇÕûÊı", "´íÎó",
+            JOptionPane.showMessageDialog(this, "ç«¯å£å·åªèƒ½æ˜¯æ•´æ•°", "é”™è¯¯",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (port > 65535 || port < 0) {
-            JOptionPane.showMessageDialog(this, "¶Ë¿ÚºÅÖ»ÄÜÊÇ0-65535µÄÕûÊı", "´íÎó",
+            JOptionPane.showMessageDialog(this, "ç«¯å£å·åªèƒ½æ˜¯0-65535çš„æ•´æ•°", "é”™è¯¯",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -247,7 +247,7 @@ public class XiangQi extends JFrame implements ActionListener {
         String name = this.jtfNickName.getText().trim();
 
         if (name.length() == 0) {
-            JOptionPane.showMessageDialog(this, "Íæ¼ÒĞÕÃû²»ÄÜÎª¿Õ", "´íÎó",
+            JOptionPane.showMessageDialog(this, "ç©å®¶å§“åä¸èƒ½ä¸ºç©º", "é”™è¯¯",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -268,10 +268,10 @@ public class XiangQi extends JFrame implements ActionListener {
             this.jbNChallenge.setEnabled(false);
             this.jbFail.setEnabled(false);
 
-            JOptionPane.showMessageDialog(this, "ÒÑÁ¬½Óµ½·şÎñÆ÷", "ÌáÊ¾",
+            JOptionPane.showMessageDialog(this, "å·²è¿æ¥åˆ°æœåŠ¡å™¨", "æç¤º",
                     JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ee) {
-            JOptionPane.showMessageDialog(this, "Á¬½Ó·şÎñÆ÷Ê§°Ü", "´íÎó",
+            JOptionPane.showMessageDialog(this, "è¿æ¥æœåŠ¡å™¨å¤±è´¥", "é”™è¯¯",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -302,8 +302,8 @@ public class XiangQi extends JFrame implements ActionListener {
         Object o = this.jcbNickList.getSelectedItem();
 
         if (o == null || ((String) o).equals("")) {
-            JOptionPane.showMessageDialog(this, "ÇëÑ¡Ôñ¶Ô·½Ãû×Ö", "´íÎó",
-                    JOptionPane.ERROR_MESSAGE);//µ±Î´Ñ¡ÖĞÌôÕ½¶ÔÏó£¬¸ø³ö´íÎóÌáÊ¾ĞÅÏ¢
+            JOptionPane.showMessageDialog(this, "è¯·é€‰æ‹©å¯¹æ–¹åå­—", "é”™è¯¯",
+                    JOptionPane.ERROR_MESSAGE);//å½“æœªé€‰ä¸­æŒ‘æˆ˜å¯¹è±¡ï¼Œç»™å‡ºé”™è¯¯æç¤ºä¿¡æ¯
         } else {
 
             String name2 = (String) this.jcbNickList.getSelectedItem();
@@ -324,7 +324,7 @@ public class XiangQi extends JFrame implements ActionListener {
                 this.color = 0;
 
                 this.cat.dout.writeUTF("<#TIAO_ZHAN#>" + name2);
-                JOptionPane.showMessageDialog(this, "ÒÑÌá³öÌôÕ½,ÇëµÈ´ı»Ö¸´...", "ÌáÊ¾",
+                JOptionPane.showMessageDialog(this, "å·²æå‡ºæŒ‘æˆ˜,è¯·ç­‰å¾…æ¢å¤...", "æç¤º",
                         JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ee) {
                 ee.printStackTrace();
@@ -337,8 +337,8 @@ public class XiangQi extends JFrame implements ActionListener {
         try {
 
             this.cat.dout.writeUTF("<#TONG_YI#>" + this.cat.tiaoZhanZhe);
-            this.caiPan = false;//½«caiPanÉèÎªfalse
-            this.color = 1;//½«colorÉèÎª1
+            this.caiPan = false;//å°†caiPanè®¾ä¸ºfalse
+            this.color = 1;//å°†colorè®¾ä¸º1
 
             this.jtfHost.setEnabled(false);
             this.jtfPort.setEnabled(false);
@@ -412,7 +412,7 @@ public class XiangQi extends JFrame implements ActionListener {
 
         this.caiPan = false;
         this.initialQiZi();
-        this.repaint();//ÖØ»æ
+        this.repaint();//é‡ç»˜
     }
 
     public static void main(String args[]) {
