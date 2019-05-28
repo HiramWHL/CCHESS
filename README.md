@@ -4,10 +4,20 @@
 #目前待解决的问题与对应分工
 
 软件的icon，即标题前面小图标的制作（王沛然）
+
 软件的logo，用于放在主界面显示（王沛然）
+
 软件的棋子（王沛然）
+
 移动棋子的过程动画（廖承相）
+
 移动棋子后的特效（吃东西）（廖承相 王海林 王沛然）
+
 人机对战部分和对应的界面衔接（侯伊为 赵倩锐）
 
 #相关截图
+
+![1](https://github.com/HiramWHL/CCHESS/blob/master/show/1.png)
+![2](https://github.com/HiramWHL/CCHESS/blob/master/show/2.png)
+![3](https://github.com/HiramWHL/CCHESS/blob/master/show/3.png)
+![4](https://github.com/HiramWHL/CCHESS/blob/master/show/4.png)
