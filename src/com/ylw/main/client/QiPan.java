@@ -100,16 +100,17 @@ public class QiPan extends JPanel implements MouseListener {
                         //g.setColor(XiangQi.focusbg);//Ñ¡ÖÐºóµÄ±³¾°É«
                         //g.fillOval(110 + i * 60 - 25, 80 + j * 60 - 25, 50, 50);
                         //g.setColor(XiangQi.focuschar);
-                    	Image imageQiZi=Toolkit.getDefaultToolkit().getImage("./img/"+qiZi[i][j].getName()+".png");
-                        g.drawImage(imageQiZi, 110 + i * 60 - 25,80 + j * 60 - 25 , 80,80, this);
+                    	Image imageQiZi=Toolkit.getDefaultToolkit().getImage("./img/"+qiZi[i][j].getPic()+".png");
+                        g.drawImage(imageQiZi, 110 + i * 60 - 25,80 + j * 60 - 25 , 70,70, this);
 
                     } else {
 
                         //g.fillOval(110 + i * 60 - 25, 80 + j * 60 - 25, 50, 50);
                         //g.setColor(qiZi[i][j].getColor());
+                    	Image imageQiZi=Toolkit.getDefaultToolkit().getImage("./img/"+qiZi[i][j].getPic()+".png");
+                        g.drawImage(imageQiZi, 110 + i * 60 - 25,80 + j * 60 - 25 , 60,60, this);
                     }
-                    Image imageQiZi=Toolkit.getDefaultToolkit().getImage("./img/"+qiZi[i][j].getName()+".png");
-                    g.drawImage(imageQiZi, 110 + i * 60 - 25,80 + j * 60 - 25 , 60,60, this);
+                    
                     //g.drawString(qiZi[i][j].getName(), 110 + i * 60 - 15, 80 + j * 60 + 10);
                     //g.setColor(Color.black);
                 }

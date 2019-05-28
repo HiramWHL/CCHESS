@@ -1,6 +1,7 @@
 ﻿package com.ylw.main.client;
 
 import javax.swing.*;
+import javax.swing.UIManager;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,23 +16,43 @@ public class XiangQi extends JFrame implements ActionListener {
     public static final Color focuschar = new Color(96, 95, 91);
     public static final Color color1 = new Color(249, 50, 183);
     public static final Color color2 = Color.white;
-
+    
     JLabel jlHost = new JLabel("主机名");
     JLabel jlPort = new JLabel("端口号");
     JLabel jlNickName = new JLabel("昵    称");
+    
 
     JTextField jtfHost = new JTextField("127.0.0.1");
-    JTextField jtfPort = new JTextField("9999");
+    JTextField jtfPort = new JTextField("6464");
     JTextField jtfNickName = new JTextField("Play1");
-
-    JButton jbConnect = new JButton("连  接");
+    
+    ImageIcon iconconnect = new ImageIcon("./img/connect.png");
+    JButton jbConnectWindow = new JButton(iconconnect);
+    
+    JButton jbConnect = new JButton("连 接");
     JButton jbDisconnect = new JButton("断  开");
-    JButton jbFail = new JButton("认  输");
-    JButton jbChallenge = new JButton("挑  战");
-
+    
+    ImageIcon iconlose = new ImageIcon("./img/lose.png");
+    JButton jbFail = new JButton(iconlose);
+    
+    
+    ImageIcon iconchallenge = new ImageIcon("./img/challenge.png");
+    JButton jbChallenge = new JButton(iconchallenge);
+    
+    JLabel jcbNickListLab = new JLabel("请选择挑战玩家：");
     JComboBox jcbNickList = new JComboBox();
-    JButton jbYChallenge = new JButton("接受挑战");
-    JButton jbNChallenge = new JButton("拒绝挑战");
+    
+    ImageIcon iconaccept = new ImageIcon("./img/accept.png");
+    JButton jbYChallenge = new JButton(iconaccept);
+    
+    ImageIcon iconrefuse = new ImageIcon("./img/refuse.png");
+    JButton jbNChallenge = new JButton(iconrefuse);
+    
+    ImageIcon iconabout = new ImageIcon("./img/about.png");
+    JButton jbAboutWindow = new JButton(iconabout);
+    
+    ImageIcon iconPu = new ImageIcon("./img/pujuefei.jpg");
+    JButton pujuefei = new JButton(iconPu);
 
     int width = 60;
 
@@ -63,10 +84,12 @@ public class XiangQi extends JFrame implements ActionListener {
     }
 
     public void initialComponent() {
-
+    	//this.setUndecorated(true);
+    	
+    	//jpy.setBackground(Color.blue);
         jpy.setLayout(null);
 
-        this.jlHost.setBounds(10, 10, 50, 20);
+        /*this.jlHost.setBounds(10, 10, 50, 20);
         jpy.add(this.jlHost);
 
         this.jtfHost.setBounds(70, 10, 80, 20);
@@ -78,45 +101,44 @@ public class XiangQi extends JFrame implements ActionListener {
         this.jtfPort.setBounds(70, 40, 80, 20);
         jpy.add(this.jtfPort);
 
-        this.jlNickName.setBounds(10, 70, 50, 20);
-        jpy.add(this.jlNickName);
-
-        this.jtfNickName.setBounds(70, 70, 80, 20);
-        jpy.add(this.jtfNickName);
-
-        this.jbConnect.setBounds(10, 100, 80, 20);
+        this.jbConnect.setBounds(0, 100, 276, 42);
         jpy.add(this.jbConnect);
 
         this.jbDisconnect.setBounds(100, 100, 80, 20);
-        jpy.add(this.jbDisconnect);
+        jpy.add(this.jbDisconnect);*/
 
-        this.jcbNickList.setBounds(20, 130, 130, 20);
-        jpy.add(this.jcbNickList);
+        this.jbConnectWindow.setBounds(0, 100, 276, 42);
+        jpy.add(this.jbConnectWindow);
+       
 
-        this.jbChallenge.setBounds(10, 160, 80, 20);
+        this.jbChallenge.setBounds(0, 180, 276, 42);
         jpy.add(this.jbChallenge);
 
-        this.jbFail.setBounds(100, 160, 80, 20);
+        this.jbFail.setBounds(0, 240, 276, 42);
         jpy.add(this.jbFail);
 
-        this.jbYChallenge.setBounds(5, 190, 86, 20);
+        this.jbYChallenge.setBounds(0, 300, 276, 42);
         jpy.add(this.jbYChallenge);
 
-        this.jbNChallenge.setBounds(100, 190, 86, 20);
+        this.jbNChallenge.setBounds(0, 360, 276, 42);
         jpy.add(this.jbNChallenge);
+        
+        this.jbAboutWindow.setBounds(0, 480, 276, 42);
+        jpy.add(this.jbAboutWindow);
 
         jpz.setLayout(null);
         jpz.setBounds(0, 0, 700, 700);
     }
 
     public void addListener() {
-
+    	this.jbConnectWindow.addActionListener(this);
         this.jbConnect.addActionListener(this);
         this.jbDisconnect.addActionListener(this);
         this.jbChallenge.addActionListener(this);
         this.jbFail.addActionListener(this);
         this.jbYChallenge.addActionListener(this);
         this.jbNChallenge.addActionListener(this);
+        this.jbAboutWindow.addActionListener(this);
     }
 
     public void initialState() {
@@ -130,51 +152,51 @@ public class XiangQi extends JFrame implements ActionListener {
 
     public void initialQiZi() {
 
-        qiZi[0][0] = new QiZi(color1, "rc", 0, 0);
-        qiZi[1][0] = new QiZi(color1, "rm", 1, 0);
-        qiZi[2][0] = new QiZi(color1, "rx", 2, 0);
-        qiZi[3][0] = new QiZi(color1, "rs", 3, 0);
-        qiZi[4][0] = new QiZi(color1, "rb", 4, 0);
-        qiZi[5][0] = new QiZi(color1, "rs", 5, 0);
-        qiZi[6][0] = new QiZi(color1, "rx", 6, 0);
-        qiZi[7][0] = new QiZi(color1, "rm", 7, 0);
-        qiZi[8][0] = new QiZi(color1, "rc", 8, 0);
-        qiZi[1][2] = new QiZi(color1, "rp", 1, 2);
-        qiZi[7][2] = new QiZi(color1, "rp", 7, 2);
-        qiZi[0][3] = new QiZi(color1, "rz", 0, 3);
-        qiZi[2][3] = new QiZi(color1, "rz", 2, 3);
-        qiZi[4][3] = new QiZi(color1, "rz", 4, 3);
-        qiZi[6][3] = new QiZi(color1, "rz", 6, 3);
-        qiZi[8][3] = new QiZi(color1, "rz", 8, 3);
+        qiZi[0][0] = new QiZi(color1, "車","rc", 0, 0);
+        qiZi[1][0] = new QiZi(color1, "馬","rm", 1, 0);
+        qiZi[2][0] = new QiZi(color1, "相","rx", 2, 0);
+        qiZi[3][0] = new QiZi(color1, "仕","rs", 3, 0);
+        qiZi[4][0] = new QiZi(color1, "帥","rb", 4, 0);
+        qiZi[5][0] = new QiZi(color1, "仕","rs", 5, 0);
+        qiZi[6][0] = new QiZi(color1, "相","rx", 6, 0);
+        qiZi[7][0] = new QiZi(color1, "馬","rm", 7, 0);
+        qiZi[8][0] = new QiZi(color1, "車","rc", 8, 0);
+        qiZi[1][2] = new QiZi(color1, "砲","rp", 1, 2);
+        qiZi[7][2] = new QiZi(color1, "砲","rp", 7, 2);
+        qiZi[0][3] = new QiZi(color1, "兵","rz", 0, 3);
+        qiZi[2][3] = new QiZi(color1, "兵","rz", 2, 3);
+        qiZi[4][3] = new QiZi(color1, "兵","rz", 4, 3);
+        qiZi[6][3] = new QiZi(color1, "兵","rz", 6, 3);
+        qiZi[8][3] = new QiZi(color1, "兵","rz", 8, 3);
 
-        qiZi[0][9] = new QiZi(color2, "bc", 0, 9);
-        qiZi[1][9] = new QiZi(color2, "bm", 1, 9);
-        qiZi[2][9] = new QiZi(color2, "bx", 2, 9);
-        qiZi[3][9] = new QiZi(color2, "bs", 3, 9);
-        qiZi[4][9] = new QiZi(color2, "bb", 4, 9);
-        qiZi[5][9] = new QiZi(color2, "bs", 5, 9);
-        qiZi[6][9] = new QiZi(color2, "bx", 6, 9);
-        qiZi[7][9] = new QiZi(color2, "bm", 7, 9);
-        qiZi[8][9] = new QiZi(color2, "bc", 8, 9);
-        qiZi[1][7] = new QiZi(color2, "bp", 1, 7);
-        qiZi[7][7] = new QiZi(color2, "bp", 7, 7);
-        qiZi[0][6] = new QiZi(color2, "bz", 0, 6);
-        qiZi[2][6] = new QiZi(color2, "bz", 2, 6);
-        qiZi[4][6] = new QiZi(color2, "bz", 4, 6);
-        qiZi[6][6] = new QiZi(color2, "bz", 6, 6);
-        qiZi[8][6] = new QiZi(color2, "bz", 8, 6);
+        qiZi[0][9] = new QiZi(color2,"車", "bc", 0, 9);
+        qiZi[1][9] = new QiZi(color2,"馬","bm", 1, 9);
+        qiZi[2][9] = new QiZi(color2,"象","bx", 2, 9);
+        qiZi[3][9] = new QiZi(color2,"士","bs", 3, 9);
+        qiZi[4][9] = new QiZi(color2,"將","bb", 4, 9);
+        qiZi[5][9] = new QiZi(color2,"士","bs", 5, 9);
+        qiZi[6][9] = new QiZi(color2,"象","bx", 6, 9);
+        qiZi[7][9] = new QiZi(color2,"馬","bm", 7, 9);
+        qiZi[8][9] = new QiZi(color2,"車","bc", 8, 9);
+        qiZi[1][7] = new QiZi(color2,"炮","bp", 1, 7);
+        qiZi[7][7] = new QiZi(color2,"炮","bp", 7, 7);
+        qiZi[0][6] = new QiZi(color2,"卒","bz", 0, 6);
+        qiZi[2][6] = new QiZi(color2,"卒","bz", 2, 6);
+        qiZi[4][6] = new QiZi(color2,"卒","bz", 4, 6);
+        qiZi[6][6] = new QiZi(color2,"卒","bz", 6, 6);
+        qiZi[8][6] = new QiZi(color2,"卒","bz", 8, 6);
 
     }
 
     public void initialFrame() {
 
-        this.setTitle("中国象棋--客户端");
+        this.setTitle("CCHESS Client");
         Image image = new ImageIcon("ico.gif").getImage();
         this.setIconImage(image);
         this.add(this.jsp);
-
-        jsp.setDividerLocation(730);
-        jsp.setDividerSize(4);
+        
+        jsp.setDividerLocation(690);
+        jsp.setDividerSize(1);
 
         this.setBounds(30, 30, 930, 730);
         this.setVisible(true);
@@ -212,9 +234,11 @@ public class XiangQi extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
 
-        if (e.getSource() == this.jbConnect) {
-            this.jbConnect_event();
-        } else if (e.getSource() == this.jbDisconnect) {
+        if (e.getSource() == this.jbConnectWindow) {
+            this.jbConnectWindow_event();
+        } else if (e.getSource() == this.jbConnect) {
+            this.jbConnect_event();}
+        else if (e.getSource() == this.jbDisconnect) {
             this.jbDisconnect_event();
         } else if (e.getSource() == this.jbChallenge) {
             this.jbChallenge_event();
@@ -224,11 +248,62 @@ public class XiangQi extends JFrame implements ActionListener {
             this.jbNChallenge_event();
         } else if (e.getSource() == this.jbFail) {
             this.jbFail_event();
+        }else if (e.getSource() == this.jbAboutWindow) {
+            this.jbAboutWindow_event();
         }
     }
 
+    public void jbConnectWindow_event() {
+    	
+        JFrame frame = new JFrame("连接象棋服务器");
+        frame.setBounds(10, 10, 300, 200);
+        JLabel jl = new JLabel();
+        jl.setLayout(null);
+        
+        this.jlHost.setBounds(10, 10, 50, 20);
+        jl.add(this.jlHost);
+
+        this.jtfHost.setBounds(70, 10, 80, 20);
+        jl.add(this.jtfHost);
+
+        this.jlPort.setBounds(10, 40, 50, 20);
+        jl.add(this.jlPort);
+
+        this.jtfPort.setBounds(70, 40, 80, 20);
+        jl.add(this.jtfPort);
+        
+        this.jlNickName.setBounds(10, 70, 50, 20);
+        jl.add(this.jlNickName);
+
+        this.jtfNickName.setBounds(70, 70, 80, 20);
+        jl.add(this.jtfNickName);
+        
+        this.jbConnect.setBounds(10, 120, 80, 20);
+        jl.add(this.jbConnect);
+
+        this.jbDisconnect.setBounds(150, 120, 80, 20);
+        jl.add(this.jbDisconnect);
+        
+        frame.getContentPane().add(jl);
+        frame.setVisible(true);
+    }
+    
+    public void jbAboutWindow_event() {
+    	JFrame frameabout = new JFrame("关于本软件");
+    	frameabout.setBounds(10, 10, 720, 945);
+        JLabel jlabout = new JLabel();
+        jlabout.setLayout(null);
+        
+        
+        this.pujuefei.setBounds(0, 0, 720, 945);
+        jlabout.add(this.pujuefei);
+        
+        frameabout.getContentPane().add(jlabout);
+        frameabout.setVisible(true);
+    }
+    
     public void jbConnect_event() {
-        int port = 0;
+    	int port = 0;
 
         try {
             port = Integer.parseInt(this.jtfPort.getText().trim());
@@ -267,9 +342,14 @@ public class XiangQi extends JFrame implements ActionListener {
             this.jbYChallenge.setEnabled(false);
             this.jbNChallenge.setEnabled(false);
             this.jbFail.setEnabled(false);
-
+            
             JOptionPane.showMessageDialog(this, "已连接到服务器", "提示",
                     JOptionPane.INFORMATION_MESSAGE);
+            this.jcbNickList.setBounds(20, 50, 130, 20);
+            jpy.add(this.jcbNickList);
+            this.jcbNickListLab.setBounds(20, 30, 130, 20);
+            jpy.add(this.jcbNickListLab);
+            jpy.repaint();
         } catch (Exception ee) {
             JOptionPane.showMessageDialog(this, "连接服务器失败", "错误",
                     JOptionPane.ERROR_MESSAGE);
@@ -324,7 +404,7 @@ public class XiangQi extends JFrame implements ActionListener {
                 this.color = 0;
 
                 this.cat.dout.writeUTF("<#TIAO_ZHAN#>" + name2);
-                JOptionPane.showMessageDialog(this, "已提出挑战,请等待恢复...", "提示",
+                JOptionPane.showMessageDialog(this, "已提出挑战,请等待回复...", "提示",
                         JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ee) {
                 ee.printStackTrace();
@@ -409,13 +489,21 @@ public class XiangQi extends JFrame implements ActionListener {
                 this.qiZi[i][j] = null;
             }
         }
-
         this.caiPan = false;
         this.initialQiZi();
         this.repaint();//重绘
     }
 
+    
     public static void main(String args[]) {
-        new XiangQi();
+    	JFrame.setDefaultLookAndFeelDecorated(true);
+    	JDialog.setDefaultLookAndFeelDecorated(true);
+    	try {
+    		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    	} catch (Exception e) {
+    		
+    	}
+
+    	new XiangQi();
     }
 }

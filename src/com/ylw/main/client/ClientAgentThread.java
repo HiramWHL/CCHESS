@@ -123,7 +123,7 @@ public class ClientAgentThread extends Thread {
         this.flag = false;
         father.cat = null;
 
-        JOptionPane.showMessageDialog(this.father, "服务器停止！！！", "提示",
+        JOptionPane.showMessageDialog(this.father, "与服务器断开连接", "提示",
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -147,7 +147,7 @@ public class ClientAgentThread extends Thread {
                 this.father.jbNChallenge.setEnabled(!false);
                 this.father.jbFail.setEnabled(false);
 
-                JOptionPane.showMessageDialog(this.father, tiaoZhanZhe + "向你挑战!!!",
+                JOptionPane.showMessageDialog(this.father, tiaoZhanZhe + "向你挑战，请及时回应",
                         "提示", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 this.dout.writeUTF("<#BUSY#>" + name);
@@ -208,7 +208,7 @@ public class ClientAgentThread extends Thread {
         this.father.jbNChallenge.setEnabled(false);
         this.father.jbFail.setEnabled(false);
 
-        JOptionPane.showMessageDialog(this.father, "对方忙碌中！！！", "提示",
+        JOptionPane.showMessageDialog(this.father, "对方忙碌中", "提示",
                 JOptionPane.INFORMATION_MESSAGE);
 
         this.tiaoZhanZhe = null;
@@ -229,7 +229,7 @@ public class ClientAgentThread extends Thread {
 
     public void renshu() {
 
-        JOptionPane.showMessageDialog(this.father, "恭喜你,你获胜,对方认输", "提示",
+        JOptionPane.showMessageDialog(this.father, "恭喜你，对方认输，你获胜", "提示",
                 JOptionPane.INFORMATION_MESSAGE);
 
         this.tiaoZhanZhe = null;

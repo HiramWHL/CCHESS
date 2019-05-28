@@ -6,6 +6,7 @@ public class QiZi {
 
     private Color color;
     private String name;
+    private String picurl;
     private int x;
     private int y;
 
@@ -15,10 +16,11 @@ public class QiZi {
 
     }
 
-    public QiZi(Color color, String name, int x, int y) {
+    public QiZi(Color color, String name, String picurl, int x, int y) {
 
         this.color = color;
         this.name = name;
+        this.picurl= picurl;
         this.x = x;
         this.y = y;
         this.focus = false;
@@ -38,6 +40,11 @@ public class QiZi {
     public String getName()
     {
         return this.name;
+    }
+    
+    public String getPic()
+    {
+        return this.picurl;
     }
 
     public void setName(String name)

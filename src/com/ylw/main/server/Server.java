@@ -12,7 +12,7 @@ import java.util.Vector;
 public class Server extends JFrame implements ActionListener {
 
     JLabel jlPort = new JLabel("端 口 号");
-    JTextField jtfPort = new JTextField("9999");
+    JTextField jtfPort = new JTextField("6464");
     JButton jbStart = new JButton("启动");
     JButton jbStop = new JButton("关闭");
     JPanel jps = new JPanel();
@@ -36,6 +36,13 @@ public class Server extends JFrame implements ActionListener {
     }
 
     public static void main(String args[]) {
+    	JFrame.setDefaultLookAndFeelDecorated(true);
+    	JDialog.setDefaultLookAndFeelDecorated(true);
+    	try {
+    		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    	} catch (Exception e) {
+    		
+    	}
         new Server();
     }
 
@@ -65,7 +72,7 @@ public class Server extends JFrame implements ActionListener {
 
     public void initialFrame() {
 
-        this.setTitle("象棋--服务器端");
+        this.setTitle("CCHESS Server");
         Image image = new ImageIcon("ico.gif").getImage();
         this.setIconImage(image);
         this.add(jspz);
