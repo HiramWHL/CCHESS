@@ -73,7 +73,7 @@ public class Server extends JFrame implements ActionListener {
     public void initialFrame() {
 
         this.setTitle("CCHESS Server");
-        Image image = new ImageIcon("ico.gif").getImage();
+        Image image = new ImageIcon("./img/icon.png").getImage();
         this.setIconImage(image);
         this.add(jspz);
 

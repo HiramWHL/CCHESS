@@ -191,7 +191,7 @@ public class XiangQi extends JFrame implements ActionListener {
     public void initialFrame() {
 
         this.setTitle("CCHESS Client");
-        Image image = new ImageIcon("ico.gif").getImage();
+        Image image = new ImageIcon("./img/icon.png").getImage();
         this.setIconImage(image);
         this.add(this.jsp);
         
