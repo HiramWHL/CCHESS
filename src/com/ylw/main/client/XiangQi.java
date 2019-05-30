@@ -1,12 +1,19 @@
 ﻿package com.ylw.main.client;
 
+import java.io.FileInputStream;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
+
+import javax.swing.JFrame;
+import java.awt.Image;
+import java.awt.Graphics;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.*;
 import javax.swing.UIManager;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.net.Socket;
 
 public class XiangQi extends JFrame implements ActionListener {
@@ -16,6 +23,7 @@ public class XiangQi extends JFrame implements ActionListener {
     public static final Color focuschar = new Color(96, 95, 91);
     public static final Color color1 = new Color(249, 50, 183);
     public static final Color color2 = Color.white;
+    public Image img = null;//定义一个图片属性
     
     JLabel jlHost = new JLabel("主机名");
     JLabel jlPort = new JLabel("端口号");
@@ -54,6 +62,10 @@ public class XiangQi extends JFrame implements ActionListener {
     ImageIcon iconPu = new ImageIcon("./img/pujuefei.jpg");
     JButton pujuefei = new JButton(iconPu);
 
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //获取屏幕的尺寸
+    int screenWidth = screenSize.width;      //获取屏幕的宽
+    int screenHeight = screenSize.height;       //获取屏幕的高
+    
     int width = 60;
 
     QiZi[][] qiZi = new QiZi[9][10];
@@ -71,6 +83,8 @@ public class XiangQi extends JFrame implements ActionListener {
 
     public XiangQi() {
 
+    	//this.Music("bgm.wav");//整体全局的背景音乐，没有做循环处理因为可能不需要 如果需要还得处理一下音效和bgm的音量大小。
+    	
         this.initialComponent();
 
         this.addListener();
@@ -190,15 +204,16 @@ public class XiangQi extends JFrame implements ActionListener {
 
     public void initialFrame() {
 
-        this.setTitle("CCHESS Client");
+        this.setTitle("CCHESS Client@神奇五鱼");
         Image image = new ImageIcon("./img/icon.png").getImage();
         this.setIconImage(image);
         this.add(this.jsp);
         
         jsp.setDividerLocation(690);
         jsp.setDividerSize(1);
-
-        this.setBounds(30, 30, 930, 730);
+        
+        this.setTitle("CCHESS@神奇五鱼");
+        this.setBounds((screenWidth - 930)/2, (screenHeight - 730)/2, 930, 730);//左上角的位置x,y 和框的宽和高x,y  使窗口居中
         this.setVisible(true);
         this.addWindowListener(
                 new WindowAdapter() {
@@ -256,7 +271,7 @@ public class XiangQi extends JFrame implements ActionListener {
     public void jbConnectWindow_event() {
     	
         JFrame frame = new JFrame("连接象棋服务器");
-        frame.setBounds(10, 10, 300, 200);
+        frame.setBounds((screenWidth - 300)/2, (screenHeight - 200)/2, 300, 200);
         JLabel jl = new JLabel();
         jl.setLayout(null);
         
@@ -493,7 +508,111 @@ public class XiangQi extends JFrame implements ActionListener {
         this.initialQiZi();
         this.repaint();//重绘
     }
+    
+    //以下方法均来自本次修改2019.5.30
+    //*=======================================================================================================*分割线
+    
+    public void Music(String name) {              //播放音频的函数 文件位于src/music下
+    	try {      
+            FileInputStream fmusic = new FileInputStream("./music/" + name);
+            AudioStream au = new AudioStream(fmusic);
+            AudioPlayer.player.start(au);
+        } catch (Exception e) 
+        { 
+            e.printStackTrace();
+        } 
+    }
 
+    public void paint(Graphics g, int x, int y){//绘制残影
+        g.drawImage(img, x, y, 60, 60 , this);
+    }
+
+    public void move(int n, int x, int y, int ratex, int ratey){//设置倍率和正负 进行残影循环
+    	try{
+    		for(int i = 0; i <= n; i+=10){
+    			Thread.sleep(1);
+    			paint(this.getGraphics(), x + ratex * i, y + ratey * i);
+    		}
+    	}
+    	catch (InterruptedException e) {
+			e.printStackTrace();
+		} 
+    }
+
+    public void slowMove(String Name, int x1, int y1, int x2, int y2) {//x y 都为下标
+        img = Toolkit.getDefaultToolkit().createImage(Name);
+
+        int xx1 = x1 *60 + 85;//由下标计算像素
+        int xx2 = x2 * 60 + 85;
+        int yy1 = y1 * 60 + 95;
+        int yy2 = y2 * 60 + 95;
+        int xx = Math.abs(xx1 - xx2);//起点和终点的像素差
+        int yy = Math.abs(yy1 - yy2);
+        if(x1 == x2){//以下为枚举判断各种棋子极其方位，进行残影绘制的参数，使之看起来无异常。
+            if(y1 > y2){
+            	move(yy, xx1, yy1, 0, -1);
+            }
+            else{
+                move(yy, xx1, yy1, 0, 1);
+            }
+        }
+        else if(y1 == y2){
+            if(x1 > x2){
+                move(xx, xx1, yy1, -1, 0);
+            }
+            else{
+                move(xx, xx1, yy1, 1, 0);
+            }
+        }
+        else{
+            if(xx == yy){//相
+                if(x1 > x2 && y1 > y2){
+                    move(xx, xx1, yy1, -1, -1);
+                }
+                else if(x1 > x2 && y1 < y2){
+                    move(xx, xx1, yy1, -1, 1);
+                }
+                else if(x1 < x2 && y1 > y2){
+                    move(xx, xx1, yy1, 1, -1);
+                }
+                else {
+                    move(xx, xx1, yy1, 1, 1);
+                }
+            }
+            else{//马
+                if(xx > yy){//横着 x多变于y
+                    if(x1 > x2 && y1 > y2){
+                        move(yy, xx1, yy1, -2, -1);
+                    }
+                    else if(x1 > x2 && y1 < y2){
+                        move(yy, xx1, yy1, -2, 1);
+                    }
+                    else if(x1 < x2 && y1 > y2){
+                        move(yy, xx1, yy1, 2, -1);
+                    }
+                    else {
+                        move(yy, xx1, yy1, 2, 1);
+                    }
+                }
+                else{
+                    if(x1 > x2 && y1 > y2){
+                        move(xx, xx1, yy1, -1, -2);
+                    }
+                    else if(x1 > x2 && y1 < y2){
+                        move(xx, xx1, yy1, -1, 2);
+                    }
+                    else if(x1 < x2 && y1 > y2){
+                        move(xx, xx1, yy1, 1, -2);
+                    }
+                    else {
+                        move(xx, xx1, yy1, 1, 2);
+                    }
+                }
+            }
+        }
+
+    }
+    //*=============================================================================================*分割线
     
     public static void main(String args[]) {
     	JFrame.setDefaultLookAndFeelDecorated(true);

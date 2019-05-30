@@ -23,6 +23,10 @@ public class Server extends JFrame implements ActionListener {
 
     ServerSocket ss;
     ServerThread st;
+    
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //获取屏幕的尺寸
+    int screenWidth = screenSize.width;      //获取屏幕的宽
+    int screenHeight = screenSize.height;       //获取屏幕的高
 
     Vector onlineList = new Vector();//创建存放当前在线用户的Vector对象
 
@@ -80,7 +84,7 @@ public class Server extends JFrame implements ActionListener {
         jspz.setDividerLocation(250);
         jspz.setDividerSize(4);
 
-        this.setBounds(20, 20, 420, 320);
+        this.setBounds((screenWidth - 420)/2, (screenHeight - 320)/2, 420, 320);
         this.setVisible(true);
 
         this.addWindowListener(

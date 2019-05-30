@@ -1,5 +1,8 @@
 package com.ylw.main.client;
 
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -266,13 +269,20 @@ public class QiPan extends JPanel implements MouseListener {
         focus = false;
     }
 
-    public void noJiang() {
+    public void noJiang() {//只是普通吃掉对面棋子
+
+
+    	//qiZi[endI][endJ] = qiZi[startI][startJ];
+    	//qiZi[endI][endJ].setFocus(false);
+    	//qiZi[startI][startJ] = null;
+
+        this.xq.slowMove("./img/"+qiZi[startI][startJ].getPic()+".png", startI, startJ, endI, endJ);
+        this.xq.Music("chi.wav");//绘制残影和“吃”音效
 
         qiZi[endI][endJ] = qiZi[startI][startJ];
         qiZi[startI][startJ] = null;
         qiZi[endI][endJ].setFocus(false);
-
-        this.xq.repaint();//ÖØ»æ
+        this.xq.repaint();
 
         if (qiZi[endI][endJ].getName().equals("Ž›")) {
             jiang1_i = endI;//¸üÐÂ"Ž›"µÄÎ»ÖÃ×ø±ê
@@ -322,15 +332,19 @@ public class QiPan extends JPanel implements MouseListener {
         focus = false;
     }
 
-    public void noQiZi() {
+    public void noQiZi() {//空走
 
         try {
 
             this.xq.cat.dout.writeUTF("<#MOVE#>" + this.xq.cat.tiaoZhanZhe + startI + startJ + endI + endJ);
             this.xq.caiPan = false;
+            
+            this.xq.slowMove("./img/"+qiZi[startI][startJ].getPic()+".png", startI, startJ, endI, endJ);//绘制空走残影
+
             qiZi[endI][endJ] = qiZi[startI][startJ];
-            qiZi[startI][startJ] = null;//×ßÆå
-            qiZi[endI][endJ].setFocus(false);//½«¸ÃÆåÉèÎª·ÇÑ¡ÖÐ×´Ì¬
+            qiZi[startI][startJ] = null;
+            qiZi[endI][endJ].setFocus(false);
+            this.xq.Music("peng.wav");//空走移动音效
 
             this.xq.repaint();//ÖØ»æ
             if (qiZi[endI][endJ].getName().equals("Ž›")) {
