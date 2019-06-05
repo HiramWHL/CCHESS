@@ -4,17 +4,15 @@ import java.io.FileInputStream;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
 
-import javax.swing.JFrame;
-import java.awt.Image;
-import java.awt.Graphics;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
-import javax.swing.UIManager;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class XiangQi extends JFrame implements ActionListener {
 
@@ -509,6 +507,7 @@ public class XiangQi extends JFrame implements ActionListener {
         this.repaint();//重绘
     }
     
+
     //以下方法均来自本次修改2019.5.30
     //*=======================================================================================================*分割线
     
@@ -614,15 +613,5 @@ public class XiangQi extends JFrame implements ActionListener {
     }
     //*=============================================================================================*分割线
     
-    public static void main(String args[]) {
-    	JFrame.setDefaultLookAndFeelDecorated(true);
-    	JDialog.setDefaultLookAndFeelDecorated(true);
-    	try {
-    		UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-    	} catch (Exception e) {
-    		
-    	}
 
-    	new XiangQi();
-    }
 }
