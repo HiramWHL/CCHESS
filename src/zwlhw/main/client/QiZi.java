@@ -1,6 +1,10 @@
-package com.ylw.main.client;
+package zwlhw.main.client;
 
 import java.awt.*;
+
+/**
+ * QiZi is a class define the object in board.
+ * */
 
 public class QiZi {
 

@@ -1,9 +1,9 @@
-package com.ylw.main.client;
+package zwlhw.main.client;
+
 import java.util.ArrayList;
 import java.util.Map;
 
 /**
- * Created by Tong on 12.08.
  * Alpha beta search.
  */
 public class SearchModel {
@@ -11,7 +11,7 @@ public class SearchModel {
     private QiPan board;
     private GameController controller = new GameController();
 
-    public AlphaBetaNode search(QiPan board) {
+    public AlphaBetaNode search(QiPan board) {//随棋子减少逐层加深搜索
         this.board = board;
         if (board.pieces.size() < 28)
             DEPTH = 3;
@@ -21,9 +21,9 @@ public class SearchModel {
             DEPTH = 5;
         if (board.pieces.size() < 4)
             DEPTH = 6;
-        long startTime = System.currentTimeMillis();
+        //long startTime = System.currentTimeMillis();
         AlphaBetaNode best = null;
-        ArrayList<AlphaBetaNode> moves = generateMovesForAll(true);
+        ArrayList<AlphaBetaNode> moves = generateMovesForAll(true);//枚举下一次所有可能的移动
         for (AlphaBetaNode n : moves) {
             /* Move*/
             Piece eaten = board.updatePiece(n.piece, n.to);
@@ -38,13 +38,13 @@ public class SearchModel {
                 board.backPiece(eaten.key);
             }
         }
-        long finishTime = System.currentTimeMillis();
-        System.out.println(finishTime - startTime);
+        //long finishTime = System.currentTimeMillis();
+        //System.out.println(finishTime - startTime);
         return best;
     }
 
 
-    private int alphaBeta(int depth, int alpha, int beta, boolean isMax) {
+    private int alphaBeta(int depth, int alpha, int beta, boolean isMax) {//alpha min  isMax 判断奇偶
         /* Return evaluation if reaching leaf node or any side won.*/
         if (depth == 0 || controller.hasWin(board) != 'x')
             return new EvalModel().eval(board, 'b');
@@ -94,12 +94,13 @@ public class SearchModel {
         return isMax ? alpha : beta;
     }
 
-    private ArrayList<AlphaBetaNode> generateMovesForAll(boolean isMax) {
+    private ArrayList<AlphaBetaNode> generateMovesForAll(boolean isMax) {//搜寻当前棋盘所有情况
         ArrayList<AlphaBetaNode> moves = new ArrayList<AlphaBetaNode>();
         for (Map.Entry<String, Piece> stringPieceEntry : board.pieces.entrySet()) {
             Piece piece = stringPieceEntry.getValue();
-            if (isMax && piece.color == 'r') continue;
-            if (!isMax && piece.color == 'b') continue;
+            if (isMax && piece.color == 'r') continue;//人 true 不做
+            if (!isMax && piece.color == 'b') continue;// AI false 不做
+            //人 false   AI  true 做
             for (int[] nxt : GuiZe.getNextMove(piece.key, piece.position, board))
                 moves.add(new AlphaBetaNode(piece.key, piece.position, nxt));
         }

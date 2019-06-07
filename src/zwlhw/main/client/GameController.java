@@ -1,9 +1,9 @@
-package com.ylw.main.client;
+package zwlhw.main.client;
+
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Tong on 12.04.
  * GameController, dealing with logic along game process.
  */
 public class GameController {
@@ -53,15 +53,13 @@ public class GameController {
         return board;
     }
 
-
     public QiPan playChess() {
         /**
-         * Start game.
+         * Start AI game.
          * */
         initPieces();
         return initBoard();
     }
-
 
     public void moveChess(String key, int[] position, QiPan board) {
         /**
@@ -69,7 +67,6 @@ public class GameController {
          * */
         board.updatePiece(key, position);
     }
-
 
     public void responseMoveChess(QiPan board, QiPan view) {
         /**
@@ -82,26 +79,10 @@ public class GameController {
         board.updatePiece(result.piece, result.to);
     }
 
-
-    public void printBoard(QiPan board) {
-        /**
-         * Piece position is stored internally as [row, col], but output standard requires [col,row].
-         * Here comes the conversion.
-         * eg. [0, 4] --> [E, 0]
-         * */
-        Map<String, Piece> pieces = board.pieces;
-        for (Map.Entry<String, Piece> stringPieceEntry : pieces.entrySet()) {
-            Piece piece = stringPieceEntry.getValue();
-            System.out.println(stringPieceEntry.getKey() + ":" + (char) (piece.position[1] + 'A') + piece.position[0]);
-        }
-
-        System.out.println();
-    }
-
     public char hasWin(QiPan board) {
         /**
          * Judge has the game ended.
-         * @return 'r' for RED wins, 'b' for BLACK wins, 'x' for game continues.
+         * 'r' for RED wins, 'b' for BLACK wins, 'x' for game continues.
          * */
         boolean isRedWin = board.pieces.get("bb0") == null;
         boolean isBlackWin = board.pieces.get("rb0") == null;

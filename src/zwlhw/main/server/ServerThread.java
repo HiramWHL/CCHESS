@@ -1,4 +1,4 @@
-package com.ylw.main.server;
+package zwlhw.main.server;
 
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -19,9 +19,9 @@ public class ServerThread extends Thread {
         while (flag) {
             try {
 
-                Socket sc = ss.accept();//µÈ´ý¿Í»§¶ËÁ¬½Ó
+                Socket sc = ss.accept();//ï¿½È´ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 ServerAgentThread sat = new ServerAgentThread(father, sc);
-                sat.start();//´´½¨²¢Æô¶¯·þÎñÆ÷´úÀíÏß³Ì
+                sat.start();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
 
             } catch (Exception e) {
                 e.printStackTrace();

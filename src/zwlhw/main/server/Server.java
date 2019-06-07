@@ -1,4 +1,4 @@
-package com.ylw.main.server;
+package zwlhw.main.server;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,12 +9,16 @@ import java.awt.event.WindowEvent;
 import java.net.ServerSocket;
 import java.util.Vector;
 
+/**
+ * Server provide server in net
+ * */
+
 public class Server extends JFrame implements ActionListener {
 
-    JLabel jlPort = new JLabel("¶Ë ¿Ú ºÅ");
+    JLabel jlPort = new JLabel("ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½");
     JTextField jtfPort = new JTextField("6464");
-    JButton jbStart = new JButton("Æô¶¯");
-    JButton jbStop = new JButton("¹Ø±Õ");
+    JButton jbStart = new JButton("ï¿½ï¿½ï¿½ï¿½");
+    JButton jbStop = new JButton("ï¿½Ø±ï¿½");
     JPanel jps = new JPanel();
     JList jlUserOnline = new JList();
 
@@ -24,11 +28,11 @@ public class Server extends JFrame implements ActionListener {
     ServerSocket ss;
     ServerThread st;
     
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //»ñÈ¡ÆÁÄ»µÄ³ß´ç
-    int screenWidth = screenSize.width;      //»ñÈ¡ÆÁÄ»µÄ¿í
-    int screenHeight = screenSize.height;       //»ñÈ¡ÆÁÄ»µÄ¸ß
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½Ä³ß´ï¿½
+    int screenWidth = screenSize.width;      //ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½Ä¿ï¿½
+    int screenHeight = screenSize.height;       //ï¿½ï¿½È¡ï¿½ï¿½Ä»ï¿½Ä¸ï¿½
 
-    Vector onlineList = new Vector();//´´½¨´æ·Åµ±Ç°ÔÚÏßÓÃ»§µÄVector¶ÔÏó
+    Vector onlineList = new Vector();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½Ç°ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½Vectorï¿½ï¿½ï¿½ï¿½
 
     public Server() {
 
@@ -90,23 +94,23 @@ public class Server extends JFrame implements ActionListener {
         this.addWindowListener(
                 new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
-                        if (st == null)//µ±·þÎñÆ÷Ïß³ÌÎª¿ÕÊ±Ö±½ÓÍË³ö
+                        if (st == null)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½Îªï¿½ï¿½Ê±Ö±ï¿½ï¿½ï¿½Ë³ï¿½
                         {
-                            System.exit(0);//ÍË³ö
+                            System.exit(0);//ï¿½Ë³ï¿½
                             return;
                         }
                         try {
                             Vector v = onlineList;
                             int size = v.size();
                             for (int i = 0; i < size; i++) {
-                                //µ±²»Îª¿ÕÊ±£¬ÏòÔÚÏßÓÃ»§·¢ËÍÀëÏßÐÅÏ¢
+                                //ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
                                 ServerAgentThread tempSat = (ServerAgentThread) v.get(i);
 
                                 tempSat.dout.writeUTF("<#SERVER_DOWN#>");
-                                tempSat.flag = false;//ÖÕÖ¹·þÎñÆ÷´úÀíÏß³Ì
+                                tempSat.flag = false;//ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
                             }
 
-                            st.flag = false;//ÖÕÖ¹·þÎñÆ÷Ïß³Ì
+                            st.flag = false;//ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
                             st = null;
                             ss.close();
                             v.clear();
@@ -136,12 +140,12 @@ public class Server extends JFrame implements ActionListener {
 
             port = Integer.parseInt(this.jtfPort.getText().trim());
         } catch (Exception ee) {
-            JOptionPane.showMessageDialog(this, "¶Ë¿ÚºÅÖ»ÄÜÊÇÕûÊý", "´íÎó",
+            JOptionPane.showMessageDialog(this, "ï¿½Ë¿Úºï¿½Ö»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (port > 65535 || port < 0) {
-            JOptionPane.showMessageDialog(this, "¶Ë¿ÚºÅÖ»ÄÜÊÇ0-65535µÄÕûÊý", "´íÎó",
+            JOptionPane.showMessageDialog(this, "ï¿½Ë¿Úºï¿½Ö»ï¿½ï¿½ï¿½ï¿½0-65535ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½",
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -156,11 +160,11 @@ public class Server extends JFrame implements ActionListener {
             st = new ServerThread(this);
             st.start();
 
-            JOptionPane.showMessageDialog(this, "·þÎñÆ÷Æô¶¯³É¹¦", "ÌáÊ¾",
+            JOptionPane.showMessageDialog(this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½", "ï¿½ï¿½Ê¾",
                     JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ee) {
 
-            JOptionPane.showMessageDialog(this, "·þÎñÆ÷Æô¶¯Ê§°Ü", "´íÎó",
+            JOptionPane.showMessageDialog(this, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½ï¿½", "ï¿½ï¿½ï¿½ï¿½",
                     JOptionPane.ERROR_MESSAGE);
 
             this.jbStart.setEnabled(true);
@@ -183,11 +187,11 @@ public class Server extends JFrame implements ActionListener {
                 tempSat.flag = false;
             }
 
-            st.flag = false;//¹Ø±Õ·þÎñÆ÷Ïß³Ì
+            st.flag = false;//ï¿½Ø±Õ·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
             st = null;
-            ss.close();//¹Ø±ÕServerSocket
+            ss.close();//ï¿½Ø±ï¿½ServerSocket
 
-            v.clear();//½«ÔÚÏßÓÃ»§ÁÐ±íÇå¿Õ
+            v.clear();//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½
             refreshList();
 
             this.jbStart.setEnabled(true);

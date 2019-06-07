@@ -1,4 +1,4 @@
-package com.ylw.main.server;
+package zwlhw.main.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -34,8 +34,8 @@ public class ServerAgentThread extends Thread {
     public void run() {
         while (flag) {
             try {
-                String msg = din.readUTF().trim();//½ÓÊÕ¿Í»§¶Ë´«À´µÄÐÅÏ¢
-                if (msg.startsWith("<#NICK_NAME#>"))//ÊÕµ½ÐÂÓÃ»§µÄÐÅÏ¢
+                String msg = din.readUTF().trim();//ï¿½ï¿½ï¿½Õ¿Í»ï¿½ï¿½Ë´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+                if (msg.startsWith("<#NICK_NAME#>"))//ï¿½Õµï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
                 {
                     this.nick_name(msg);
                 } else if (msg.startsWith("<#CLIENT_LEAVE#>")) {
@@ -63,10 +63,10 @@ public class ServerAgentThread extends Thread {
     public void nick_name(String msg) {
         try {
 
-            String name = msg.substring(13);//»ñµÃÓÃ»§µÄêÇ³Æ
-            this.setName(name);//ÓÃ¸ÃêÇ³Æ¸ø¸ÃÏß³ÌÈ¡Ãû
+            String name = msg.substring(13);//ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ç³ï¿½
+            this.setName(name);//ï¿½Ã¸ï¿½ï¿½Ç³Æ¸ï¿½ï¿½ï¿½ï¿½ß³ï¿½È¡ï¿½ï¿½
 
-            Vector v = father.onlineList;//»ñµÃÔÚÏßÓÃ»§ÁÐ±í
+            Vector v = father.onlineList;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½Ð±ï¿½
             boolean isChongMing = false;
 
             int size = v.size();
@@ -105,7 +105,7 @@ public class ServerAgentThread extends Thread {
                     satTemp.dout.writeUTF(nickListMsg);
 
                     if (satTemp != this) {
-                        satTemp.dout.writeUTF("<#MSG#>" + this.getName() + "ÉÏÏßÁË...");
+                        satTemp.dout.writeUTF("<#MSG#>" + this.getName() + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...");
                     }
                 }
             }
@@ -127,7 +127,7 @@ public class ServerAgentThread extends Thread {
             for (int i = 0; i < size; i++) {
                 ServerAgentThread satTemp = (ServerAgentThread) tempv.get(i);
 
-                satTemp.dout.writeUTF("<#MSG#>" + this.getName() + "ÀëÏßÁË...");
+                satTemp.dout.writeUTF("<#MSG#>" + this.getName() + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½...");
 
                 nl = nl + "|" + satTemp.getName();
             }
@@ -136,7 +136,7 @@ public class ServerAgentThread extends Thread {
                 ServerAgentThread satTemp = (ServerAgentThread) tempv.get(i);
                 satTemp.dout.writeUTF(nl);
             }
-            this.flag = false;//ÖÕÖ¹¸Ã·þÎñÆ÷´úÀíÏß³Ì
+            this.flag = false;//ï¿½ï¿½Ö¹ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß³ï¿½
             father.refreshList();
         } catch (IOException e) {
             e.printStackTrace();
@@ -145,15 +145,15 @@ public class ServerAgentThread extends Thread {
 
     public void tiao_zhan(String msg) {
         try {
-            String name1 = this.getName();//»ñµÃ·¢³öÌôÕ½ÐÅÏ¢ÓÃ»§µÄÃû×Ö
-            String name2 = msg.substring(13);//»ñµÃ±»ÌôÕ½µÄÓÃ»§Ãû×Ö
+            String name1 = this.getName();//ï¿½ï¿½Ã·ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½Ï¢ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            String name2 = msg.substring(13);//ï¿½ï¿½Ã±ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 
             Vector v = father.onlineList;
             int size = v.size();
-            for (int i = 0; i < size; i++) {//±éÀúÁÐ±í£¬ËÑË÷±»ÌôÕ½µÄÓÃ»§
+            for (int i = 0; i < size; i++) {//ï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½Ã»ï¿½
                 ServerAgentThread satTemp = (ServerAgentThread) v.get(i);
 
-                if (satTemp.getName().equals(name2)) {//Ïò¸ÃÓÃ»§·¢ËÍÌôÕ½ÐÅÏ¢£¬¸½´øÌá³öÌôÕ½ÓÃ»§µÄÃû×Ö
+                if (satTemp.getName().equals(name2)) {//ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     satTemp.dout.writeUTF("<#TIAO_ZHAN#>" + name1);
                     break;
                 }
@@ -166,7 +166,7 @@ public class ServerAgentThread extends Thread {
     public void tong_yi(String msg) {
         try {
 
-            String name = msg.substring(11);//»ñµÃÌá³öÌôÕ½µÄÓÃ»§µÄÃû×Ö
+            String name = msg.substring(11);//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             Vector v = father.onlineList;
             int size = v.size();
             for (int i = 0; i < size; i++) {

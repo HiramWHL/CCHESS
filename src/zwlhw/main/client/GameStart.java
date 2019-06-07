@@ -1,9 +1,10 @@
-package com.ylw.main.client;
+package zwlhw.main.client;
+
 import java.util.Scanner;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
-import com.ylw.main.client.XiangQi;
+import zwlhw.main.client.XiangQi;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
@@ -14,26 +15,34 @@ import java.awt.event.ActionListener;
 
 public class GameStart extends JFrame implements ActionListener {
 	
+	private int i=0;
+	
+	private QiPan board;
+	private GameController controller;
+	private QiPan view;
+	
 	JButton RenRenButton = new JButton("人人对战");
 	JButton RenJiButton = new JButton("人机对战");
 	JPanel Panel = new JPanel();
 	
-	private int i=0;
+	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
+    int screenWidth = screenSize.width;      //get the screen's width
+    int screenHeight = screenSize.height;       //get the screen's height
 	
-	 private QiPan board;
-	   private GameController controller;
-	    private QiPan view;
 
-	public GameStart() {
-		this.setTitle("请选择游戏模式");
+	public GameStart() {//set a start menu
+		this.setTitle("CCHESS Client @神奇五鱼");
+        Image image = new ImageIcon("./img/icon.png").getImage();
+        this.setIconImage(image);
 		this.add(this.Panel);
 		Panel.setLayout(null);
-		this.RenRenButton.setBounds(10, 20, 176, 42);
-		this.RenJiButton.setBounds(10, 100, 176, 42);
+		
+		this.RenRenButton.setBounds(130, 40, 176, 50);
+		this.RenJiButton.setBounds(130, 140, 176, 50);
 		Panel.add(this.RenRenButton);
 		Panel.add(this.RenJiButton);     
-	    this.setSize(300, 300);
-	    this.setVisible(true);
+		this.setBounds((screenWidth - 450)/2, (screenHeight - 300)/2, 450, 300);//up-left x,y wide and hight is x,y. let it in center.
+		this.setVisible(true);
         this.RenRenButton.addActionListener(this);
         this.RenJiButton.addActionListener(this);
 	}
@@ -49,7 +58,7 @@ public class GameStart extends JFrame implements ActionListener {
 	
 	public void RenRenButton_event() {
 		this.dispose();
-		new XiangQi();
+		new XiangQi(screenWidth, screenHeight);
 	}
 	
 	public void RenJiButton_event() {
@@ -59,7 +68,12 @@ public class GameStart extends JFrame implements ActionListener {
 	
 	    public void init() {
 	    	while(1==1) {
-    			System.out.println("1");
+	    		try {
+            		Thread.sleep(1000);
+            		} catch (InterruptedException e) {
+            		// TODO Auto-generated catch block
+            		e.printStackTrace();
+            	}
 	    		if(this.i==1) {
 	    			break;
 	    		}

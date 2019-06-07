@@ -1,6 +1,10 @@
-package com.ylw.main.client;
+package zwlhw.main.client;
 
 import java.util.ArrayList;
+
+/**
+ * All rules are in this. To check canmove and for searching all the ans.
+ * */
 
 public class GuiZe {
 
@@ -43,29 +47,29 @@ public class GuiZe {
         if (name.equals("Ü‡"))
         {
             this.ju(maxI, minI, maxJ, minJ);
-        } else if (name.equals("ñR"))
+        } else if (name.equals("ï¿½R"))
         {
             this.ma(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
-        } else if (name.equals("Ïà"))
+        } else if (name.equals("ï¿½ï¿½"))
         {
             this.xiang1(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
-        } else if (name.equals("Ïó"))
+        } else if (name.equals("ï¿½ï¿½"))
         {
             this.xiang2(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
-        } else if (name.equals("Ê¿") || name.equals("ÊË"))
+        } else if (name.equals("Ê¿") || name.equals("ï¿½ï¿½"))
         {
             this.shi(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
-        } else if (name.equals("Ž›") || name.equals("Œ¢"))
+        } else if (name.equals("ï¿½ï¿½") || name.equals("ï¿½ï¿½"))
         {
             this.jiang(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
-        } else if (name.equals("ÅÚ") || name.equals("³h"))
+        } else if (name.equals("ï¿½ï¿½") || name.equals("ï¿½h"))
         {
             this.pao(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
-        } else if (name.equals("±ø"))
+        } else if (name.equals("ï¿½ï¿½"))
         {
             this.bing(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
 
-        } else if (name.equals("×ä"))
+        } else if (name.equals("ï¿½ï¿½"))
         {
             this.zu(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
         }
@@ -110,27 +114,27 @@ public class GuiZe {
                 {
                     canMove = false;
                 }
-            } else {//Èç¹ûÊÇ´ÓÉÏÍùÏÂ×ß
-                if (qiZi[startI][startJ + 1] != null)//Èç¹ûÂíÍÈ´¦ÓÐÆå×Ó
+            } else {//ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                if (qiZi[startI][startJ + 1] != null)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 {
-                    canMove = false;//²»¿ÉÒÔ×ß
+                    canMove = false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 }
             }
-        } else if (a == 2 && b == 1)//Èç¹ûÊÇºá×ÅµÄ"ÈÕ"
+        } else if (a == 2 && b == 1)//ï¿½ï¿½ï¿½ï¿½Çºï¿½ï¿½Åµï¿½"ï¿½ï¿½"
         {
-            if (startI > endI)//Èç¹ûÊÇ´ÓÓÒÍù×ó×ß
+            if (startI > endI)//ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
-                if (qiZi[startI - 1][startJ] != null)//Èç¹ûÂíÍÈ´¦ÓÐÆå×Ó
+                if (qiZi[startI - 1][startJ] != null)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 {
                     canMove = false;
                 }
-            } else {//Èç¹ûÊÇ´Ó×óÍùÓÒ×ß
-                if (qiZi[startI + 1][startJ] != null)//Èç¹ûÂíÍÈ´¦ÓÐÆå×Ó
+            } else {//ï¿½ï¿½ï¿½ï¿½Ç´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                if (qiZi[startI + 1][startJ] != null)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 {
                     canMove = false;
                 }
             }
-        } else if (!((a == 2 && b == 1) || (a == 1 && b == 2)))//Èç¹û²»Ê±"ÈÕ"×Ö
+        } else if (!((a == 2 && b == 1) || (a == 1 && b == 2)))//ï¿½ï¿½ï¿½ï¿½ï¿½Ê±"ï¿½ï¿½"ï¿½ï¿½
         {
             canMove = false;
         }
@@ -141,18 +145,18 @@ public class GuiZe {
         int a = maxI - minI;
         int b = maxJ - minJ;
 
-        if (a == 2 && b == 2)//Èç¹ûÊÇ"Ìï"×Ö
+        if (a == 2 && b == 2)//ï¿½ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½"ï¿½ï¿½
         {
-            if (endJ > 4)//Èç¹û¹ýºÓÁË
+            if (endJ > 4)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
-                canMove = false;//²»¿ÉÒÔ×ß
+                canMove = false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             }
-            if (qiZi[(maxI + minI) / 2][(maxJ + minJ) / 2] != null)//Èç¹û"Ìï"×ÖÖÐ¼äÓÐÆå×Ó
+            if (qiZi[(maxI + minI) / 2][(maxJ + minJ) / 2] != null)//ï¿½ï¿½ï¿½"ï¿½ï¿½"ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
-                canMove = false;//²»¿ÉÒÔ×ß
+                canMove = false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             }
         } else {
-            canMove = false;//Èç¹û²»ÊÇ"Ìï"×Ö£¬²»¿ÉÒÔ×ß
+            canMove = false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"ï¿½ï¿½"ï¿½Ö£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
     }
 
@@ -179,19 +183,19 @@ public class GuiZe {
         int a = maxI - minI;
         int b = maxJ - minJ;
 
-        if (a == 1 && b == 1)//Èç¹ûÊÇÐ¡Ð±Ïß
+        if (a == 1 && b == 1)//ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡Ð±ï¿½ï¿½
         {
-            if (startJ > 4)//Èç¹ûÊÇÏÂ·½µÄÊ¿
+            if (startJ > 4)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½Ê¿
             {
                 if (endJ < 7) {
-                    canMove = false;//Èç¹ûÏÂ·½µÄÊ¿Ô½½ç£¬²»¿ÉÒÔ×ß
+                    canMove = false;//ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½ï¿½Ê¿Ô½ï¿½ç£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 }
-            } else {//Èç¹ûÊÇÉÏ·½µÄÊË
+            } else {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½
                 if (endJ > 2) {
-                    canMove = false;//Èç¹ûÉÏ·½µÄÊËÔ½½ç£¬²»¿ÉÒÔ×ß
+                    canMove = false;//ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ç£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 }
             }
-            if (endI > 5 || endI < 3)//Èç¹û×óÓÒÔ½½ç£¬Ôò²»¿ÉÒÔ×ß
+            if (endI > 5 || endI < 3)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ç£¬ï¿½ò²»¿ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 canMove = false;
             }
@@ -205,20 +209,20 @@ public class GuiZe {
         int a = maxI - minI;
         int b = maxJ - minJ;
 
-        if ((a == 1 && b == 0) || (a == 0 && b == 1)) {//Èç¹û×ßµÄÊÇÒ»Ð¡¸ñ
-            if (startJ > 4)//Èç¹ûÊÇÏÂ·½µÄ½«
+        if ((a == 1 && b == 0) || (a == 0 && b == 1)) {//ï¿½ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½Ò»Ð¡ï¿½ï¿½
+            if (startJ > 4)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â·ï¿½ï¿½Ä½ï¿½
             {
-                if (endJ < 7)//Èç¹ûÔ½½ç
+                if (endJ < 7)//ï¿½ï¿½ï¿½Ô½ï¿½ï¿½
                 {
-                    canMove = false;//²»¿ÉÒÔ×ß
+                    canMove = false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 }
-            } else {//Èç¹ûÊÇÉÏ·½µÄ½«
+            } else {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½Ä½ï¿½
                 if (endJ > 2)
                 {
                     canMove = false;
                 }
             }
-            if (endI > 5 || endI < 3)//Èç¹û×óÓÒÔ½½ç£¬²»¿ÉÒÔ×ß
+            if (endI > 5 || endI < 3)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ç£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 canMove = false;
             }
@@ -229,51 +233,51 @@ public class GuiZe {
 
     public void pao(int maxI, int minI, int maxJ, int minJ, int startI, int startJ, int endI, int endJ) {
 
-        if (maxI == minI)//Èç¹û×ßµÄÊúÏß
+        if (maxI == minI)//ï¿½ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½ï¿½ï¿½
         {
-            if (qiZi[endI][endJ] != null)//Èç¹ûÖÕµãÓÐÆå×Ó
+            if (qiZi[endI][endJ] != null)//ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 int count = 0;
                 for (j = minJ + 1; j < maxJ; j++) {
-                    if (qiZi[minI][j] != null)//ÅÐ¶ÏÆðµãÓëÖÕµãÖ®¼äÓÐ¼¸¸öÆå×Ó
+                    if (qiZi[minI][j] != null)//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½Ö®ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     {
                         count++;
                     }
                 }
-                if (count != 1) {//Èç¹û²»ÊÇÒ»¸öÆå×Ó
-                    canMove = false;//²»¿ÉÒÔ×ß
+                if (count != 1) {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                    canMove = false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 }
-            } else if (qiZi[endI][endJ] == null)//Èç¹ûÖÕµãÃ»ÓÐÆå×Ó
+            } else if (qiZi[endI][endJ] == null)//ï¿½ï¿½ï¿½ï¿½Õµï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 for (j = minJ + 1; j < maxJ; j++) {
-                    if (qiZi[minI][j] != null)//Èç¹ûÆðÖ¹µãÖ®¼äÓÐÆå×Ó
+                    if (qiZi[minI][j] != null)//ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     {
-                        canMove = false;//²»¿ÉÒÔ×ß
+                        canMove = false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         break;
                     }
                 }
             }
-        } else if (maxJ == minJ)//Èç¹û×ßµÄÊÇºáÏß
+        } else if (maxJ == minJ)//ï¿½ï¿½ï¿½ï¿½ßµï¿½ï¿½Çºï¿½ï¿½ï¿½
         {
-            if (qiZi[endI][endJ] != null)//Èç¹ûÖÕµãÓÐÆå×Ó
+            if (qiZi[endI][endJ] != null)//ï¿½ï¿½ï¿½ï¿½Õµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 int count = 0;
                 for (i = minI + 1; i < maxI; i++) {
-                    if (qiZi[i][minJ] != null)//ÅÐ¶ÏÆðµãÓëÖÕµãÖ®¼äÓÐ¼¸¸öÆå×Ó
+                    if (qiZi[i][minJ] != null)//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õµï¿½Ö®ï¿½ï¿½ï¿½Ð¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     {
                         count++;
                     }
                 }
-                if (count != 1)//Èç¹û²»ÊÇÒ»¸öÆå×Ó
+                if (count != 1)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 {
-                    canMove = false;//²»¿ÉÒÔ×ß
+                    canMove = false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                 }
-            } else if (qiZi[endI][endJ] == null)//Èç¹ûÖÕµãÃ»ÓÐÆå×Ó
+            } else if (qiZi[endI][endJ] == null)//ï¿½ï¿½ï¿½ï¿½Õµï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             {
                 for (i = minI + 1; i < maxI; i++) {
-                    if (qiZi[i][minJ] != null)//Èç¹ûÆðÖ¹µãÖ®¼äÓÐÆå×Ó
+                    if (qiZi[i][minJ] != null)//ï¿½ï¿½ï¿½ï¿½ï¿½Ö¹ï¿½ï¿½Ö®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                     {
-                        canMove = false;//²»¿ÉÒÔ×ß
+                        canMove = false;//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
                         break;
                     }
                 }
@@ -284,51 +288,51 @@ public class GuiZe {
     }
 
     public void bing(int maxI, int minI, int maxJ, int minJ, int startI, int startJ, int endI, int endJ) {
-        if (startJ < 5)//Èç¹û»¹Ã»ÓÐ¹ýºÓ
+        if (startJ < 5)//ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð¹ï¿½ï¿½ï¿½
         {
-            if (startI != endI)//Èç¹û²»ÊÇÏòÇ°×ß
+            if (startI != endI)//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½
             {
                 canMove = false;
             }
-            if (endJ - startJ != 1)//Èç¹û×ßµÄ²»ÊÇÒ»¸ñ
+            if (endJ - startJ != 1)//ï¿½ï¿½ï¿½ï¿½ßµÄ²ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
             {
                 canMove = false;
             }
-        } else {//Èç¹ûÒÑ¾­¹ýºÓ
-            if (startI == endI) {//Èç¹û×ßµÄÊÇÊúÏß
-                if (endJ - startJ != 1)//Èç¹û×ßµÄ²»ÊÇÒ»¸ñ
+        } else {//ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½
+            if (startI == endI) {//ï¿½ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                if (endJ - startJ != 1)//ï¿½ï¿½ï¿½ï¿½ßµÄ²ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
                 {
                     canMove = false;
                 }
-            } else if (startJ == endJ) {//Èç¹û×ßµÄÊÇºáÏß
-                if (maxI - minI != 1) {//Èç¹û×ßµÄ²»ÊÇÒ»¸ñ
+            } else if (startJ == endJ) {//ï¿½ï¿½ï¿½ï¿½ßµï¿½ï¿½Çºï¿½ï¿½ï¿½
+                if (maxI - minI != 1) {//ï¿½ï¿½ï¿½ï¿½ßµÄ²ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
                     canMove = false;
                 }
-            } else if (startI != endI && startJ != endJ) {//Èç¹û×ßµÄ¼È²»ÊÇÊúÏß£¬Ò²²»ÊÇºáÏß£¬Ôò²»¿ÉÒÔ×ß
+            } else if (startI != endI && startJ != endJ) {//ï¿½ï¿½ï¿½ï¿½ßµÄ¼È²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½Ò²ï¿½ï¿½ï¿½Çºï¿½ï¿½ß£ï¿½ï¿½ò²»¿ï¿½ï¿½ï¿½ï¿½ï¿½
                 canMove = false;
             }
         }
     }
 
     public void zu(int maxI, int minI, int maxJ, int minJ, int startI, int startJ, int endI, int endJ) {
-        if (startJ > 4) {//Èç¹û»¹Ã»ÓÐ¹ýºÓ
-            if (startI != endI) {//Èç¹û²»ÊÇÏòÇ°×ß
+        if (startJ > 4) {//ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½Ð¹ï¿½ï¿½ï¿½
+            if (startI != endI) {//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½ï¿½
                 canMove = false;
             }
-            if (endJ - startJ != -1)//Èç¹û×ßµÄ²»ÊÇÒ»¸ñ
+            if (endJ - startJ != -1)//ï¿½ï¿½ï¿½ï¿½ßµÄ²ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
             {
                 canMove = false;
             }
-        } else {//Èç¹ûÒÑ¾­¹ýºÓ
-            if (startI == endI) {//Èç¹û×ßµÄÊÇÊúÏß
-                if (endJ - startJ != -1) {//Èç¹û×ßµÄ²»ÊÇÒ»¸ñ
+        } else {//ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½ï¿½ï¿½
+            if (startI == endI) {//ï¿½ï¿½ï¿½ï¿½ßµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+                if (endJ - startJ != -1) {//ï¿½ï¿½ï¿½ï¿½ßµÄ²ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
                     canMove = false;
                 }
-            } else if (startJ == endJ) {//Èç¹û×ßµÄÊÇºáÏß
-                if (maxI - minI != 1) {//Èç¹û×ßµÄ²»ÊÇÒ»¸ñ
+            } else if (startJ == endJ) {//ï¿½ï¿½ï¿½ï¿½ßµï¿½ï¿½Çºï¿½ï¿½ï¿½
+                if (maxI - minI != 1) {//ï¿½ï¿½ï¿½ï¿½ßµÄ²ï¿½ï¿½ï¿½Ò»ï¿½ï¿½
                     canMove = false;
                 }
-            } else if (startI != endI && startJ != endJ) {//Èç¹û×ßµÄ¼È²»ÊÇÊúÏß£¬Ò²²»ÊÇºáÏß£¬Ôò²»¿ÉÒÔ×ß
+            } else if (startI != endI && startJ != endJ) {//ï¿½ï¿½ï¿½ï¿½ßµÄ¼È²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ß£ï¿½Ò²ï¿½ï¿½ï¿½Çºï¿½ï¿½ß£ï¿½ï¿½ò²»¿ï¿½ï¿½ï¿½ï¿½ï¿½
                 canMove = false;
             }
         }

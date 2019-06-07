@@ -1,5 +1,4 @@
-//ver 2.0
-package com.ylw.main.client;
+ï»¿package zwlhw.main.client;
 
 import javax.swing.*;
 import java.io.DataInputStream;
@@ -66,8 +65,8 @@ public class ClientAgentThread extends Thread {
 
     public void name_chongming() {
         try {
-            JOptionPane.showMessageDialog(this.father, "¸ÃÍæ¼ÒÃû³ÆÒÑ¾­±»Õ¼ÓÃ£¬ÇëÖØÐÂÌîÐ´£¡",
-                    "´íÎó", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this.father, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½ï¿½Õ¼ï¿½Ã£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½",
+                    "ï¿½ï¿½ï¿½ï¿½", JOptionPane.ERROR_MESSAGE);
 
             din.close();
             dout.close();
@@ -123,7 +122,7 @@ public class ClientAgentThread extends Thread {
         this.flag = false;
         father.cat = null;
 
-        JOptionPane.showMessageDialog(this.father, "Óë·þÎñÆ÷¶Ï¿ªÁ¬½Ó", "ÌáÊ¾",
+        JOptionPane.showMessageDialog(this.father, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ï¿½ï¿½ï¿½ï¿½", "ï¿½ï¿½Ê¾",
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -147,8 +146,8 @@ public class ClientAgentThread extends Thread {
                 this.father.jbNChallenge.setEnabled(!false);
                 this.father.jbFail.setEnabled(false);
 
-                JOptionPane.showMessageDialog(this.father, tiaoZhanZhe + "ÏòÄãÌôÕ½£¬Çë¼°Ê±»ØÓ¦",
-                        "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this.father, tiaoZhanZhe + "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½ï¿½ï¿½ï¿½ë¼°Ê±ï¿½ï¿½Ó¦",
+                        "ï¿½ï¿½Ê¾", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 this.dout.writeUTF("<#BUSY#>" + name);
             }
@@ -169,8 +168,8 @@ public class ClientAgentThread extends Thread {
         this.father.jbNChallenge.setEnabled(false);
         this.father.jbFail.setEnabled(!false);
 
-        JOptionPane.showMessageDialog(this.father, "¶Ô·½½ÓÊÜÄúµÄÌôÕ½!ÄúÏÈ×ßÆå(ºìÆå)",
-                "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this.father, "ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½!ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½ï¿½ï¿½)",
+                "ï¿½ï¿½Ê¾", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void butong_yi() {
@@ -187,7 +186,7 @@ public class ClientAgentThread extends Thread {
         this.father.jbNChallenge.setEnabled(false);
         this.father.jbFail.setEnabled(false);
 
-        JOptionPane.showMessageDialog(this.father, "¶Ô·½¾Ü¾øÄúµÄÌôÕ½!", "ÌáÊ¾",
+        JOptionPane.showMessageDialog(this.father, "ï¿½Ô·ï¿½ï¿½Ü¾ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ½!", "ï¿½ï¿½Ê¾",
                 JOptionPane.INFORMATION_MESSAGE);
 
         this.tiaoZhanZhe = null;
@@ -208,7 +207,7 @@ public class ClientAgentThread extends Thread {
         this.father.jbNChallenge.setEnabled(false);
         this.father.jbFail.setEnabled(false);
 
-        JOptionPane.showMessageDialog(this.father, "¶Ô·½Ã¦ÂµÖÐ", "ÌáÊ¾",
+        JOptionPane.showMessageDialog(this.father, "ï¿½Ô·ï¿½Ã¦Âµï¿½ï¿½", "ï¿½ï¿½Ê¾",
                 JOptionPane.INFORMATION_MESSAGE);
 
         this.tiaoZhanZhe = null;
@@ -229,7 +228,7 @@ public class ClientAgentThread extends Thread {
 
     public void renshu() {
 
-        JOptionPane.showMessageDialog(this.father, "¹§Ï²Äã£¬¶Ô·½ÈÏÊä£¬Äã»ñÊ¤", "ÌáÊ¾",
+        JOptionPane.showMessageDialog(this.father, "ï¿½ï¿½Ï²ï¿½ã£¬ï¿½Ô·ï¿½ï¿½ï¿½ï¿½ä£¬ï¿½ï¿½ï¿½Ê¤", "ï¿½ï¿½Ê¾",
                 JOptionPane.INFORMATION_MESSAGE);
 
         this.tiaoZhanZhe = null;

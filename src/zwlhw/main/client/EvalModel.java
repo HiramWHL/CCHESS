@@ -1,17 +1,14 @@
-package com.ylw.main.client;
+package zwlhw.main.client;
+
 import java.util.Map;
 
-/**
- * Created by Tong on 12.08.
- * Eval Model.
- */
 public class EvalModel {
     /*  [red, black] >> [PieceValue, PiecePosition, PieceControl, PieceFlexible, PieceProtect, PieceFeature]*/
     /* However, only PieceValue and PiecePosition are implemented, so the array size is set to 2. */
     private int[][] values = new int[2][2];
 
     /**
-     * @param player, eval the situation in player's perspective.
+     *  player, eval the situation in player's perspective.
      */
     public int eval(QiPan board, char player) {
         for (Map.Entry<String, Piece> stringPieceEntry : board.pieces.entrySet()) {
@@ -82,11 +79,11 @@ public class EvalModel {
 
     private int evalPieceValue(int p) {
         /* b | s | x | m | j | p | z*/
-        int[] pieceValue = new int[]{1000000, 110, 110, 300, 600, 300, 70};
+        int[] pieceValue = new int[]{1000000, 110, 110, 300, 600, 300, 70};//定义每个棋子得到权重
         return pieceValue[p];
     }
 
-    private int evalPiecePosition(int p, int[] pos) {
+    private int evalPiecePosition(int p, int[] pos) {//定义位置权重
         int[][] pPosition = new int[][]{
                 {6, 4, 0, -10, -12, -10, 0, 4, 6},
                 {2, 2, 0, -4, -14, -4, 0, 2, 2},
@@ -146,11 +143,11 @@ public class EvalModel {
         return 0;
     }
 
-    private int evalPieceFlexible(int p) {
-        // b | s | x | m | j | p | z
-        int[] pieceFlexible = new int[]{0, 1, 1, 13, 7, 7, 15};
-        return 0;
-    }
+//    private int evalPieceFlexible(int p) {
+//        // b | s | x | m | j | p | z
+//        int[] pieceFlexible = new int[]{0, 1, 1, 13, 7, 7, 15};//定义的灵活的权重
+//        return 0;
+//    }
 
     private int evalPieceProtect() {
         return 0;

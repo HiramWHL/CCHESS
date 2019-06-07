@@ -1,4 +1,4 @@
-package com.ylw.main.client;
+﻿package zwlhw.main.client;
 
 import java.awt.Graphics;
 import java.awt.*;
@@ -7,10 +7,8 @@ import java.awt.event.ActionListener;
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.*;
-
-import com.ylw.main.client.QiPan.BoardClickListener;
-import com.ylw.main.client.QiPan.PieceOnClickListener;
-
+import zwlhw.main.client.QiPan.BoardClickListener;
+import zwlhw.main.client.QiPan.PieceOnClickListener;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -18,6 +16,12 @@ import java.awt.event.MouseListener;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+
+/**
+ * To provide board to paint and display. 
+ * There are two kinds of types by different person.
+ * Just combine these two.
+ * */
 
 public class QiPan extends JPanel implements MouseListener,ActionListener {
 
@@ -282,11 +286,6 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
 
     public void noJiang() {//只是普通吃掉对面棋子
 
-
-    	//qiZi[endI][endJ] = qiZi[startI][startJ];
-    	//qiZi[endI][endJ].setFocus(false);
-    	//qiZi[startI][startJ] = null;
-
         this.xq.slowMove("./img/"+qiZi[startI][startJ].getPic()+".png", startI, startJ, endI, endJ);
         this.xq.Music("chi.wav");//绘制残影和“吃”音效
 
@@ -526,10 +525,11 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
             g.drawLine(x + 3, y + 3, x + 3, y + 20);
         }
     }
+    
     public final int BOARD_WIDTH = 9, BOARD_HEIGHT = 10;
     public Map<String, Piece> pieces;
     public char player = 'r';
-    private Piece[][] cells = new Piece[BOARD_HEIGHT][BOARD_WIDTH];
+    private Piece[][] cells = new Piece[BOARD_HEIGHT][BOARD_WIDTH];//构造棋盘
 
     public boolean isInside(int[] position) {
         return isInside(position[0], position[1]);
@@ -549,17 +549,17 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
     }
 
 
-    public boolean update(Piece piece) {
+    public boolean update(Piece piece) {//更新棋盘显示
         int[] pos = piece.position;
         cells[pos[0]][pos[1]] = piece;
         return true;
     }
 
-    public Piece updatePiece(String key, int[] newPos) {
-        Piece orig = pieces.get(key);
-        Piece inNewPos = getPiece(newPos);
+    public Piece updatePiece(String key, int[] newPos) {//更新基本元
+        Piece orig = pieces.get(key);//棋子名字(键)获取基本元(值) key其实就是name包含颜色种类和哪一个(也是键)
+        Piece inNewPos = getPiece(newPos);//获得新位置的棋盘中的位置的基本元
         /* If the new slot has been taken by another piece, then it will be killed.*/
-        if (inNewPos != null)
+        if (inNewPos != null)//不为空 吃掉
             pieces.remove(inNewPos.key);
         /* Clear original slot and updatePiece new slot.*/
         int[] origPos = orig.position;
@@ -567,10 +567,10 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
         cells[newPos[0]][newPos[1]] = orig;
         orig.position = newPos;
         player = (player == 'r') ? 'b' : 'r';
-        return inNewPos;
+        return inNewPos;//只是把棋盘显示的某个棋子的位置变了，当前再查询此棋子还在原来的位置
     }
 
-    public boolean backPiece(String key) {
+    public boolean backPiece(String key) {//把某个棋子认为自己在哪里的更新到棋盘显示 绘制回去 因为在模拟走棋
         int[] origPos = pieces.get(key).position;
         cells[origPos[0]][origPos[1]] = pieces.get(key);
         return true;
@@ -682,7 +682,7 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
         }
 
         public void showWinner(char player) {
-            JOptionPane.showMessageDialog(null, (player == 'r') ? "Red player has won!" : "Black player has won!", "Intelligent Chinese Chess", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, (player == 'r') ? "你获得了胜利!" : "你太垃圾了！", "AI象棋", JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         }
 
@@ -734,21 +734,18 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
             }
      }
 }
-		class Piece implements Cloneable {
-		public String key;
-		public char color;
-		public char character;
-		public char index;
-		public int[] position = new int[2];
+class Piece implements Cloneable {
+	public String key;
+	public char color;
+	public char character;
+	public char index;
+	public int[] position;
 		
-		public Piece(String name, int[] position) {
-		    this.key = name;
-		    this.color = name.charAt(0);
-		    this.character = name.charAt(1);
-		    this.index = name.charAt(2);
-		    this.position = position;
+	public Piece(String name, int[] position) {//每个点位的基本元素类
+	    this.key = name;
+	    this.color = name.charAt(0);//颜色、玩家
+	    this.character = name.charAt(1);//种类
+	    this.index = name.charAt(2);//哪个
+	    this.position = position;//位置
+	}
 }
-
-}
-
-

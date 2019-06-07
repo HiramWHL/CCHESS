@@ -1,18 +1,20 @@
-﻿package com.ylw.main.client;
+﻿package zwlhw.main.client;
 
 import java.io.FileInputStream;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
-
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.Socket;
 import java.util.Scanner;
+
+/**
+ * Most functions are based in this class. To deal with many, it a little messy.
+ * */
 
 public class XiangQi extends JFrame implements ActionListener {
 
@@ -21,7 +23,7 @@ public class XiangQi extends JFrame implements ActionListener {
     public static final Color focuschar = new Color(96, 95, 91);
     public static final Color color1 = new Color(249, 50, 183);
     public static final Color color2 = Color.white;
-    public Image img = null;//定义一个图片属性
+    public Image img = null;//define a img.
     
     JLabel jlHost = new JLabel("主机名");
     JLabel jlPort = new JLabel("端口号");
@@ -59,10 +61,6 @@ public class XiangQi extends JFrame implements ActionListener {
     
     ImageIcon iconPu = new ImageIcon("./img/pujuefei.jpg");
     JButton pujuefei = new JButton(iconPu);
-
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //获取屏幕的尺寸
-    int screenWidth = screenSize.width;      //获取屏幕的宽
-    int screenHeight = screenSize.height;       //获取屏幕的高
     
     int width = 60;
 
@@ -72,16 +70,16 @@ public class XiangQi extends JFrame implements ActionListener {
     JPanel jpy = new JPanel();
     JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, jpz, jpy);
 
-    boolean caiPan = false;//可否走棋的标志位
-    int color = 0;//0 代表红棋，1代表白棋
+    boolean caiPan = false;//可否走棋的标志位 can move sign.
+    int color = 0;//0 -> red，1 -> white. 
 
     Socket sc;
 
     ClientAgentThread cat;
 
-    public XiangQi() {
+    public XiangQi(int w, int h) {
 
-    	//this.Music("bgm.wav");//整体全局的背景音乐，没有做循环处理因为可能不需要 如果需要还得处理一下音效和bgm的音量大小。
+    	//this.Music("bgm.wav");//bgm, but without loop.
     	
         this.initialComponent();
 
@@ -91,7 +89,7 @@ public class XiangQi extends JFrame implements ActionListener {
 
         this.initialQiZi();
 
-        this.initialFrame();
+        this.initialFrame(w, h);
 
     }
 
@@ -200,7 +198,7 @@ public class XiangQi extends JFrame implements ActionListener {
 
     }
 
-    public void initialFrame() {
+    public void initialFrame(int screenWidth, int screenHeight) {
 
         this.setTitle("CCHESS Client@神奇五鱼");
         Image image = new ImageIcon("./img/icon.png").getImage();
@@ -210,13 +208,13 @@ public class XiangQi extends JFrame implements ActionListener {
         jsp.setDividerLocation(690);
         jsp.setDividerSize(1);
         
-        this.setTitle("CCHESS@神奇五鱼");
+        this.setTitle("CCHESS @神奇五鱼");
         this.setBounds((screenWidth - 930)/2, (screenHeight - 730)/2, 930, 730);//左上角的位置x,y 和框的宽和高x,y  使窗口居中
         this.setVisible(true);
         this.addWindowListener(
                 new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
-                        if (cat == null)//客户端代理线程为空，直接退出
+                        if (cat == null)//客户端代理线程为空，直接退出 client is empty, exit.
                         {
                             System.exit(0);
                             return;
@@ -232,7 +230,7 @@ public class XiangQi extends JFrame implements ActionListener {
                                 }
                             }
                             cat.dout.writeUTF("<#CLIENT_LEAVE#>");
-                            cat.flag = false;//终止客户端代理线程
+                            cat.flag = false;//终止客户端代理线程 stop client
                             cat = null;
 
                         } catch (Exception ee) {
@@ -396,7 +394,7 @@ public class XiangQi extends JFrame implements ActionListener {
 
         if (o == null || ((String) o).equals("")) {
             JOptionPane.showMessageDialog(this, "请选择对方名字", "错误",
-                    JOptionPane.ERROR_MESSAGE);//当未选中挑战对象，给出错误提示信息
+                    JOptionPane.ERROR_MESSAGE);//当未选中挑战对象，给出错误提示信息 without
         } else {
 
             String name2 = (String) this.jcbNickList.getSelectedItem();
@@ -507,11 +505,7 @@ public class XiangQi extends JFrame implements ActionListener {
         this.repaint();//重绘
     }
     
-
-    //以下方法均来自本次修改2019.5.30
-    //*=======================================================================================================*分割线
-    
-    public void Music(String name) {              //播放音频的函数 文件位于src/music下
+    public void Music(String name) {              //播放音频的函数 files are in the src/music
     	try {      
             FileInputStream fmusic = new FileInputStream("./music/" + name);
             AudioStream au = new AudioStream(fmusic);
@@ -530,7 +524,7 @@ public class XiangQi extends JFrame implements ActionListener {
     	try{
     		for(int i = 0; i <= n; i+=10){
     			Thread.sleep(1);
-    			paint(this.getGraphics(), x + ratex * i, y + ratey * i);
+    			paint(this.getGraphics(), x += ratex, y += ratey);
     		}
     	}
     	catch (InterruptedException e) {
@@ -579,7 +573,7 @@ public class XiangQi extends JFrame implements ActionListener {
                 }
             }
             else{//马
-                if(xx > yy){//横着 x多变于y
+                if(xx > yy){// x is more than y
                     if(x1 > x2 && y1 > y2){
                         move(yy, xx1, yy1, -2, -1);
                     }
@@ -609,9 +603,5 @@ public class XiangQi extends JFrame implements ActionListener {
                 }
             }
         }
-
     }
-    //*=============================================================================================*分割线
-    
-
 }
