@@ -7,6 +7,8 @@ import java.net.Socket;
 import java.util.Vector;
 
 public class ServerAgentThread extends Thread {
+	
+	static StringIndexServer GetStr= new StringIndexServer();
 
     Server father;
     Socket sc;
@@ -34,8 +36,8 @@ public class ServerAgentThread extends Thread {
     public void run() {
         while (flag) {
             try {
-                String msg = din.readUTF().trim();//���տͻ��˴�������Ϣ
-                if (msg.startsWith("<#NICK_NAME#>"))//�յ����û�����Ϣ
+                String msg = din.readUTF().trim();//锟斤拷锟秸客伙拷锟剿达拷锟斤拷锟斤拷锟斤拷息
+                if (msg.startsWith("<#NICK_NAME#>"))//锟秸碉拷锟斤拷锟矫伙拷锟斤拷锟斤拷息
                 {
                     this.nick_name(msg);
                 } else if (msg.startsWith("<#CLIENT_LEAVE#>")) {
@@ -63,10 +65,10 @@ public class ServerAgentThread extends Thread {
     public void nick_name(String msg) {
         try {
 
-            String name = msg.substring(13);//����û����ǳ�
-            this.setName(name);//�ø��ǳƸ����߳�ȡ��
+            String name = msg.substring(13);//锟斤拷锟斤拷没锟斤拷锟斤拷浅锟�
+            this.setName(name);//锟矫革拷锟角称革拷锟斤拷锟竭筹拷取锟斤拷
 
-            Vector v = father.onlineList;//��������û��б�
+            Vector v = father.onlineList;//锟斤拷锟斤拷锟斤拷锟斤拷没锟斤拷斜锟�
             boolean isChongMing = false;
 
             int size = v.size();
@@ -105,7 +107,7 @@ public class ServerAgentThread extends Thread {
                     satTemp.dout.writeUTF(nickListMsg);
 
                     if (satTemp != this) {
-                        satTemp.dout.writeUTF("<#MSG#>" + this.getName() + "������...");
+                        satTemp.dout.writeUTF("<#MSG#>" + this.getName() + GetStr.back_Strings(10));
                     }
                 }
             }
@@ -127,7 +129,7 @@ public class ServerAgentThread extends Thread {
             for (int i = 0; i < size; i++) {
                 ServerAgentThread satTemp = (ServerAgentThread) tempv.get(i);
 
-                satTemp.dout.writeUTF("<#MSG#>" + this.getName() + "������...");
+                satTemp.dout.writeUTF("<#MSG#>" + this.getName() + GetStr.back_Strings(11));
 
                 nl = nl + "|" + satTemp.getName();
             }
@@ -136,7 +138,7 @@ public class ServerAgentThread extends Thread {
                 ServerAgentThread satTemp = (ServerAgentThread) tempv.get(i);
                 satTemp.dout.writeUTF(nl);
             }
-            this.flag = false;//��ֹ�÷����������߳�
+            this.flag = false;//锟斤拷止锟矫凤拷锟斤拷锟斤拷锟斤拷锟斤拷锟竭筹拷
             father.refreshList();
         } catch (IOException e) {
             e.printStackTrace();
@@ -145,15 +147,15 @@ public class ServerAgentThread extends Thread {
 
     public void tiao_zhan(String msg) {
         try {
-            String name1 = this.getName();//��÷�����ս��Ϣ�û�������
-            String name2 = msg.substring(13);//��ñ���ս���û�����
+            String name1 = this.getName();//锟斤拷梅锟斤拷锟斤拷锟秸斤拷锟较拷没锟斤拷锟斤拷锟斤拷锟�
+            String name2 = msg.substring(13);//锟斤拷帽锟斤拷锟秸斤拷锟斤拷没锟斤拷锟斤拷锟�
 
             Vector v = father.onlineList;
             int size = v.size();
-            for (int i = 0; i < size; i++) {//�����б���������ս���û�
+            for (int i = 0; i < size; i++) {//锟斤拷锟斤拷锟叫憋拷锟斤拷锟斤拷锟斤拷锟斤拷战锟斤拷锟矫伙拷
                 ServerAgentThread satTemp = (ServerAgentThread) v.get(i);
 
-                if (satTemp.getName().equals(name2)) {//����û�������ս��Ϣ�����������ս�û�������
+                if (satTemp.getName().equals(name2)) {//锟斤拷锟斤拷没锟斤拷锟斤拷锟斤拷锟秸斤拷锟较拷锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷战锟矫伙拷锟斤拷锟斤拷锟斤拷
                     satTemp.dout.writeUTF("<#TIAO_ZHAN#>" + name1);
                     break;
                 }
@@ -166,7 +168,7 @@ public class ServerAgentThread extends Thread {
     public void tong_yi(String msg) {
         try {
 
-            String name = msg.substring(11);//��������ս���û�������
+            String name = msg.substring(11);//锟斤拷锟斤拷锟斤拷锟斤拷战锟斤拷锟矫伙拷锟斤拷锟斤拷锟斤拷
             Vector v = father.onlineList;
             int size = v.size();
             for (int i = 0; i < size; i++) {

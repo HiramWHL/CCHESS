@@ -7,9 +7,12 @@ import java.io.IOException;
 import java.util.Vector;
 
 public class ClientAgentThread extends Thread {
+	
+	static StringIndex GetStr= new StringIndex();
 
     XiangQi father;
     boolean flag = true;
+    boolean outed = false;
 
     DataInputStream din;
     DataOutputStream dout;
@@ -65,9 +68,9 @@ public class ClientAgentThread extends Thread {
 
     public void name_chongming() {
         try {
-            JOptionPane.showMessageDialog(this.father, "����������Ѿ���ռ�ã���������д��",
-                    "����", JOptionPane.ERROR_MESSAGE);
-
+            JOptionPane.showMessageDialog(this.father, GetStr.back_Strings(27),
+            		GetStr.back_Strings(15), JOptionPane.ERROR_MESSAGE);
+            
             din.close();
             dout.close();
 
@@ -97,7 +100,13 @@ public class ClientAgentThread extends Thread {
         String[] na = s.split("\\|");
 
         Vector v = new Vector();
-
+        
+        if(this.outed==false) {
+        JOptionPane.showMessageDialog(this.father, GetStr.back_Strings(16),
+        		GetStr.back_Strings(15), JOptionPane.INFORMATION_MESSAGE);
+        this.outed=true;
+        }
+        
         for (int i = 0; i < na.length; i++) {
             if (na[i].trim().length() != 0 && (!na[i].trim().equals(father.jtfNickName.getText().trim()))) {
                 v.add(na[i]);
@@ -122,7 +131,7 @@ public class ClientAgentThread extends Thread {
         this.flag = false;
         father.cat = null;
 
-        JOptionPane.showMessageDialog(this.father, "��������Ͽ�����", "��ʾ",
+        JOptionPane.showMessageDialog(this.father, GetStr.back_Strings(28), GetStr.back_Strings(15),
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -146,8 +155,8 @@ public class ClientAgentThread extends Thread {
                 this.father.jbNChallenge.setEnabled(!false);
                 this.father.jbFail.setEnabled(false);
 
-                JOptionPane.showMessageDialog(this.father, tiaoZhanZhe + "������ս���뼰ʱ��Ӧ",
-                        "��ʾ", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this.father, tiaoZhanZhe + GetStr.back_Strings(29),
+                		GetStr.back_Strings(15), JOptionPane.INFORMATION_MESSAGE);
             } else {
                 this.dout.writeUTF("<#BUSY#>" + name);
             }
@@ -168,8 +177,8 @@ public class ClientAgentThread extends Thread {
         this.father.jbNChallenge.setEnabled(false);
         this.father.jbFail.setEnabled(!false);
 
-        JOptionPane.showMessageDialog(this.father, "�Է�����������ս!��������(����)",
-                "��ʾ", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this.father, GetStr.back_Strings(30),
+        		GetStr.back_Strings(15), JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void butong_yi() {
@@ -186,7 +195,7 @@ public class ClientAgentThread extends Thread {
         this.father.jbNChallenge.setEnabled(false);
         this.father.jbFail.setEnabled(false);
 
-        JOptionPane.showMessageDialog(this.father, "�Է��ܾ�������ս!", "��ʾ",
+        JOptionPane.showMessageDialog(this.father, GetStr.back_Strings(31),GetStr.back_Strings(15),
                 JOptionPane.INFORMATION_MESSAGE);
 
         this.tiaoZhanZhe = null;
@@ -207,7 +216,7 @@ public class ClientAgentThread extends Thread {
         this.father.jbNChallenge.setEnabled(false);
         this.father.jbFail.setEnabled(false);
 
-        JOptionPane.showMessageDialog(this.father, "�Է�æµ��", "��ʾ",
+        JOptionPane.showMessageDialog(this.father, GetStr.back_Strings(32),GetStr.back_Strings(15),
                 JOptionPane.INFORMATION_MESSAGE);
 
         this.tiaoZhanZhe = null;
@@ -228,7 +237,7 @@ public class ClientAgentThread extends Thread {
 
     public void renshu() {
 
-        JOptionPane.showMessageDialog(this.father, "��ϲ�㣬�Է����䣬���ʤ", "��ʾ",
+        JOptionPane.showMessageDialog(this.father, GetStr.back_Strings(33), GetStr.back_Strings(15),
                 JOptionPane.INFORMATION_MESSAGE);
 
         this.tiaoZhanZhe = null;

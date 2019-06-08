@@ -44,32 +44,32 @@ public class GuiZe {
             maxJ = endJ;
             minJ = startJ;
         }
-        if (name.equals("܇"))
+        if (name.equals("che"))
         {
             this.ju(maxI, minI, maxJ, minJ);
-        } else if (name.equals("�R"))
+        } else if (name.equals("ma"))
         {
             this.ma(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
-        } else if (name.equals("��"))
+        } else if (name.equals("xiang"))
         {
             this.xiang1(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
-        } else if (name.equals("��"))
+        } else if (name.equals("heixiang"))
         {
             this.xiang2(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
-        } else if (name.equals("ʿ") || name.equals("��"))
+        } else if (name.equals("heishi") || name.equals("shi"))
         {
             this.shi(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
-        } else if (name.equals("��") || name.equals("��"))
+        } else if (name.equals("shuai") || name.equals("jiang"))
         {
             this.jiang(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
-        } else if (name.equals("��") || name.equals("�h"))
+        } else if (name.equals("pao") || name.equals("heipao"))
         {
             this.pao(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
-        } else if (name.equals("��"))
+        } else if (name.equals("bin"))
         {
             this.bing(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
 
-        } else if (name.equals("��"))
+        } else if (name.equals("zu"))
         {
             this.zu(maxI, minI, maxJ, minJ, startI, startJ, endI, endJ);
         }
@@ -185,10 +185,10 @@ public class GuiZe {
 
         if (a == 1 && b == 1)//�����Сб��
         {
-            if (startJ > 4)//������·���ʿ
+            if (startJ > 4)//������·���heishi
             {
                 if (endJ < 7) {
-                    canMove = false;//����·���ʿԽ�磬��������
+                    canMove = false;//����·���heishiԽ�磬��������
                 }
             } else {//������Ϸ�����
                 if (endJ > 2) {

@@ -23,7 +23,11 @@ import java.util.Map;
  * Just combine these two.
  * */
 
-public class QiPan extends JPanel implements MouseListener,ActionListener {
+public class QiPan extends JPanel implements MouseListener {
+	
+	static StringIndex GetStr= new StringIndex();
+    static String root  = FileLoader.class.getResource("/").getPath();
+
 
     private int width;
     boolean focus = false;
@@ -61,7 +65,7 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
                 RenderingHints.VALUE_ANTIALIAS_ON);
 
         Color c = g.getColor();
-        Image imageQiPan=Toolkit.getDefaultToolkit().getImage("./img/pu.jpg");
+        Image imageQiPan=Toolkit.getDefaultToolkit().getImage(root+"img/pu.jpg");
         //g.setColor(XiangQi.bgColor);
         g.drawImage(imageQiPan, 0,0 , 1000,1000, this);
         //g.fill3DRect(60, 30, 580, 630, false);
@@ -101,11 +105,11 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
 
         g.setColor(Color.black);
 
-        Font font1 = new Font("隶书", Font.BOLD, 50);//ÉèÖÃ×ÖÌå
+        Font font1 = new Font(GetStr.back_Strings(20), Font.BOLD, 50);//ÉèÖÃ×ÖÌå
         g.setFont(font1);
 
-        g.drawString("楚 河", 170, 365);
-        g.drawString("汉 界", 400, 365);
+        g.drawString(GetStr.back_Strings(21), 170, 365);
+        g.drawString(GetStr.back_Strings(22), 400, 365);
 
         //Font font = new Font("Î¢ÈíÑÅºÚ", Font.BOLD, 30);
         //g.setFont(font);
@@ -118,14 +122,14 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
                         //g.setColor(XiangQi.focusbg);//Ñ¡ÖÐºóµÄ±³¾°É«
                         //g.fillOval(110 + i * 60 - 25, 80 + j * 60 - 25, 50, 50);
                         //g.setColor(XiangQi.focuschar);
-                    	Image imageQiZi=Toolkit.getDefaultToolkit().getImage("./img/"+qiZi[i][j].getPic()+".png");
+                    	Image imageQiZi=Toolkit.getDefaultToolkit().getImage(root+"img/"+qiZi[i][j].getPic()+".png");
                         g.drawImage(imageQiZi, 110 + i * 60 - 25,80 + j * 60 - 25 , 70,70, this);
 
                     } else {
 
                         //g.fillOval(110 + i * 60 - 25, 80 + j * 60 - 25, 50, 50);
                         //g.setColor(qiZi[i][j].getColor());
-                    	Image imageQiZi=Toolkit.getDefaultToolkit().getImage("./img/"+qiZi[i][j].getPic()+".png");
+                    	Image imageQiZi=Toolkit.getDefaultToolkit().getImage(root+"img/"+qiZi[i][j].getPic()+".png");
                         g.drawImage(imageQiZi, 110 + i * 60 - 25,80 + j * 60 - 25 , 60,60, this);
                     }
                     
@@ -171,8 +175,8 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
                                     this.xq.cat.dout.writeUTF("<#MOVE#>" +
                                             this.xq.cat.tiaoZhanZhe + startI + startJ + endI + endJ);
                                     this.xq.caiPan = false;
-                                    if (qiZi[endI][endJ].getName().equals("Ž›") ||
-                                            qiZi[endI][endJ].getName().equals("Œ¢")) {
+                                    if (qiZi[endI][endJ].getName().equals("shuai") ||
+                                            qiZi[endI][endJ].getName().equals("jiang")) {
                                         this.success();
                                     } else {
                                         this.noJiang();
@@ -255,7 +259,7 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
 
         this.xq.repaint();//ÖØ»æ
 
-        JOptionPane.showMessageDialog(this.xq, "¹§Ï²Äú£¬Äú»ñÊ¤ÁË", "ÌáÊ¾",
+        JOptionPane.showMessageDialog(this.xq, GetStr.back_Strings(23), GetStr.back_Strings(15),
                 JOptionPane.INFORMATION_MESSAGE);
 
         this.xq.cat.tiaoZhanZhe = null;
@@ -285,23 +289,22 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
     }
 
     public void noJiang() {//只是普通吃掉对面棋子
-
-        this.xq.slowMove("./img/"+qiZi[startI][startJ].getPic()+".png", startI, startJ, endI, endJ);
-        this.xq.Music("chi.wav");//绘制残影和“吃”音效
+        //this.xq.Music("chi.mp3");//绘制残影和“吃”音效
+        this.xq.slowMove(root+"img/"+qiZi[startI][startJ].getPic()+".png", startI, startJ, endI, endJ);
 
         qiZi[endI][endJ] = qiZi[startI][startJ];
         qiZi[startI][startJ] = null;
         qiZi[endI][endJ].setFocus(false);
         this.xq.repaint();
 
-        if (qiZi[endI][endJ].getName().equals("Ž›")) {
+        if (qiZi[endI][endJ].getName().equals("shuai")) {
             jiang1_i = endI;//¸üÐÂ"Ž›"µÄÎ»ÖÃ×ø±ê
             jiang1_j = endJ;
-        } else if (qiZi[endI][endJ].getName().equals("Œ¢")) {//Èç¹ûÒÆ¶¯µÄÊÇ"Œ¢"
-            jiang2_i = endI;//¸üÐÂ"Œ¢"µÄÎ»ÖÃ×ø±ê
+        } else if (qiZi[endI][endJ].getName().equals("jiang")) {//Èç¹ûÒÆ¶¯µÄÊÇ"jiang"
+            jiang2_i = endI;//¸üÐÂ"jiang"µÄÎ»ÖÃ×ø±ê
             jiang2_j = endJ;
         }
-        if (jiang1_i == jiang2_i) {//Èç¹û"Œ¢"ºÍ"Ž›"ÔÚÒ»ÌõÊúÏßÉÏ
+        if (jiang1_i == jiang2_i) {//Èç¹û"jiang"ºÍ"Ž›"ÔÚÒ»ÌõÊúÏßÉÏ
             int count = 0;
             for (int jiang_j = jiang1_j + 1; jiang_j < jiang2_j; jiang_j++) {//±éÀúÕâÌõÊúÏß
                 if (qiZi[jiang1_i][jiang_j] != null) {
@@ -311,7 +314,7 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
             }
 
             if (count == 0) {//Èç¹ûµÈÓÚÁãÔòÕÕ½«
-                JOptionPane.showMessageDialog(this.xq, "ÕÕ½«£¡£¡£¡ÄãÊ§°ÜÁË£¡£¡£¡", "ÌáÊ¾",
+                JOptionPane.showMessageDialog(this.xq, GetStr.back_Strings(24), GetStr.back_Strings(15),
                         JOptionPane.INFORMATION_MESSAGE);//¸ø³öÊ§°ÜÐÅÏ¢
 
                 this.xq.cat.tiaoZhanZhe = null;
@@ -348,19 +351,19 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
 
             this.xq.cat.dout.writeUTF("<#MOVE#>" + this.xq.cat.tiaoZhanZhe + startI + startJ + endI + endJ);
             this.xq.caiPan = false;
-            
-            this.xq.slowMove("./img/"+qiZi[startI][startJ].getPic()+".png", startI, startJ, endI, endJ);//绘制空走残影
+            //this.xq.Music("peng.mp3");//空走移动音效
+            this.xq.slowMove(root+"img/"+qiZi[startI][startJ].getPic()+".png", startI, startJ, endI, endJ);//绘制空走残影
 
             qiZi[endI][endJ] = qiZi[startI][startJ];
             qiZi[startI][startJ] = null;
             qiZi[endI][endJ].setFocus(false);
-            this.xq.Music("peng.wav");//空走移动音效
+           
 
             this.xq.repaint();//ÖØ»æ
-            if (qiZi[endI][endJ].getName().equals("Ž›")) {
+            if (qiZi[endI][endJ].getName().equals("shuai")) {
                 jiang1_i = endI;
                 jiang1_j = endJ;
-            } else if (qiZi[endI][endJ].getName().equals("Œ¢")) {
+            } else if (qiZi[endI][endJ].getName().equals("jiang")) {
                 jiang2_i = endI;
                 jiang2_j = endJ;
             }
@@ -374,7 +377,7 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
                     }
                 }
                 if (count == 0) {
-                    JOptionPane.showMessageDialog(this.xq, "ÕÕ½«£¡£¡£¡ÄãÊ§°ÜÁË£¡£¡£¡", "ÌáÊ¾",
+                    JOptionPane.showMessageDialog(this.xq, GetStr.back_Strings(24), GetStr.back_Strings(15),
                             JOptionPane.INFORMATION_MESSAGE);
 
                     this.xq.cat.tiaoZhanZhe = null;
@@ -394,8 +397,8 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
 
                     jiang1_i = 4;//"Ž›"µÄi×ø±ê
                     jiang1_j = 0;//"Ž›"µÄj×ø±ê
-                    jiang2_i = 4;//"Œ¢"µÄi×ø±ê
-                    jiang2_j = 9;//"Œ¢"µÄj×ø±ê
+                    jiang2_i = 4;//"jiang"µÄi×ø±ê
+                    jiang2_j = 9;//"jiang"µÄj×ø±ê
 
                 }
             }
@@ -404,6 +407,7 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
             endI = -1;
             endJ = -1;
             focus = false;
+            
 
         } catch (Exception ee) {
             ee.printStackTrace();
@@ -411,14 +415,14 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
     }
 
     public void move(int startI, int startJ, int endI, int endJ) {
-
-        if (qiZi[endI][endJ] != null && (qiZi[endI][endJ].getName().equals("Ž›") ||
-                qiZi[endI][endJ].getName().equals("Œ¢"))) {//Èç¹û"½«"±»³ÔÁË
+    	this.xq.slowMove(root+"img/"+qiZi[startI][startJ].getPic()+".png",startI, startJ, endI, endJ);
+        if (qiZi[endI][endJ] != null && (qiZi[endI][endJ].getName().equals("shuai") ||
+                qiZi[endI][endJ].getName().equals("jiang"))) {//Èç¹û"½«"±»³ÔÁË
             qiZi[endI][endJ] = qiZi[startI][startJ];
             qiZi[startI][startJ] = null;//×ßÆå
             this.xq.repaint();
 
-            JOptionPane.showMessageDialog(this.xq, "ºÜÒÅº¶£¬ÄúÊ§°ÜÁË£¡£¡£¡", "ÌáÊ¾",
+            JOptionPane.showMessageDialog(this.xq, GetStr.back_Strings(24), GetStr.back_Strings(15),
                     JOptionPane.INFORMATION_MESSAGE);
 
             this.xq.cat.tiaoZhanZhe = null;
@@ -447,10 +451,10 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
             qiZi[startI][startJ] = null;//×ßÆå
             this.xq.repaint();
 
-            if (qiZi[endI][endJ].getName().equals("Ž›")) {
+            if (qiZi[endI][endJ].getName().equals("shuai")) {
                 jiang1_i = endI;
                 jiang1_j = endJ;
-            } else if (qiZi[endI][endJ].getName().equals("Œ¢")) {
+            } else if (qiZi[endI][endJ].getName().equals("jiang")) {
                 jiang2_i = endI;
                 jiang2_j = endJ;
             }
@@ -463,7 +467,7 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
                     }
                 }
                 if (count == 0) {
-                    JOptionPane.showMessageDialog(this.xq, "¶Ô·½ÕÕ½«£¡£¡£¡ÄãÊ¤ÀûÁË£¡£¡£¡",
+                    JOptionPane.showMessageDialog(this.xq, GetStr.back_Strings(23),
                             "ÌáÊ¾", JOptionPane.INFORMATION_MESSAGE);
                     this.xq.cat.tiaoZhanZhe = null;
 
@@ -488,6 +492,7 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
                 }
             }
         }
+        
         this.xq.repaint();
     }
 
@@ -601,7 +606,7 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
 
         public void init(final QiPan board) {
             this.board = board;
-            frame = new JFrame("CCHESS @神奇五鱼");
+            frame = new JFrame(GetStr.back_Strings(0));
             frame.setIconImage(new ImageIcon("res/img/icon.png").getImage());
             frame.setSize(VIEW_WIDTH, VIEW_HEIGHT + 40);
             frame.setLocationRelativeTo(null);
@@ -682,7 +687,7 @@ public class QiPan extends JPanel implements MouseListener,ActionListener {
         }
 
         public void showWinner(char player) {
-            JOptionPane.showMessageDialog(null, (player == 'r') ? "你获得了胜利!" : "你太垃圾了！", "AI象棋", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, (player == 'r') ? GetStr.back_Strings(23) : GetStr.back_Strings(25), GetStr.back_Strings(26), JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         }
 

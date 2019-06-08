@@ -1,6 +1,9 @@
-package zwlhw.main.server;
+﻿package zwlhw.main.server;
 
 import javax.swing.*;
+
+import zwlhw.main.client.StringIndex;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,11 +17,13 @@ import java.util.Vector;
  * */
 
 public class Server extends JFrame implements ActionListener {
+	
+	static StringIndexServer GetStr= new StringIndexServer();
 
-    JLabel jlPort = new JLabel("�� �� ��");
+    JLabel jlPort = new JLabel(GetStr.back_Strings(1));
     JTextField jtfPort = new JTextField("6464");
-    JButton jbStart = new JButton("����");
-    JButton jbStop = new JButton("�ر�");
+    JButton jbStart = new JButton(GetStr.back_Strings(2));
+    JButton jbStop = new JButton(GetStr.back_Strings(3));
     JPanel jps = new JPanel();
     JList jlUserOnline = new JList();
 
@@ -80,7 +85,7 @@ public class Server extends JFrame implements ActionListener {
 
     public void initialFrame() {
 
-        this.setTitle("CCHESS Server");
+        this.setTitle(GetStr.back_Strings(0));
         Image image = new ImageIcon("./img/icon.png").getImage();
         this.setIconImage(image);
         this.add(jspz);
@@ -140,12 +145,12 @@ public class Server extends JFrame implements ActionListener {
 
             port = Integer.parseInt(this.jtfPort.getText().trim());
         } catch (Exception ee) {
-            JOptionPane.showMessageDialog(this, "�˿ں�ֻ��������", "����",
+            JOptionPane.showMessageDialog(this, GetStr.back_Strings(4), GetStr.back_Strings(5),
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
         if (port > 65535 || port < 0) {
-            JOptionPane.showMessageDialog(this, "�˿ں�ֻ����0-65535������", "����",
+            JOptionPane.showMessageDialog(this, GetStr.back_Strings(6), GetStr.back_Strings(5),
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -160,11 +165,11 @@ public class Server extends JFrame implements ActionListener {
             st = new ServerThread(this);
             st.start();
 
-            JOptionPane.showMessageDialog(this, "�����������ɹ�", "��ʾ",
+            JOptionPane.showMessageDialog(this, GetStr.back_Strings(7), GetStr.back_Strings(8),
                     JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception ee) {
 
-            JOptionPane.showMessageDialog(this, "����������ʧ��", "����",
+            JOptionPane.showMessageDialog(this, GetStr.back_Strings(9), GetStr.back_Strings(5),
                     JOptionPane.ERROR_MESSAGE);
 
             this.jbStart.setEnabled(true);

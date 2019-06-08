@@ -1,8 +1,21 @@
 ﻿package zwlhw.main.client;
 
+import java.io.BufferedInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.io.*; 
+
+import zwlhw.main.client.Music;
+import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import sun.audio.AudioPlayer;
-import sun.audio.AudioStream;
+import java.io.FileNotFoundException;
+import javazoom.jl.player.Player;
+
+import javazoom.jl.decoder.JavaLayerException;
+import javazoom.jl.player.*;
+import java.net.URI;
+import java.net.URL;
+import javax.swing.JFrame;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
@@ -11,6 +24,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.*;
+
 
 /**
  * Most functions are based in this class. To deal with many, it a little messy.
@@ -25,41 +40,52 @@ public class XiangQi extends JFrame implements ActionListener {
     public static final Color color2 = Color.white;
     public Image img = null;//define a img.
     
-    JLabel jlHost = new JLabel("主机名");
-    JLabel jlPort = new JLabel("端口号");
-    JLabel jlNickName = new JLabel("昵    称");
+    static StringIndex GetStr= new StringIndex();
+    static String root  = FileLoader.class.getResource("/").getPath();
+    
+    int playid=0;
+    
+    JFrame frame = new JFrame(GetStr.back_Strings(9));
+    
+    JLabel jlHost = new JLabel(GetStr.back_Strings(3));
+    JLabel jlPort = new JLabel(GetStr.back_Strings(4));
+    JLabel jlNickName = new JLabel(GetStr.back_Strings(5));
+    
+	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
+    int screenWidth = screenSize.width;      //get the screen's width
+    int screenHeight = screenSize.height;       //get the screen's height
     
 
     JTextField jtfHost = new JTextField("127.0.0.1");
     JTextField jtfPort = new JTextField("6464");
-    JTextField jtfNickName = new JTextField("Play1");
+    JTextField jtfNickName = new JTextField("6464");
     
-    ImageIcon iconconnect = new ImageIcon("./img/connect.png");
+    ImageIcon iconconnect = new ImageIcon(root+"img/connect.png");
     JButton jbConnectWindow = new JButton(iconconnect);
     
-    JButton jbConnect = new JButton("连 接");
-    JButton jbDisconnect = new JButton("断  开");
+    JButton jbConnect = new JButton(GetStr.back_Strings(6));
+    JButton jbDisconnect = new JButton(GetStr.back_Strings(7));
     
-    ImageIcon iconlose = new ImageIcon("./img/lose.png");
+    ImageIcon iconlose = new ImageIcon(root+"img/lose.png");
     JButton jbFail = new JButton(iconlose);
     
     
-    ImageIcon iconchallenge = new ImageIcon("./img/challenge.png");
+    ImageIcon iconchallenge = new ImageIcon(root+"img/challenge.png");
     JButton jbChallenge = new JButton(iconchallenge);
     
-    JLabel jcbNickListLab = new JLabel("请选择挑战玩家：");
+    JLabel jcbNickListLab = new JLabel(GetStr.back_Strings(8));
     JComboBox jcbNickList = new JComboBox();
     
-    ImageIcon iconaccept = new ImageIcon("./img/accept.png");
+    ImageIcon iconaccept = new ImageIcon(root+"img/accept.png");
     JButton jbYChallenge = new JButton(iconaccept);
     
-    ImageIcon iconrefuse = new ImageIcon("./img/refuse.png");
+    ImageIcon iconrefuse = new ImageIcon(root+"img/refuse.png");
     JButton jbNChallenge = new JButton(iconrefuse);
     
-    ImageIcon iconabout = new ImageIcon("./img/about.png");
+    ImageIcon iconabout = new ImageIcon(root+"img/about.png");
     JButton jbAboutWindow = new JButton(iconabout);
     
-    ImageIcon iconPu = new ImageIcon("./img/pujuefei.jpg");
+    ImageIcon iconPu = new ImageIcon(root+"img/pujuefei.jpg");
     JButton pujuefei = new JButton(iconPu);
     
     int width = 60;
@@ -78,8 +104,6 @@ public class XiangQi extends JFrame implements ActionListener {
     ClientAgentThread cat;
 
     public XiangQi(int w, int h) {
-
-    	//this.Music("bgm.wav");//bgm, but without loop.
     	
         this.initialComponent();
 
@@ -90,6 +114,11 @@ public class XiangQi extends JFrame implements ActionListener {
         this.initialQiZi();
 
         this.initialFrame(w, h);
+        
+        Random random=new Random();
+        
+		this.playid=random.nextInt(10000)+10000;
+		this.jtfNickName.setText("Player"+playid);
 
     }
 
@@ -162,53 +191,53 @@ public class XiangQi extends JFrame implements ActionListener {
 
     public void initialQiZi() {
 
-        qiZi[0][0] = new QiZi(color1, "車","rc", 0, 0);
-        qiZi[1][0] = new QiZi(color1, "馬","rm", 1, 0);
-        qiZi[2][0] = new QiZi(color1, "相","rx", 2, 0);
-        qiZi[3][0] = new QiZi(color1, "仕","rs", 3, 0);
-        qiZi[4][0] = new QiZi(color1, "帥","rb", 4, 0);
-        qiZi[5][0] = new QiZi(color1, "仕","rs", 5, 0);
-        qiZi[6][0] = new QiZi(color1, "相","rx", 6, 0);
-        qiZi[7][0] = new QiZi(color1, "馬","rm", 7, 0);
-        qiZi[8][0] = new QiZi(color1, "車","rc", 8, 0);
-        qiZi[1][2] = new QiZi(color1, "砲","rp", 1, 2);
-        qiZi[7][2] = new QiZi(color1, "砲","rp", 7, 2);
-        qiZi[0][3] = new QiZi(color1, "兵","rz", 0, 3);
-        qiZi[2][3] = new QiZi(color1, "兵","rz", 2, 3);
-        qiZi[4][3] = new QiZi(color1, "兵","rz", 4, 3);
-        qiZi[6][3] = new QiZi(color1, "兵","rz", 6, 3);
-        qiZi[8][3] = new QiZi(color1, "兵","rz", 8, 3);
+        qiZi[0][0] = new QiZi(color1, "che","rc", 0, 0);
+        qiZi[1][0] = new QiZi(color1, "ma","rm", 1, 0);
+        qiZi[2][0] = new QiZi(color1, "xiang","rx", 2, 0);
+        qiZi[3][0] = new QiZi(color1, "shi","rs", 3, 0);
+        qiZi[4][0] = new QiZi(color1, "shuai","rb", 4, 0);
+        qiZi[5][0] = new QiZi(color1, "shi","rs", 5, 0);
+        qiZi[6][0] = new QiZi(color1, "xiang","rx", 6, 0);
+        qiZi[7][0] = new QiZi(color1, "ma","rm", 7, 0);
+        qiZi[8][0] = new QiZi(color1, "che","rc", 8, 0);
+        qiZi[1][2] = new QiZi(color1, "pao","rp", 1, 2);
+        qiZi[7][2] = new QiZi(color1, "pao","rp", 7, 2);
+        qiZi[0][3] = new QiZi(color1, "bin","rz", 0, 3);
+        qiZi[2][3] = new QiZi(color1, "bin","rz", 2, 3);
+        qiZi[4][3] = new QiZi(color1, "bin","rz", 4, 3);
+        qiZi[6][3] = new QiZi(color1, "bin","rz", 6, 3);
+        qiZi[8][3] = new QiZi(color1, "bin","rz", 8, 3);
 
-        qiZi[0][9] = new QiZi(color2,"車", "bc", 0, 9);
-        qiZi[1][9] = new QiZi(color2,"馬","bm", 1, 9);
-        qiZi[2][9] = new QiZi(color2,"象","bx", 2, 9);
-        qiZi[3][9] = new QiZi(color2,"士","bs", 3, 9);
-        qiZi[4][9] = new QiZi(color2,"將","bb", 4, 9);
-        qiZi[5][9] = new QiZi(color2,"士","bs", 5, 9);
-        qiZi[6][9] = new QiZi(color2,"象","bx", 6, 9);
-        qiZi[7][9] = new QiZi(color2,"馬","bm", 7, 9);
-        qiZi[8][9] = new QiZi(color2,"車","bc", 8, 9);
-        qiZi[1][7] = new QiZi(color2,"炮","bp", 1, 7);
-        qiZi[7][7] = new QiZi(color2,"炮","bp", 7, 7);
-        qiZi[0][6] = new QiZi(color2,"卒","bz", 0, 6);
-        qiZi[2][6] = new QiZi(color2,"卒","bz", 2, 6);
-        qiZi[4][6] = new QiZi(color2,"卒","bz", 4, 6);
-        qiZi[6][6] = new QiZi(color2,"卒","bz", 6, 6);
-        qiZi[8][6] = new QiZi(color2,"卒","bz", 8, 6);
+        qiZi[0][9] = new QiZi(color2,"che", "bc", 0, 9);
+        qiZi[1][9] = new QiZi(color2,"ma","bm", 1, 9);
+        qiZi[2][9] = new QiZi(color2,"heixiang","bx", 2, 9);
+        qiZi[3][9] = new QiZi(color2,"heishi","bs", 3, 9);
+        qiZi[4][9] = new QiZi(color2,"jiang","bb", 4, 9);
+        qiZi[5][9] = new QiZi(color2,"heishi","bs", 5, 9);
+        qiZi[6][9] = new QiZi(color2,"heixiang","bx", 6, 9);
+        qiZi[7][9] = new QiZi(color2,"ma","bm", 7, 9);
+        qiZi[8][9] = new QiZi(color2,"che","bc", 8, 9);
+        qiZi[1][7] = new QiZi(color2,"heipao","bp", 1, 7);
+        qiZi[7][7] = new QiZi(color2,"heipao","bp", 7, 7);
+        qiZi[0][6] = new QiZi(color2,"zu","bz", 0, 6);
+        qiZi[2][6] = new QiZi(color2,"zu","bz", 2, 6);
+        qiZi[4][6] = new QiZi(color2,"zu","bz", 4, 6);
+        qiZi[6][6] = new QiZi(color2,"zu","bz", 6, 6);
+        qiZi[8][6] = new QiZi(color2,"zu","bz", 8, 6);
 
     }
 
     public void initialFrame(int screenWidth, int screenHeight) {
 
-        this.setTitle("CCHESS Client@神奇五鱼");
-        Image image = new ImageIcon("./img/icon.png").getImage();
+        this.setTitle(GetStr.back_Strings(0));
+        Image image = new ImageIcon(root+"img/icon.png").getImage();
         this.setIconImage(image);
         this.add(this.jsp);
         
         jsp.setDividerLocation(690);
         jsp.setDividerSize(1);
         
-        this.setTitle("CCHESS @神奇五鱼");
+        this.setTitle(GetStr.back_Strings(0));
         this.setBounds((screenWidth - 930)/2, (screenHeight - 730)/2, 930, 730);//左上角的位置x,y 和框的宽和高x,y  使窗口居中
         this.setVisible(true);
         this.addWindowListener(
@@ -266,7 +295,7 @@ public class XiangQi extends JFrame implements ActionListener {
 
     public void jbConnectWindow_event() {
     	
-        JFrame frame = new JFrame("连接象棋服务器");
+        
         frame.setBounds((screenWidth - 300)/2, (screenHeight - 200)/2, 300, 200);
         JLabel jl = new JLabel();
         jl.setLayout(null);
@@ -300,7 +329,7 @@ public class XiangQi extends JFrame implements ActionListener {
     }
     
     public void jbAboutWindow_event() {
-    	JFrame frameabout = new JFrame("关于本软件");
+    	JFrame frameabout = new JFrame(GetStr.back_Strings(10));
     	frameabout.setBounds(10, 10, 720, 945);
         JLabel jlabout = new JLabel();
         jlabout.setLayout(null);
@@ -319,13 +348,13 @@ public class XiangQi extends JFrame implements ActionListener {
         try {
             port = Integer.parseInt(this.jtfPort.getText().trim());
         } catch (Exception ee) {
-            JOptionPane.showMessageDialog(this, "端口号只能是整数", "错误",
+            JOptionPane.showMessageDialog(this, GetStr.back_Strings(12), GetStr.back_Strings(11),
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
 
         if (port > 65535 || port < 0) {
-            JOptionPane.showMessageDialog(this, "端口号只能是0-65535的整数", "错误",
+            JOptionPane.showMessageDialog(this, GetStr.back_Strings(13), GetStr.back_Strings(11),
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -333,7 +362,7 @@ public class XiangQi extends JFrame implements ActionListener {
         String name = this.jtfNickName.getText().trim();
 
         if (name.length() == 0) {
-            JOptionPane.showMessageDialog(this, "玩家姓名不能为空", "错误",
+            JOptionPane.showMessageDialog(this, GetStr.back_Strings(14), GetStr.back_Strings(11),
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -353,16 +382,16 @@ public class XiangQi extends JFrame implements ActionListener {
             this.jbYChallenge.setEnabled(false);
             this.jbNChallenge.setEnabled(false);
             this.jbFail.setEnabled(false);
+            frame.dispose();
             
-            JOptionPane.showMessageDialog(this, "已连接到服务器", "提示",
-                    JOptionPane.INFORMATION_MESSAGE);
+
             this.jcbNickList.setBounds(20, 50, 130, 20);
             jpy.add(this.jcbNickList);
             this.jcbNickListLab.setBounds(20, 30, 130, 20);
             jpy.add(this.jcbNickListLab);
             jpy.repaint();
         } catch (Exception ee) {
-            JOptionPane.showMessageDialog(this, "连接服务器失败", "错误",
+            JOptionPane.showMessageDialog(this, GetStr.back_Strings(17), GetStr.back_Strings(11),
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -393,8 +422,8 @@ public class XiangQi extends JFrame implements ActionListener {
         Object o = this.jcbNickList.getSelectedItem();
 
         if (o == null || ((String) o).equals("")) {
-            JOptionPane.showMessageDialog(this, "请选择对方名字", "错误",
-                    JOptionPane.ERROR_MESSAGE);//当未选中挑战对象，给出错误提示信息 without
+            JOptionPane.showMessageDialog(this, GetStr.back_Strings(18), GetStr.back_Strings(11),
+                    JOptionPane.ERROR_MESSAGE);//当未选中挑战对heixiang，给出错误提示信息 without
         } else {
 
             String name2 = (String) this.jcbNickList.getSelectedItem();
@@ -415,7 +444,7 @@ public class XiangQi extends JFrame implements ActionListener {
                 this.color = 0;
 
                 this.cat.dout.writeUTF("<#TIAO_ZHAN#>" + name2);
-                JOptionPane.showMessageDialog(this, "已提出挑战,请等待回复...", "提示",
+                JOptionPane.showMessageDialog(this, GetStr.back_Strings(19), GetStr.back_Strings(15),
                         JOptionPane.INFORMATION_MESSAGE);
             } catch (Exception ee) {
                 ee.printStackTrace();
@@ -505,11 +534,19 @@ public class XiangQi extends JFrame implements ActionListener {
         this.repaint();//重绘
     }
     
-    public void Music(String name) {              //播放音频的函数 files are in the src/music
+    public void Music(String name,boolean loop) {              //播放音频的函数 files are in the src/music
     	try {      
-            FileInputStream fmusic = new FileInputStream("./music/" + name);
-            AudioStream au = new AudioStream(fmusic);
-            AudioPlayer.player.start(au);
+//            FileInputStream fmusic = new FileInputStream(root+"music/" + name);
+//            AudioStream au = new AudioStream(fmusic);
+//            AudioPlayer.player.start(au);
+    	    
+//    		BufferedInputStream buffer = new BufferedInputStream(
+//            new FileInputStream(root+"music/" + name));
+//            new Player(buffer).play();
+    		File f = new File(root+"music/" + name); 
+    		Music player=new Music(f,loop);
+    		player.start();
+    	    
         } catch (Exception e) 
         { 
             e.printStackTrace();
@@ -533,8 +570,16 @@ public class XiangQi extends JFrame implements ActionListener {
     }
 
     public void slowMove(String Name, int x1, int y1, int x2, int y2) {//x y 都为下标
+    	
+    	if(qiZi[x2][y2]!=null) {
+    		this.Music("chi.mp3",false);
+    	}else {
+    		this.Music("peng.mp3",false);
+    	}
+    	
         img = Toolkit.getDefaultToolkit().createImage(Name);
 
+        
         int xx1 = x1 *60 + 85;//由下标计算像素
         int xx2 = x2 * 60 + 85;
         int yy1 = y1 * 60 + 95;
@@ -558,7 +603,7 @@ public class XiangQi extends JFrame implements ActionListener {
             }
         }
         else{
-            if(xx == yy){//相
+            if(xx == yy){//xiang
                 if(x1 > x2 && y1 > y2){
                     move(xx, xx1, yy1, -1, -1);
                 }

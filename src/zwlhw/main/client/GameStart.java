@@ -1,12 +1,15 @@
 package zwlhw.main.client;
 
 import java.util.Scanner;
+import zwlhw.main.client.StringIndex;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import zwlhw.main.client.XiangQi;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,38 +18,77 @@ import java.awt.event.ActionListener;
 
 public class GameStart extends JFrame implements ActionListener {
 	
+	static StringIndex GetStr= new StringIndex();
+	
 	private int i=0;
 	
 	private QiPan board;
 	private GameController controller;
 	private QiPan view;
+	BackgroundPanel bgp;
+
 	
-	JButton RenRenButton = new JButton("äººäººå¯¹æˆ˜");
-	JButton RenJiButton = new JButton("äººæœºå¯¹æˆ˜");
-	JPanel Panel = new JPanel();
+	JButton RenRenButton = new JButton(GetStr.back_Strings(1));
+	JButton RenJiButton = new JButton(GetStr.back_Strings(2));
+	Container Panel = new Container();
 	
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
     int screenWidth = screenSize.width;      //get the screen's width
     int screenHeight = screenSize.height;       //get the screen's height
 	
+    static String root  = FileLoader.class.getResource("/").getPath();
+
 
 	public GameStart() {//set a start menu
-		this.setTitle("CCHESS Client @ç¥žå¥‡äº”é±¼");
-        Image image = new ImageIcon("./img/icon.png").getImage();
+		System.out.println(root);
+    	this.Music("bgm.mp3",true);//bgm, but without loop.
+		this.setTitle(GetStr.back_Strings(0));
+		bgp=new BackgroundPanel((new ImageIcon(root+"img/bg.png")).getImage());
+		bgp.setBounds(0,0,640,1008);
+		Panel.add(bgp);
+        Image image = new ImageIcon(root+"img/icon.png").getImage();
         this.setIconImage(image);
 		this.add(this.Panel);
 		Panel.setLayout(null);
-		
-		this.RenRenButton.setBounds(130, 40, 176, 50);
-		this.RenJiButton.setBounds(130, 140, 176, 50);
+		this.RenRenButton.setBounds(30, 700, 576, 80);
+		this.RenRenButton.setOpaque(false);
+		this.RenJiButton.setBounds(30, 835, 576, 80);
+		this.RenJiButton.setOpaque(false);
 		Panel.add(this.RenRenButton);
 		Panel.add(this.RenJiButton);     
-		this.setBounds((screenWidth - 450)/2, (screenHeight - 300)/2, 450, 300);//up-left x,y wide and hight is x,y. let it in center.
+		this.setBounds((screenWidth - 640)/2, (screenHeight - 1008)/2, 640, 1008);//up-left x,y wide and hight is x,y. let it in center.
 		this.setVisible(true);
         this.RenRenButton.addActionListener(this);
         this.RenJiButton.addActionListener(this);
+        this.addWindowListener(
+                new WindowAdapter() {
+                    public void windowClosing(WindowEvent e) {
+                        System.exit(0);
+                    }
+                }
+        );
 	}
 
+	
+    public void Music(String name,boolean loop) {              //²¥·ÅÒôÆµµÄº¯Êý files are in the src/music
+    	try {      
+//            FileInputStream fmusic = new FileInputStream(root+"music/" + name);
+//            AudioStream au = new AudioStream(fmusic);
+//            AudioPlayer.player.start(au);
+    	    
+//    		BufferedInputStream buffer = new BufferedInputStream(
+//            new FileInputStream(root+"music/" + name));
+//            new Player(buffer).play();
+    		File f = new File(root+"music/" + name); 
+    		Music player=new Music(f,loop);
+    		player.start();
+    	    
+        } catch (Exception e) 
+        { 
+            e.printStackTrace();
+        } 
+    }
+    
 	public void actionPerformed(ActionEvent e) {
 
         if (e.getSource() == this.RenRenButton) {
@@ -114,9 +156,27 @@ public class GameStart extends JFrame implements ActionListener {
 	    	} catch (Exception e) {
 	    		
 	    	}
+	    	
 	    	GameStart game = new GameStart();
     		game.init();
 			//ChessGame.main(null);
 	    	
+	}
+}
+
+class BackgroundPanel extends JPanel
+{
+	Image im;
+	public BackgroundPanel(Image im)
+	{
+		this.im=im;
+		this.setOpaque(true);
+	}
+	//Draw the back ground.
+	public void paintComponent(Graphics g)
+	{
+		super.paintComponents(g);
+		g.drawImage(im,0,0,this.getWidth(),this.getHeight(),this);
+		
 	}
 }
