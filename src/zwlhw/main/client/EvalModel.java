@@ -143,11 +143,6 @@ public class EvalModel {
         return 0;
     }
 
-//    private int evalPieceFlexible(int p) {
-//        // b | s | x | m | j | p | z
-//        int[] pieceFlexible = new int[]{0, 1, 1, 13, 7, 7, 15};//定义的灵活的权重
-//        return 0;
-//    }
 
     private int evalPieceProtect() {
         return 0;

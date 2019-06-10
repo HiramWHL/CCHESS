@@ -15,7 +15,7 @@ import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.*;
 import java.net.URI;
 import java.net.URL;
-import javax.swing.JFrame;
+import java.net.URLDecoder;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.*;
@@ -41,7 +41,8 @@ public class XiangQi extends JFrame implements ActionListener {
     public Image img = null;//define a img.
     
     static StringIndex GetStr= new StringIndex();
-    static String root  = FileLoader.class.getResource("/").getPath();
+    static String root  = URLDecoder.decode(FileLoader.class.getResource("/").getPath());
+
     
     int playid=0;
     
@@ -96,7 +97,7 @@ public class XiangQi extends JFrame implements ActionListener {
     JPanel jpy = new JPanel();
     JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, jpz, jpy);
 
-    boolean caiPan = false;//可否走棋的标志位 can move sign.
+    boolean caiPan = false;//Sign of can move.
     int color = 0;//0 -> red，1 -> white. 
 
     Socket sc;
@@ -123,32 +124,11 @@ public class XiangQi extends JFrame implements ActionListener {
     }
 
     public void initialComponent() {
-    	//this.setUndecorated(true);
     	
-    	//jpy.setBackground(Color.blue);
         jpy.setLayout(null);
-
-        /*this.jlHost.setBounds(10, 10, 50, 20);
-        jpy.add(this.jlHost);
-
-        this.jtfHost.setBounds(70, 10, 80, 20);
-        jpy.add(this.jtfHost);
-
-        this.jlPort.setBounds(10, 40, 50, 20);
-        jpy.add(this.jlPort);
-
-        this.jtfPort.setBounds(70, 40, 80, 20);
-        jpy.add(this.jtfPort);
-
-        this.jbConnect.setBounds(0, 100, 276, 42);
-        jpy.add(this.jbConnect);
-
-        this.jbDisconnect.setBounds(100, 100, 80, 20);
-        jpy.add(this.jbDisconnect);*/
 
         this.jbConnectWindow.setBounds(0, 100, 276, 42);
         jpy.add(this.jbConnectWindow);
-       
 
         this.jbChallenge.setBounds(0, 180, 276, 42);
         jpy.add(this.jbChallenge);
@@ -323,7 +303,8 @@ public class XiangQi extends JFrame implements ActionListener {
 
         this.jbDisconnect.setBounds(150, 120, 80, 20);
         jl.add(this.jbDisconnect);
-        
+        Image image = new ImageIcon(root+"img/icon.png").getImage();
+        frame.setIconImage(image);
         frame.getContentPane().add(jl);
         frame.setVisible(true);
     }
@@ -333,6 +314,8 @@ public class XiangQi extends JFrame implements ActionListener {
     	frameabout.setBounds(10, 10, 720, 945);
         JLabel jlabout = new JLabel();
         jlabout.setLayout(null);
+        Image image = new ImageIcon(root+"img/icon.png").getImage();
+        frameabout.setIconImage(image);
         
         
         this.pujuefei.setBounds(0, 0, 720, 945);
@@ -423,7 +406,8 @@ public class XiangQi extends JFrame implements ActionListener {
 
         if (o == null || ((String) o).equals("")) {
             JOptionPane.showMessageDialog(this, GetStr.back_Strings(18), GetStr.back_Strings(11),
-                    JOptionPane.ERROR_MESSAGE);//当未选中挑战对heixiang，给出错误提示信息 without
+                    JOptionPane.ERROR_MESSAGE);//without choosing a object, point out the wrong information.
+            //当未选中挑战对heixiang，给出错误提示信息 without
         } else {
 
             String name2 = (String) this.jcbNickList.getSelectedItem();
@@ -457,8 +441,9 @@ public class XiangQi extends JFrame implements ActionListener {
         try {
 
             this.cat.dout.writeUTF("<#TONG_YI#>" + this.cat.tiaoZhanZhe);
-            this.caiPan = false;//将caiPan设为false
-            this.color = 1;//将color设为1
+            this.caiPan = false;//caiPan -> false
+            this.color = 1;//color -> 1
+            
 
             this.jtfHost.setEnabled(false);
             this.jtfPort.setEnabled(false);
@@ -469,6 +454,7 @@ public class XiangQi extends JFrame implements ActionListener {
             this.jbYChallenge.setEnabled(false);
             this.jbNChallenge.setEnabled(false);
             this.jbFail.setEnabled(!false);
+            this.repaint();
 
         } catch (Exception ee) {
             ee.printStackTrace();
@@ -531,18 +517,11 @@ public class XiangQi extends JFrame implements ActionListener {
         }
         this.caiPan = false;
         this.initialQiZi();
-        this.repaint();//重绘
+        this.repaint();//repaint
     }
     
-    public void Music(String name,boolean loop) {              //播放音频的函数 files are in the src/music
-    	try {      
-//            FileInputStream fmusic = new FileInputStream(root+"music/" + name);
-//            AudioStream au = new AudioStream(fmusic);
-//            AudioPlayer.player.start(au);
-    	    
-//    		BufferedInputStream buffer = new BufferedInputStream(
-//            new FileInputStream(root+"music/" + name));
-//            new Player(buffer).play();
+    public void Music(String name,boolean loop) {              //Music. files are in the src/music
+    	try {     
     		File f = new File(root+"music/" + name); 
     		Music player=new Music(f,loop);
     		player.start();
@@ -553,11 +532,14 @@ public class XiangQi extends JFrame implements ActionListener {
         } 
     }
 
-    public void paint(Graphics g, int x, int y){//绘制残影
+    public void paint(Graphics g, int x, int y){//Make a slow move.
         g.drawImage(img, x, y, 60, 60 , this);
     }
 
-    public void move(int n, int x, int y, int ratex, int ratey){//设置倍率和正负 进行残影循环
+    public void move(int n, int x, int y, int ratex, int ratey){//设置倍率和正负 进行残影循环 set the rate and plus-minus and loop to paint.
+    	if(this.caiPan==false) {
+    		return;//x y both are subscript
+    	}
     	try{
     		for(int i = 0; i <= n; i+=10){
     			Thread.sleep(1);
@@ -569,7 +551,11 @@ public class XiangQi extends JFrame implements ActionListener {
 		} 
     }
 
-    public void slowMove(String Name, int x1, int y1, int x2, int y2) {//x y 都为下标
+    public void slowMove(String Name, int x1, int y1, int x2, int y2) {
+    	
+    	if(this.caiPan==false) {
+    		return;//x y both are subscript
+    	}
     	
     	if(qiZi[x2][y2]!=null) {
     		this.Music("chi.mp3",false);
@@ -580,13 +566,14 @@ public class XiangQi extends JFrame implements ActionListener {
         img = Toolkit.getDefaultToolkit().createImage(Name);
 
         
-        int xx1 = x1 *60 + 85;//由下标计算像素
+        int xx1 = x1 *60 + 85;//through subscript to calculate the pixel.
         int xx2 = x2 * 60 + 85;
         int yy1 = y1 * 60 + 95;
         int yy2 = y2 * 60 + 95;
-        int xx = Math.abs(xx1 - xx2);//起点和终点的像素差
+        int xx = Math.abs(xx1 - xx2);//起点和终点的像素差 calculate the pixel D-value.
         int yy = Math.abs(yy1 - yy2);
-        if(x1 == x2){//以下为枚举判断各种棋子极其方位，进行残影绘制的参数，使之看起来无异常。
+        if(x1 == x2){//Search for direction and kinds to make slow move.
+        	//以下为枚举判断各种棋子极其方位，进行残影绘制的参数，使之看起来无异常。
             if(y1 > y2){
             	move(yy, xx1, yy1, 0, -1);
             }
@@ -648,5 +635,6 @@ public class XiangQi extends JFrame implements ActionListener {
                 }
             }
         }
+        this.caiPan=false;
     }
 }

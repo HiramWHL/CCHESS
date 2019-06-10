@@ -19,9 +19,9 @@ public class ServerThread extends Thread {
         while (flag) {
             try {
 
-                Socket sc = ss.accept();//�ȴ��ͻ�������
+                Socket sc = ss.accept();
                 ServerAgentThread sat = new ServerAgentThread(father, sc);
-                sat.start();//���������������������߳�
+                sat.start();
 
             } catch (Exception e) {
                 e.printStackTrace();

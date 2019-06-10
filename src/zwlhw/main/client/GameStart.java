@@ -9,6 +9,9 @@ import zwlhw.main.client.XiangQi;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,27 +39,27 @@ public class GameStart extends JFrame implements ActionListener {
     int screenWidth = screenSize.width;      //get the screen's width
     int screenHeight = screenSize.height;       //get the screen's height
 	
-    static String root  = FileLoader.class.getResource("/").getPath();
+    static String root  = URLDecoder.decode(FileLoader.class.getResource("/").getPath());
 
 
 	public GameStart() {//set a start menu
-		System.out.println(root);
-    	this.Music("bgm.mp3",true);//bgm, but without loop.
+		this.setUndecorated(true);//ÂéªÊéâÊ†áÈ¢òÊ†è
+    	this.Music("bgm.mp3",true);//bgm, with loop.
 		this.setTitle(GetStr.back_Strings(0));
 		bgp=new BackgroundPanel((new ImageIcon(root+"img/bg.png")).getImage());
-		bgp.setBounds(0,0,640,1008);
+		bgp.setBounds(0,0,515,811);
 		Panel.add(bgp);
         Image image = new ImageIcon(root+"img/icon.png").getImage();
         this.setIconImage(image);
 		this.add(this.Panel);
 		Panel.setLayout(null);
-		this.RenRenButton.setBounds(30, 700, 576, 80);
+		this.RenRenButton.setBounds(2, 560, 495, 71);
 		this.RenRenButton.setOpaque(false);
-		this.RenJiButton.setBounds(30, 835, 576, 80);
+		this.RenJiButton.setBounds(2, 650, 495, 71);
 		this.RenJiButton.setOpaque(false);
 		Panel.add(this.RenRenButton);
 		Panel.add(this.RenJiButton);     
-		this.setBounds((screenWidth - 640)/2, (screenHeight - 1008)/2, 640, 1008);//up-left x,y wide and hight is x,y. let it in center.
+		this.setBounds((screenWidth - 515)/2, (screenHeight - 811)/2, 515, 811);//up-left x,y wide and height is x,y. let it in center.
 		this.setVisible(true);
         this.RenRenButton.addActionListener(this);
         this.RenJiButton.addActionListener(this);
@@ -70,15 +73,8 @@ public class GameStart extends JFrame implements ActionListener {
 	}
 
 	
-    public void Music(String name,boolean loop) {              //≤•∑≈“Ù∆µµƒ∫Ø ˝ files are in the src/music
+    public void Music(String name,boolean loop) {              // files are in the src/music
     	try {      
-//            FileInputStream fmusic = new FileInputStream(root+"music/" + name);
-//            AudioStream au = new AudioStream(fmusic);
-//            AudioPlayer.player.start(au);
-    	    
-//    		BufferedInputStream buffer = new BufferedInputStream(
-//            new FileInputStream(root+"music/" + name));
-//            new Player(buffer).play();
     		File f = new File(root+"music/" + name); 
     		Music player=new Music(f,loop);
     		player.start();
@@ -159,8 +155,6 @@ public class GameStart extends JFrame implements ActionListener {
 	    	
 	    	GameStart game = new GameStart();
     		game.init();
-			//ChessGame.main(null);
-	    	
 	}
 }
 

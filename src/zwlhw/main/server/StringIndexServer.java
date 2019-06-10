@@ -1,21 +1,21 @@
-package zwlhw.main.server;
+ï»¿package zwlhw.main.server;
 
 public class StringIndexServer {
 	String[] StringTexts = new String[100];
 	
 	public StringIndexServer() {
-		this.StringTexts[0]="CCHESS Server @ÉñÆæÎåÓã";
-		this.StringTexts[1]="¶Ë ¿Ú ºÅ";
-		this.StringTexts[2]="Æô¶¯";
-		this.StringTexts[3]="¹Ø±Õ";
-		this.StringTexts[4]="¶Ë¿ÚºÅÖ»ÄÜÊÇÕûÊı";
-		this.StringTexts[5]="´íÎó";
-		this.StringTexts[6]="¶Ë¿ÚºÅÖ»ÄÜÊÇ0-65535µÄÕûÊı";
-		this.StringTexts[7]="·şÎñÆ÷Æô¶¯³É¹¦";
-		this.StringTexts[8]="ÌáÊ¾";
-		this.StringTexts[9]="·şÎñÆ÷Æô¶¯Ê§°Ü";
-		this.StringTexts[10]="ÉÏÏßÁË";
-		this.StringTexts[11]="ÀëÏßÁË";
+		this.StringTexts[0]="CCHESS Server @ç¥å¥‡äº”é±¼";
+		this.StringTexts[1]="ç«¯ å£ å·";
+		this.StringTexts[2]="å¯åŠ¨";
+		this.StringTexts[3]="å…³é—­";
+		this.StringTexts[4]="ç«¯å£å·åªèƒ½æ˜¯æ•´æ•°";
+		this.StringTexts[5]="é”™è¯¯";
+		this.StringTexts[6]="ç«¯å£å·åªèƒ½æ˜¯0-65535çš„æ•´æ•°";
+		this.StringTexts[7]="æœåŠ¡å™¨å¯åŠ¨æˆåŠŸ";
+		this.StringTexts[8]="æç¤º";
+		this.StringTexts[9]="æœåŠ¡å™¨å¯åŠ¨å¤±è´¥";
+		this.StringTexts[10]="ä¸Šçº¿äº†";
+		this.StringTexts[11]="ç¦»çº¿äº†";
 	}
 	
 	public String back_Strings(int i) {

@@ -33,11 +33,11 @@ public class Server extends JFrame implements ActionListener {
     ServerSocket ss;
     ServerThread st;
     
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); //��ȡ��Ļ�ĳߴ�
-    int screenWidth = screenSize.width;      //��ȡ��Ļ�Ŀ�
-    int screenHeight = screenSize.height;       //��ȡ��Ļ�ĸ�
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize(); 
+    int screenWidth = screenSize.width;      
+    int screenHeight = screenSize.height;       
 
-    Vector onlineList = new Vector();//������ŵ�ǰ�����û���Vector����
+    Vector onlineList = new Vector();
 
     public Server() {
 
@@ -99,23 +99,22 @@ public class Server extends JFrame implements ActionListener {
         this.addWindowListener(
                 new WindowAdapter() {
                     public void windowClosing(WindowEvent e) {
-                        if (st == null)//���������߳�Ϊ��ʱֱ���˳�
+                        if (st == null)
                         {
-                            System.exit(0);//�˳�
+                            System.exit(0);
                             return;
                         }
                         try {
                             Vector v = onlineList;
                             int size = v.size();
                             for (int i = 0; i < size; i++) {
-                                //����Ϊ��ʱ���������û�����������Ϣ
                                 ServerAgentThread tempSat = (ServerAgentThread) v.get(i);
 
                                 tempSat.dout.writeUTF("<#SERVER_DOWN#>");
-                                tempSat.flag = false;//��ֹ�����������߳�
+                                tempSat.flag = false;
                             }
 
-                            st.flag = false;//��ֹ�������߳�
+                            st.flag = false;
                             st = null;
                             ss.close();
                             v.clear();
@@ -192,11 +191,11 @@ public class Server extends JFrame implements ActionListener {
                 tempSat.flag = false;
             }
 
-            st.flag = false;//�رշ������߳�
+            st.flag = false;
             st = null;
-            ss.close();//�ر�ServerSocket
+            ss.close();
 
-            v.clear();//�������û��б����
+            v.clear();
             refreshList();
 
             this.jbStart.setEnabled(true);

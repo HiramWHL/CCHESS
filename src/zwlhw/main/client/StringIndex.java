@@ -1,43 +1,43 @@
-package zwlhw.main.client;
+ï»¿package zwlhw.main.client;
 
 public class StringIndex {
 	String[] StringTexts = new String[100];
 	
 	public StringIndex() {
-		this.StringTexts[0]="CCHESS Client @ÉñÆæÎåÓã";
-		this.StringTexts[1]="ÈËÈË¶ÔÕ½";
-		this.StringTexts[2]="ÈË»ú¶ÔÕ½";
-		this.StringTexts[3]="Ö÷»úÃû";
-		this.StringTexts[4]="¶Ë¿ÚºÅ";
-		this.StringTexts[5]="êÇ    ³Æ";
-		this.StringTexts[6]="Á¬ ½Ó";
-		this.StringTexts[7]="¶Ï  ¿ª";
-		this.StringTexts[8]="ÇëÑ¡ÔñÌôÕ½Íæ¼Ò£º";
-		this.StringTexts[9]="Á¬½ÓÏóÆå·şÎñÆ÷";
-		this.StringTexts[10]="¹ØÓÚ±¾Èí¼ş";
-		this.StringTexts[11]="´íÎó";
-		this.StringTexts[12]="¶Ë¿ÚºÅÖ»ÄÜÊÇÕûÊı";
-		this.StringTexts[13]="¶Ë¿ÚºÅÖ»ÄÜÊÇ0-65535µÄÕûÊı";
-		this.StringTexts[14]="Íæ¼ÒĞÕÃû²»ÄÜÎª¿Õ";
-		this.StringTexts[15]="ÌáÊ¾";
-		this.StringTexts[16]="ÒÑÁ¬½Óµ½·şÎñÆ÷";
-		this.StringTexts[17]="Á¬½Ó·şÎñÆ÷Ê§°Ü";
-		this.StringTexts[18]="ÇëÑ¡Ôñ¶Ô·½Ãû×Ö";
-		this.StringTexts[19]="ÒÑÌá³öÌôÕ½,ÇëµÈ´ı»Ø¸´...";
-		this.StringTexts[20]="Á¥Êé";
-		this.StringTexts[21]="³ş ºÓ";
-		this.StringTexts[22]="ºº ½ç";
-		this.StringTexts[23]="¹§Ï²»ñÊ¤";
-		this.StringTexts[24]="ÄãÊ§°ÜÁË";
-		this.StringTexts[25]="ÄãÌ«À¬»øÁË£¡";
-		this.StringTexts[26]="AIheixiangÆå";
-		this.StringTexts[27]="¸ÃÍæ¼ÒÃû³ÆÒÑ¾­±»Õ¼ÓÃ£¬ÇëÖØĞÂÌîĞ´";
-		this.StringTexts[28]="heixiangÆå·şÎñÆ÷ÒÑ¹Ø±Õ";
-		this.StringTexts[29]="ÏòÄã·¢ÆğÌôÕ½";
-		this.StringTexts[30]="¶Ô·½½ÓÊÜÄúµÄÌôÕ½!ÄúÎªºìÆå";
-		this.StringTexts[31]="¶Ô·½¾Ü¾øÄúµÄÌôÕ½";
-		this.StringTexts[32]="¶Ô·½Ã¦ÂµÖĞ";
-		this.StringTexts[33]="¹§Ï²Äã»ñÊ¤£¬¶Ô·½ÈÏÊä";
+		this.StringTexts[0]="CCHESS Client @ç¥å¥‡äº”é±¼";
+		this.StringTexts[1]="äººäººå¯¹æˆ˜";
+		this.StringTexts[2]="äººæœºå¯¹æˆ˜";
+		this.StringTexts[3]="ä¸»æœºå";
+		this.StringTexts[4]="ç«¯å£å·";
+		this.StringTexts[5]="æ˜µ    ç§°";
+		this.StringTexts[6]="è¿ æ¥";
+		this.StringTexts[7]="æ–­  å¼€";
+		this.StringTexts[8]="è¯·é€‰æ‹©æŒ‘æˆ˜ç©å®¶ï¼š";
+		this.StringTexts[9]="è¿æ¥è±¡æ£‹æœåŠ¡å™¨";
+		this.StringTexts[10]="å…³äºæœ¬è½¯ä»¶";
+		this.StringTexts[11]="é”™è¯¯";
+		this.StringTexts[12]="ç«¯å£å·åªèƒ½æ˜¯æ•´æ•°";
+		this.StringTexts[13]="ç«¯å£å·åªèƒ½æ˜¯0-65535çš„æ•´æ•°";
+		this.StringTexts[14]="ç©å®¶å§“åä¸èƒ½ä¸ºç©º";
+		this.StringTexts[15]="æç¤º";
+		this.StringTexts[16]="å·²è¿æ¥åˆ°æœåŠ¡å™¨";
+		this.StringTexts[17]="è¿æ¥æœåŠ¡å™¨å¤±è´¥";
+		this.StringTexts[18]="è¯·é€‰æ‹©å¯¹æ–¹åå­—";
+		this.StringTexts[19]="å·²æå‡ºæŒ‘æˆ˜,è¯·ç­‰å¾…å›å¤...";
+		this.StringTexts[20]="éš¶ä¹¦";
+		this.StringTexts[21]="æ¥š æ²³";
+		this.StringTexts[22]="æ±‰ ç•Œ";
+		this.StringTexts[23]="ä½ åªæ˜¯è¿æ°”å¥½è€Œå·²ï¼å†è¯•ä¸€æ¬¡ï¼Ÿ";
+		this.StringTexts[24]="ä½ å¤±è´¥äº†";
+		this.StringTexts[25]="ä½ å¤ªåƒåœ¾äº†ï¼";
+		this.StringTexts[26]="AIè±¡æ£‹";
+		this.StringTexts[27]="è¯¥ç©å®¶åç§°å·²ç»è¢«å ç”¨ï¼Œè¯·é‡æ–°å¡«å†™";
+		this.StringTexts[28]="è±¡æ£‹æ£‹æœåŠ¡å™¨å·²å…³é—­";
+		this.StringTexts[29]="å‘ä½ å‘èµ·æŒ‘æˆ˜";
+		this.StringTexts[30]="å¯¹æ–¹æ¥å—æ‚¨çš„æŒ‘æˆ˜!æ‚¨ä¸ºçº¢æ£‹";
+		this.StringTexts[31]="å¯¹æ–¹æ‹’ç»æ‚¨çš„æŒ‘æˆ˜";
+		this.StringTexts[32]="å¯¹æ–¹å¿™ç¢Œä¸­";
+		this.StringTexts[33]="æ­å–œä½ è·èƒœï¼Œå¯¹æ–¹è®¤è¾“";
 	}
 	
 	public String back_Strings(int i) {

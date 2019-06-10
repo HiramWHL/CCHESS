@@ -231,8 +231,6 @@ public class ClientAgentThread extends Thread {
         int endI = Integer.parseInt(msg.substring(length - 2, length - 1));
         int endJ = Integer.parseInt(msg.substring(length - 1));
         this.father.jpz.move(startI, startJ, endI, endJ);
-
-        this.father.caiPan = true;
     }
 
     public void renshu() {

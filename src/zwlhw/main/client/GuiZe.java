@@ -114,27 +114,27 @@ public class GuiZe {
                 {
                     canMove = false;
                 }
-            } else {//����Ǵ���������
-                if (qiZi[startI][startJ + 1] != null)//������ȴ�������
+            } else {
+                if (qiZi[startI][startJ + 1] != null)
                 {
-                    canMove = false;//��������
+                    canMove = false;
                 }
             }
-        } else if (a == 2 && b == 1)//����Ǻ��ŵ�"��"
+        } else if (a == 2 && b == 1)
         {
-            if (startI > endI)//����Ǵ���������
+            if (startI > endI)
             {
-                if (qiZi[startI - 1][startJ] != null)//������ȴ�������
+                if (qiZi[startI - 1][startJ] != null)
                 {
                     canMove = false;
                 }
-            } else {//����Ǵ���������
-                if (qiZi[startI + 1][startJ] != null)//������ȴ�������
+            } else {
+                if (qiZi[startI + 1][startJ] != null)
                 {
                     canMove = false;
                 }
             }
-        } else if (!((a == 2 && b == 1) || (a == 1 && b == 2)))//�����ʱ"��"��
+        } else if (!((a == 2 && b == 1) || (a == 1 && b == 2)))
         {
             canMove = false;
         }
@@ -145,18 +145,18 @@ public class GuiZe {
         int a = maxI - minI;
         int b = maxJ - minJ;
 
-        if (a == 2 && b == 2)//�����"��"��
+        if (a == 2 && b == 2)
         {
-            if (endJ > 4)//���������
+            if (endJ > 4)
             {
-                canMove = false;//��������
+                canMove = false;
             }
-            if (qiZi[(maxI + minI) / 2][(maxJ + minJ) / 2] != null)//���"��"���м�������
+            if (qiZi[(maxI + minI) / 2][(maxJ + minJ) / 2] != null)
             {
-                canMove = false;//��������
+                canMove = false;
             }
         } else {
-            canMove = false;//�������"��"�֣���������
+            canMove = false;
         }
     }
 
@@ -183,19 +183,19 @@ public class GuiZe {
         int a = maxI - minI;
         int b = maxJ - minJ;
 
-        if (a == 1 && b == 1)//�����Сб��
+        if (a == 1 && b == 1)
         {
-            if (startJ > 4)//������·���heishi
+            if (startJ > 4)
             {
                 if (endJ < 7) {
-                    canMove = false;//����·���heishiԽ�磬��������
+                    canMove = false;
                 }
-            } else {//������Ϸ�����
+            } else {
                 if (endJ > 2) {
-                    canMove = false;//����Ϸ�����Խ�磬��������
+                    canMove = false;
                 }
             }
-            if (endI > 5 || endI < 3)//�������Խ�磬�򲻿�����
+            if (endI > 5 || endI < 3)
             {
                 canMove = false;
             }
@@ -209,20 +209,20 @@ public class GuiZe {
         int a = maxI - minI;
         int b = maxJ - minJ;
 
-        if ((a == 1 && b == 0) || (a == 0 && b == 1)) {//����ߵ���һС��
-            if (startJ > 4)//������·��Ľ�
+        if ((a == 1 && b == 0) || (a == 0 && b == 1)) {
+            if (startJ > 4)
             {
-                if (endJ < 7)//���Խ��
+                if (endJ < 7)
                 {
-                    canMove = false;//��������
+                    canMove = false;
                 }
-            } else {//������Ϸ��Ľ�
+            } else {
                 if (endJ > 2)
                 {
                     canMove = false;
                 }
             }
-            if (endI > 5 || endI < 3)//�������Խ�磬��������
+            if (endI > 5 || endI < 3)
             {
                 canMove = false;
             }
@@ -233,51 +233,51 @@ public class GuiZe {
 
     public void pao(int maxI, int minI, int maxJ, int minJ, int startI, int startJ, int endI, int endJ) {
 
-        if (maxI == minI)//����ߵ�����
+        if (maxI == minI)
         {
-            if (qiZi[endI][endJ] != null)//����յ�������
+            if (qiZi[endI][endJ] != null)
             {
                 int count = 0;
                 for (j = minJ + 1; j < maxJ; j++) {
-                    if (qiZi[minI][j] != null)//�ж�������յ�֮���м�������
+                    if (qiZi[minI][j] != null)
                     {
                         count++;
                     }
                 }
-                if (count != 1) {//�������һ������
-                    canMove = false;//��������
+                if (count != 1) {
+                    canMove = false;
                 }
-            } else if (qiZi[endI][endJ] == null)//����յ�û������
+            } else if (qiZi[endI][endJ] == null)
             {
                 for (j = minJ + 1; j < maxJ; j++) {
-                    if (qiZi[minI][j] != null)//�����ֹ��֮��������
+                    if (qiZi[minI][j] != null)
                     {
-                        canMove = false;//��������
+                        canMove = false;
                         break;
                     }
                 }
             }
-        } else if (maxJ == minJ)//����ߵ��Ǻ���
+        } else if (maxJ == minJ)
         {
-            if (qiZi[endI][endJ] != null)//����յ�������
+            if (qiZi[endI][endJ] != null)
             {
                 int count = 0;
                 for (i = minI + 1; i < maxI; i++) {
-                    if (qiZi[i][minJ] != null)//�ж�������յ�֮���м�������
+                    if (qiZi[i][minJ] != null)
                     {
                         count++;
                     }
                 }
-                if (count != 1)//�������һ������
+                if (count != 1)
                 {
-                    canMove = false;//��������
+                    canMove = false;
                 }
-            } else if (qiZi[endI][endJ] == null)//����յ�û������
+            } else if (qiZi[endI][endJ] == null)
             {
                 for (i = minI + 1; i < maxI; i++) {
-                    if (qiZi[i][minJ] != null)//�����ֹ��֮��������
+                    if (qiZi[i][minJ] != null)
                     {
-                        canMove = false;//��������
+                        canMove = false;
                         break;
                     }
                 }
@@ -288,51 +288,51 @@ public class GuiZe {
     }
 
     public void bing(int maxI, int minI, int maxJ, int minJ, int startI, int startJ, int endI, int endJ) {
-        if (startJ < 5)//�����û�й���
+        if (startJ < 5)
         {
-            if (startI != endI)//���������ǰ��
+            if (startI != endI)
             {
                 canMove = false;
             }
-            if (endJ - startJ != 1)//����ߵĲ���һ��
+            if (endJ - startJ != 1)
             {
                 canMove = false;
             }
-        } else {//����Ѿ�����
-            if (startI == endI) {//����ߵ�������
-                if (endJ - startJ != 1)//����ߵĲ���һ��
+        } else {
+            if (startI == endI) {
+                if (endJ - startJ != 1)
                 {
                     canMove = false;
                 }
-            } else if (startJ == endJ) {//����ߵ��Ǻ���
-                if (maxI - minI != 1) {//����ߵĲ���һ��
+            } else if (startJ == endJ) {
+                if (maxI - minI != 1) {
                     canMove = false;
                 }
-            } else if (startI != endI && startJ != endJ) {//����ߵļȲ������ߣ�Ҳ���Ǻ��ߣ��򲻿�����
+            } else if (startI != endI && startJ != endJ) {
                 canMove = false;
             }
         }
     }
 
     public void zu(int maxI, int minI, int maxJ, int minJ, int startI, int startJ, int endI, int endJ) {
-        if (startJ > 4) {//�����û�й���
-            if (startI != endI) {//���������ǰ��
+        if (startJ > 4) {
+            if (startI != endI) {
                 canMove = false;
             }
-            if (endJ - startJ != -1)//����ߵĲ���һ��
+            if (endJ - startJ != -1)
             {
                 canMove = false;
             }
-        } else {//����Ѿ�����
-            if (startI == endI) {//����ߵ�������
-                if (endJ - startJ != -1) {//����ߵĲ���һ��
+        } else {
+            if (startI == endI) {
+                if (endJ - startJ != -1) {
                     canMove = false;
                 }
-            } else if (startJ == endJ) {//����ߵ��Ǻ���
-                if (maxI - minI != 1) {//����ߵĲ���һ��
+            } else if (startJ == endJ) {
+                if (maxI - minI != 1) {
                     canMove = false;
                 }
-            } else if (startI != endI && startJ != endJ) {//����ߵļȲ������ߣ�Ҳ���Ǻ��ߣ��򲻿�����
+            } else if (startI != endI && startJ != endJ) {
                 canMove = false;
             }
         }

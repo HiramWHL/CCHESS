@@ -11,7 +11,7 @@ public class SearchModel {
     private QiPan board;
     private GameController controller = new GameController();
 
-    public AlphaBetaNode search(QiPan board) {//随棋子减少逐层加深搜索
+    public AlphaBetaNode search(QiPan board) {//increase the depth with the number is decreasing.
         this.board = board;
         if (board.pieces.size() < 28)
             DEPTH = 3;
@@ -23,7 +23,8 @@ public class SearchModel {
             DEPTH = 6;
         //long startTime = System.currentTimeMillis();
         AlphaBetaNode best = null;
-        ArrayList<AlphaBetaNode> moves = generateMovesForAll(true);//枚举下一次所有可能的移动
+        ArrayList<AlphaBetaNode> moves = generateMovesForAll(true);//Search for the all possible movement.
+        //枚举下一次所有可能的移动
         for (AlphaBetaNode n : moves) {
             /* Move*/
             Piece eaten = board.updatePiece(n.piece, n.to);
@@ -94,13 +95,13 @@ public class SearchModel {
         return isMax ? alpha : beta;
     }
 
-    private ArrayList<AlphaBetaNode> generateMovesForAll(boolean isMax) {//搜寻当前棋盘所有情况
+    private ArrayList<AlphaBetaNode> generateMovesForAll(boolean isMax) {//Search for all the possible.
         ArrayList<AlphaBetaNode> moves = new ArrayList<AlphaBetaNode>();
         for (Map.Entry<String, Piece> stringPieceEntry : board.pieces.entrySet()) {
             Piece piece = stringPieceEntry.getValue();
-            if (isMax && piece.color == 'r') continue;//人 true 不做
-            if (!isMax && piece.color == 'b') continue;// AI false 不做
-            //人 false   AI  true 做
+            if (isMax && piece.color == 'r') continue;//Person true not do
+            if (!isMax && piece.color == 'b') continue;// AI false not do
+            //Person false   AI  true do
             for (int[] nxt : GuiZe.getNextMove(piece.key, piece.position, board))
                 moves.add(new AlphaBetaNode(piece.key, piece.position, nxt));
         }
