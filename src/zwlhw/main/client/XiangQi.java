@@ -98,7 +98,7 @@ public class XiangQi extends JFrame implements ActionListener {
     JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, jpz, jpy);
 
     boolean caiPan = false;//Sign of can move.
-    int color = 0;//0 -> red，1 -> white. 
+    int color = 0;//0 -> red，1 -> black. 
 
     Socket sc;
 
@@ -275,7 +275,6 @@ public class XiangQi extends JFrame implements ActionListener {
 
     public void jbConnectWindow_event() {
     	
-        
         frame.setBounds((screenWidth - 300)/2, (screenHeight - 200)/2, 300, 200);
         JLabel jl = new JLabel();
         jl.setLayout(null);
@@ -366,8 +365,6 @@ public class XiangQi extends JFrame implements ActionListener {
             this.jbNChallenge.setEnabled(false);
             this.jbFail.setEnabled(false);
             frame.dispose();
-            
-
             this.jcbNickList.setBounds(20, 50, 130, 20);
             jpy.add(this.jcbNickList);
             this.jcbNickListLab.setBounds(20, 30, 130, 20);
@@ -422,11 +419,8 @@ public class XiangQi extends JFrame implements ActionListener {
                 this.jbYChallenge.setEnabled(false);
                 this.jbNChallenge.setEnabled(false);
                 this.jbFail.setEnabled(false);
-
                 this.cat.tiaoZhanZhe = name2;
-                this.caiPan = true;
                 this.color = 0;
-
                 this.cat.dout.writeUTF("<#TIAO_ZHAN#>" + name2);
                 JOptionPane.showMessageDialog(this, GetStr.back_Strings(19), GetStr.back_Strings(15),
                         JOptionPane.INFORMATION_MESSAGE);
@@ -443,8 +437,6 @@ public class XiangQi extends JFrame implements ActionListener {
             this.cat.dout.writeUTF("<#TONG_YI#>" + this.cat.tiaoZhanZhe);
             this.caiPan = false;//caiPan -> false
             this.color = 1;//color -> 1
-            
-
             this.jtfHost.setEnabled(false);
             this.jtfPort.setEnabled(false);
             this.jtfNickName.setEnabled(false);
@@ -490,9 +482,7 @@ public class XiangQi extends JFrame implements ActionListener {
             this.cat.tiaoZhanZhe = null;
             this.color = 0;
             this.caiPan = false;
-
             this.next();
-
             this.jtfHost.setEnabled(false);
             this.jtfPort.setEnabled(false);
             this.jtfNickName.setEnabled(false);
@@ -520,10 +510,10 @@ public class XiangQi extends JFrame implements ActionListener {
         this.repaint();//repaint
     }
     
-    public void Music(String name,boolean loop) {              //Music. files are in the src/music
+    public void Music(String name, boolean loop) {//Music. files are in the src/music
     	try {     
     		File f = new File(root+"music/" + name); 
-    		Music player=new Music(f,loop);
+    		Music player = new Music(f,loop);
     		player.start();
     	    
         } catch (Exception e) 
@@ -537,9 +527,6 @@ public class XiangQi extends JFrame implements ActionListener {
     }
 
     public void move(int n, int x, int y, int ratex, int ratey){//设置倍率和正负 进行残影循环 set the rate and plus-minus and loop to paint.
-    	if(this.caiPan==false) {
-    		return;//x y both are subscript
-    	}
     	try{
     		for(int i = 0; i <= n; i+=10){
     			Thread.sleep(1);
@@ -552,20 +539,18 @@ public class XiangQi extends JFrame implements ActionListener {
     }
 
     public void slowMove(String Name, int x1, int y1, int x2, int y2) {
-    	
-    	if(this.caiPan==false) {
-    		return;//x y both are subscript
-    	}
-    	
     	if(qiZi[x2][y2]!=null) {
     		this.Music("chi.mp3",false);
     	}else {
     		this.Music("peng.mp3",false);
     	}
     	
+    	if(this.color==0) {
+    		y1=9-y1;
+    		y2=9-y2;
+    	}
+    	
         img = Toolkit.getDefaultToolkit().createImage(Name);
-
-        
         int xx1 = x1 *60 + 85;//through subscript to calculate the pixel.
         int xx2 = x2 * 60 + 85;
         int yy1 = y1 * 60 + 95;
@@ -635,6 +620,5 @@ public class XiangQi extends JFrame implements ActionListener {
                 }
             }
         }
-        this.caiPan=false;
     }
 }

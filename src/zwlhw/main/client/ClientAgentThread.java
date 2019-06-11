@@ -179,6 +179,8 @@ public class ClientAgentThread extends Thread {
 
         JOptionPane.showMessageDialog(this.father, GetStr.back_Strings(30),
         		GetStr.back_Strings(15), JOptionPane.INFORMATION_MESSAGE);
+        
+        this.father.caiPan = true;
     }
 
     public void butong_yi() {
