@@ -5,9 +5,9 @@
 
 建议使用一键安装包，不依赖java环境：
 
-链接：https://pan.baidu.com/s/1Y6svh_pfMy3NTPtou37lqQ 
+链接：https://pan.baidu.com/s/1d2dXiUGOBGEK9I9eSwfgnw 
 
-提取码：qjwi 
+提取码：i779 
 
 
 目前待解决的问题与对应分工
@@ -35,6 +35,8 @@
 BY WHL 6.11
 
 已更新jar文件至最新版本
+
+已更新exe文件和安装包至最新版本
 
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
