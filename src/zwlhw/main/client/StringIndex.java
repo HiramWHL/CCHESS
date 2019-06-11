@@ -23,7 +23,7 @@ public class StringIndex {
 		this.StringTexts[16]="已连接到服务器";
 		this.StringTexts[17]="连接服务器失败";
 		this.StringTexts[18]="请选择对方名字";
-		this.StringTexts[19]="已提出挑战,请等待回复...";
+		this.StringTexts[19]="已提出挑战请求，请等待回复";
 		this.StringTexts[20]="隶书";
 		this.StringTexts[21]="楚 河";
 		this.StringTexts[22]="汉 界";
