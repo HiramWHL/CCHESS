@@ -213,4 +213,3 @@ BY LCX：
 ![2](https://github.com/HiramWHL/CCHESS/blob/master/show/2.png)
 ![3](https://github.com/HiramWHL/CCHESS/blob/master/show/3.png)
 ![4](https://github.com/HiramWHL/CCHESS/blob/master/show/5.png)
-![5](https://github.com/HiramWHL/CCHESS/blob/master/show/4.png)
